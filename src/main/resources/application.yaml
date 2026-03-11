@@ -16,7 +16,7 @@ spring:
 
 #hibernate settings
     jpa:
-        hibernate.ddl-auto: pdate
+        hibernate.ddl-auto: update
         show-sql: true
 # spring.jpa.properties.hibernate.format_sql=true
 
