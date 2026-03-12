@@ -1,5 +1,6 @@
 :root {
   --primary-color: #1a3c34;
+  --primary-color-hover: #344f46;
   --bg-color: #546e68;
   --primary-text: #c5a059;
   --opacity-text: #1a3c3499;
@@ -39,7 +40,7 @@ header > div:first-child {
   text-align: right;
   vertical-align: middle;
 }
-header .header-logo-holder {
+.header-logo-holder {
   width: 40px;
   height: 40px;
   display: flex;
@@ -64,21 +65,6 @@ header nav li a {
   line-height: 21px;
   letter-spacing: 0px;
   text-align: right;
-  vertical-align: middle;
-}
-.header-btn {
-  background-color: var(--primary-color);
-  color: white;
-  height: 40px;
-  padding: 12px 20px;
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  line-height: 21px;
-  letter-spacing: 0.21px;
-  text-align: center;
   vertical-align: middle;
 }
 
@@ -194,6 +180,88 @@ footer a {
   color: inherit;
   text-decoration: inherit;
 }
+
+/* ui shared */
+section {
+  padding: 64px 32px;
+}
 a.active {
   color: var(--primary-text) !important;
+}
+.full-width-section {
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 99dvw;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+  padding-inline: 20px;
+  border-radius: 16px;
+  font-weight: 700;
+}
+.btn-primary:hover {
+  background-color: var(--primary-color-hover);
+  color: white;
+  padding-inline: 20px;
+  border-radius: 16px;
+  font-weight: 700;
+}
+.btn-secondary {
+  color: var(--primary-color);
+  padding-inline: 20px;
+  border-radius: 16px;
+  font-weight: 700;
+  border: 1px solid #c5a0594d;
+  background-color: #ffffff;
+}
+.btn-secondary:hover {
+  color: var(--primary-color);
+  padding-inline: 20px;
+  border-radius: 16px;
+  font-weight: 700;
+  border: 1px solid #c5a0594d;
+  background-color: #ffffff;
+}
+
+.text-secondary {
+  color: #546e68;
+  font-size: 18px;
+}
+.text-primary {
+  color: var(--primary-color) !important;
+  font-weight: 700 !important;
+}
+
+.avatar {
+  border-radius: 50%;
+}
+.btn-link {
+  text-decoration: none;
+  color: var(--primary-text);
+  font-weight: 700;
+  line-height: 20px;
+}
+.btn-link:hover {
+  text-decoration: none;
+  color: var(--primary-text);
+  font-weight: 700;
+  line-height: 20px;
+}
+
+.text-in-img .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    0deg,
+    rgba(26, 60, 52, 0.8) 0%,
+    rgba(26, 60, 52, 0) 100%
+  );
 }
