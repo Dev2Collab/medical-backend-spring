@@ -104,15 +104,6 @@ footer .footer-box > div {
   display: flex;
   gap: 16px;
 }
-.footer-media-holder {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--opacity-bg);
-  border-radius: 50%;
-}
 
 .footer-head-line {
   color: var(--primary-text);
@@ -264,4 +255,37 @@ a.active {
     rgba(26, 60, 52, 0.8) 0%,
     rgba(26, 60, 52, 0) 100%
   );
+}
+
+.btn-gold {
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 14px;
+  padding: 6px 16px;
+  background: #c5a0590d;
+  border: 1px solid #c5a05966;
+  backdrop-filter: blur(4px);
+  color: #c5a059;
+  opacity: 1;
+  border-radius: 9999px;
+  border-width: 1px;
+}
+
+.icon-holder {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--opacity-bg);
+  border-radius: 50%;
+}
+.text-gold {
+  font-weight: 700;
+  font-style: Bold;
+  line-height: 24px;
+  text-align: center;
+  vertical-align: middle;
+  text-transform: uppercase;
+  color: var(--primary-text);
 }
