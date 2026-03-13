@@ -1,0 +1,120 @@
+
+.section-one {
+  background: radial-gradient(
+    57.25% 102.64% at 50% 50%,
+    #1a3c34 0%,
+    #0d1f1b 100%
+  );
+  position: relative;
+}
+
+.section-one .container {
+  padding-top: 128px;
+  padding-right: 160px;
+  padding-bottom: 128px;
+  padding-left: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+}
+
+.section-one .glass-bg {
+  opacity: 0.05;
+  background: linear-gradient(
+    135deg,
+    rgba(197, 160, 89, 0) 45%,
+    #c5a059 45%,
+    #c5a059 55%,
+    rgba(197, 160, 89, 0) 55%
+  );
+  position: absolute;
+  width: 100%;
+  height: 100%;
+    margin-top: -64px;
+    margin-right: -32px;
+}
+
+h1 {
+  font-weight: 200;
+  font-size: 72px;
+  line-height: 82px;
+  
+  letter-spacing: 0px;
+  text-align: center;
+  vertical-align: middle;
+  color: white;
+}
+h1 span{
+    display: block;
+    color: #C5A059;
+}
+.section-one p {
+  font-family: Cairo;
+  font-weight: 200;
+  font-size: 24px;
+  line-height: 32px;
+  text-align: center;
+  vertical-align: middle;
+  color: #cbd5e1;
+}
+
+/*section three */
+.section-three {
+  background: #1a3c34;
+}
+.overlay-card {
+    border: 1px solid #c5a05933;
+    background-color:  #FFFFFF0D;
+;
+    backdrop-filter: blur(12px);
+    width: 456px;
+    min-height: 490px;
+    border-radius: 16px;
+    border-width: 1px;
+    padding: 41px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+.overlay-card h5{
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 36px;
+    color: white;
+}
+.overlay-card .text-secondary{
+    color:#CBD5E1 !important;
+    line-height: 36px;
+}
+.icon-holder{
+    width: 64px;
+    height: 64px;
+}
+
+.section-four {
+    background: #F9FAF9;
+}
+.section-four  div >*{  
+    margin-bottom: 16px;
+}
+    .section-four  div >p{  
+margin-bottom: 64px;
+    }
+
+.white-card .text-secondary {
+    margin-bottom: 0;
+}
+.section-four .white-card {
+    border: 1px solid #C5A0591A;
+    width: 222px;
+border-radius: 12px;
+border-width: 1px;
+background-color: white;
+padding: 16px;
+display: flex;
+flex-direction: column;
+gap: 12px;
+text-align: start;
+}
