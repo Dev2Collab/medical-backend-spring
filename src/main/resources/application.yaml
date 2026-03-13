@@ -2,10 +2,10 @@ spring:
     application:
         name: medical_backend_spring
 #security credentials
-    security:
-        user:
-            name: ${SECURITY_USERNAME:hema}
-            password: ${SECURITY_PASSWORD:12345}
+    # security:
+    #     user:
+    #         name: ${SECURITY_USERNAME:hema}
+    #         password: ${SECURITY_PASSWORD:{noop}12345}
 
 # database credentials
     datasource:
