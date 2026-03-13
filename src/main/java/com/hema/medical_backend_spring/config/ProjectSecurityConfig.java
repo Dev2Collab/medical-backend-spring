@@ -16,7 +16,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class ProjectSecurityConfig {
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception{
-        http.authorizeHttpRequests(request->request.requestMatchers("/login","/error","welcome").permitAll().anyRequest().authenticated())
+        http.authorizeHttpRequests(request->request.anyRequest().permitAll())
         .formLogin(flc->flc.disable())
         .httpBasic(Customizer.withDefaults());
         return http.build();
