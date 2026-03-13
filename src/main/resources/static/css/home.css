@@ -110,3 +110,41 @@ h1 span {
 .full-width-section .card-body p {
   margin-bottom: 0;
 }
+
+/* .testimonial  */
+.testimonial h2{
+  margin-bottom: 64px;
+}
+.testimonial .card{
+  background-color: #F9FAF9;
+  border: 1px solid #C5A0591A;
+  width: 298px;
+  height: 244px;
+  gap: 24px;
+  border-radius: 24px;
+  border-width: 1px;
+  position: relative;
+  
+  
+}
+.testimonial .card .text-primary{
+  font-size: 16px;
+}
+.testimonial .card .icon-to-left{
+  position: absolute;
+  left: 25px;
+  top: 18px;
+}
+.testimonial .card:hover {
+  scale: 1.1;
+  transition:ease-in-out 1s ;
+  border: 2px solid #C5A059;
+  background-color: #1A3C34;
+  box-shadow: 0px 25px 50px -12px #00000040;
+
+  .text-primary , h6{
+
+    color: white !important;
+  }
+}
+
