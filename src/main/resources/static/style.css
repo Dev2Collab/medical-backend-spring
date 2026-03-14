@@ -189,6 +189,21 @@ a.active {
   width: 99dvw;
 }
 
+h1{
+font-weight: 900;
+font-size: 60px;
+line-height: 60px;
+padding: 14px 0px;
+letter-spacing: -1.5px;
+color: var(--primary-color);
+text-align: center;
+vertical-align: middle;
+
+}
+h1 span {
+  color: var(--primary-text);
+}
+
 form {
   width: 100%;
   padding: 0 20px;
@@ -371,6 +386,62 @@ text-align: start;
     margin-bottom: 0;
 }
 
+.card {
+  min-width: 222px;
+  border-radius: 16px;
+}
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.header-logo-holder {
+  width: 56px;
+  height: 56px;
+}
+.head-line-right-border{
+    border-right: 4px solid #C5A059;
+    padding-right: 16px;
+    
+}
+.sub-header-holder{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom:40px ;
+}
+.text-in-img {
+  position: relative;
+  background: linear-gradient(
+    0deg,
+    rgba(26, 60, 52, 0.8) 0%,
+    rgba(26, 60, 52, 0) 100%
+  );
+}
+.text-in-img img {
+  border-radius: 16px 16px 0 0;
+}
+.text-in-img h5 {
+  position: absolute;
+  bottom: 0;
+  padding-right: auto;
+  margin-right: 16px;
+  color: white;
+  font-family: Cairo;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 28px;
+}
+
+.full-width-section .card-body {
+  padding: 16px;
+  background-color: white;
+  border-radius: 0 0 16px 16px;
+}
+.full-width-section .card-body p {
+  margin-bottom: 0;
+}
+
 
 /*oters */
 .avatar {
@@ -398,7 +469,15 @@ text-align: start;
   border-radius: 50%;
 }
 
+.bg-gray {
+  background-color: #f9faf9;
+}
 
+.flex-column{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .flex{
   display: flex;
 }

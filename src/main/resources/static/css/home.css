@@ -13,16 +13,7 @@
   flex-direction: column;
   gap: 24px;
 }
-h1 {
-  font-weight: 900;
-  font-size: 60px;
-  line-height: 60px;
-  letter-spacing: -1.98px;
-  color: var(--primary-color);
-}
-h1 span {
-  color: var(--primary-text);
-}
+
 .hero-image {
   border-radius: 16px;
   border-width: 2px;
@@ -53,7 +44,6 @@ h1 span {
 .card-body {
   display: flex;
   flex-direction: column;
-
   gap: 24px;
   padding: 33px;
 }
@@ -63,53 +53,8 @@ h1 span {
 }
 /* end section two */
 
-/* start section three */
-.bg-gray {
-  background-color: #f9faf9;
-}
 
-.head-line-right-border{
-    border-right: 4px solid #C5A059;
-    padding-right: 16px;
-    
-}
-.sub-header-holder{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom:40px ;
-}
-.text-in-img {
-  position: relative;
-  background: linear-gradient(
-    0deg,
-    rgba(26, 60, 52, 0.8) 0%,
-    rgba(26, 60, 52, 0) 100%
-  );
-}
-.text-in-img img {
-  border-radius: 16px 16px 0 0;
-}
-.text-in-img h5 {
-  position: absolute;
-  bottom: 0;
-  padding-right: auto;
-  margin-right: 16px;
-  color: white;
-  font-family: Cairo;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 28px;
-}
 
-.full-width-section .card-body {
-  padding: 16px;
-  background-color: white;
-  border-radius: 0 0 16px 16px;
-}
-.full-width-section .card-body p {
-  margin-bottom: 0;
-}
 
 /* .testimonial  */
 .testimonial h2{
