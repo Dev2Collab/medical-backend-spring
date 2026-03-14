@@ -1,6 +1,5 @@
 package com.hema.medical_backend_spring.config;
 
-import com.hema.medical_backend_spring.controllers.AuthController;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -15,12 +14,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class ProjectSecurityConfig {
-    private final AuthController authController;
-
-    ProjectSecurityConfig(AuthController authController) {
-        this.authController = authController;
-    }
-
+ 
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception{
         http.authorizeHttpRequests(request->request.requestMatchers("/home").authenticated()

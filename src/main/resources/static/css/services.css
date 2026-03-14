@@ -1,9 +1,30 @@
+.section-two {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  align-items: stretch;
+  height: 120px;
+  padding-top: 0;
+}
+.section-three {
+  padding-top: 0;
+}
 
-.section-two{
-    display: flex;
-    justify-content: center;
-    gap: 16px;
-    align-items: stretch;
-    height: 120px;
+.btn-square-gold {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+}
+
+.btn-gold{
     padding-top: 0;
+    padding-bottom: 0;
+    border: none;
+}
+.section-three .text-secondary{
+    font-size: 14px;
+}
+.section-three .btn-primary{
+    padding: 8px 12px;
+    border-radius: 8px;
 }
