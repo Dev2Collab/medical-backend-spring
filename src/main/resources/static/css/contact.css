@@ -1,0 +1,58 @@
+.section-one{
+    background: linear-gradient(180deg, #EEF2EF 0%, #F9F8F4 100%);
+    padding-top: 96px;
+    padding-right: 256px;
+    padding-bottom: 96px;
+    padding-left: 256px;
+    
+    
+}
+.section-one>div>div{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 24px;
+}
+.section-one>div>div p{
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 0px;
+    text-align: center;
+    vertical-align: middle;
+}
+.section-one>div>div h1{
+    font-weight: 900;
+    font-size: 60px;
+    line-height: 60px;
+    text-align: center;
+    vertical-align: middle;
+}
+.section-two{
+    /* padding-inline: 0; */
+    margin: 0;
+}
+.section-two .input-holder{
+    direction: ltr;
+}
+.section-two .input-holder input{
+    direction: rtl;
+    padding-left: 32px;
+}
+#email{
+    direction: ltr;
+}
+
+
+.flex-l{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.input-holder span {
+  position: absolute;
+  top: 0;
+  left: 6px;
+  margin-top: 6px;
+} 
