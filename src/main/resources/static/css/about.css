@@ -103,18 +103,3 @@ h1 span{
 margin-bottom: 64px;
     }
 
-.white-card .text-secondary {
-    margin-bottom: 0;
-}
-.section-four .white-card {
-    border: 1px solid #C5A0591A;
-    width: 222px;
-border-radius: 12px;
-border-width: 1px;
-background-color: white;
-padding: 16px;
-display: flex;
-flex-direction: column;
-gap: 12px;
-text-align: start;
-}

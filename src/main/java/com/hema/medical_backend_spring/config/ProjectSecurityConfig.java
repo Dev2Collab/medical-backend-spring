@@ -10,26 +10,30 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class ProjectSecurityConfig {
+
     @Bean
-    SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception{
-        http.authorizeHttpRequests(request->request.anyRequest().authenticated())
-        .formLogin(Customizer.withDefaults())
-        // .formLogin(flc->flc.disable())
-        // .csrf((av)->av.disable())
-        .httpBasic(Customizer.withDefaults());
+    SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+        http.authorizeHttpRequests(request -> request.requestMatchers("/home").authenticated()
+                .anyRequest().permitAll())
+                .formLogin(flc -> flc.disable())
+                // .formLogin(Customizer.withDefaults())
+                .csrf(csrfConfig -> csrfConfig.disable())
+                .httpBasic(Customizer.withDefaults());
         return http.build();
     }
 
-    // @Bean 
+    // @Bean
     // UserDetailsService userDetailsService(){
-    //     UserDetails user1=User.withUsername("hema").password("{noop}12345").authorities("read").build();
-    //     UserDetails user2=User.withUsername("admin").password("{noop}12345").authorities("admin").build();
+    // UserDetails
+    // user1=User.withUsername("hema").password("{noop}12345").authorities("read").build();
+    // UserDetails
+    // user2=User.withUsername("admin").password("{noop}12345").authorities("admin").build();
 
-    //     return new InMemoryUserDetailsManager(user1,user2);
+    // return new InMemoryUserDetailsManager(user1,user2);
     // }
 
-    @Bean 
-    PasswordEncoder passwordEncoder(){
+    @Bean
+    PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
