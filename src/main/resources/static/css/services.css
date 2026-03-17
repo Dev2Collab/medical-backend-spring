@@ -1,10 +1,5 @@
-.section-two {
-  display: flex;
+.section-buttons {
   justify-content: center;
-  gap: 16px;
-  align-items: stretch;
-  height: 120px;
-  padding-top: 0;
 }
 .section-three {
   padding-top: 0;

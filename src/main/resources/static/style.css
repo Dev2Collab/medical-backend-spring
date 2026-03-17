@@ -196,8 +196,6 @@ line-height: 60px;
 padding: 14px 0px;
 letter-spacing: -1.5px;
 color: var(--primary-color);
-text-align: center;
-vertical-align: middle;
 
 }
 h1 span {
@@ -234,7 +232,7 @@ input {
 
 .btn-primary {
   background-color: var(--primary-color);
-  color: white;
+  color: var(--primary-text);
   padding-inline: 20px;
   border-radius: 16px;
   font-weight: 700;
@@ -397,6 +395,8 @@ text-align: start;
   display: flex;
   flex-direction: column;
   gap: 24px;
+  align-items: start;
+  padding-top: 0;
 }
 .header-logo-holder {
   width: 56px;
@@ -445,6 +445,63 @@ text-align: start;
   margin-bottom: 0;
 }
 
+.card-doctor{
+  gap: 20px;
+  border-radius: 24px;
+  border-width: 1px;
+  padding: 20px;
+  border: 1px solid #C5A0591A;
+  font-size: 12px;
+  .text-secondary{
+    font-size: 14px;
+  }
+  .btn-gold{
+    width: 174px;
+height: 56px;
+border-radius: 16px;
+padding: 16px;
+text-decoration: none;
+background-color: var(--primary-text);
+font-weight: 900;
+font-size: 16px;
+line-height: 24px;
+letter-spacing: 0px;
+text-align: center;
+vertical-align: middle;
+  }
+  .text-primary{
+    margin: 0;
+  }
+  
+}
+.card-doctor .card-img-top{
+  border-radius: 16px;
+  
+}
+.tag-in-img{
+  position: relative;
+  backdrop-filter: blur(12px)
+  
+}
+.img-tag{
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+.img-tag .btn-primary{
+  padding-top: 6px;
+  padding-right: 12px;
+  padding-bottom: 6px;
+  padding-left: 12px;
+  border-radius: 16px;
+  border-width: 1px;
+  font-size: 12px;
+  border: 1px solid #C5A0594D
+}
+.card-doctor .card-body{
+gap: 8px;
+}
+
 
 /*oters */
 .avatar {
@@ -488,4 +545,12 @@ text-align: start;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.section-buttons {
+  display: flex;
+  gap: 16px;
+  align-items: stretch;
+  height: 108px;
+  padding-top: 0;
 }
