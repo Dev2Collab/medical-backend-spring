@@ -59,8 +59,8 @@
 
 
                             <div class="flex text-primary" >
-                                <img src="/svgs/book-person.svg" style="margin-inline:8px;"/>
-                                البيانات الشخصية للمريض
+                                <img src="/svgs/doc-thing.svg" style="margin-inline:8px;"/>
+                               تحديد الخدمة الطبية
                             </div>
 
                             <div class="row">
@@ -82,8 +82,8 @@
                             </div>
 
                             <div class="flex text-primary" >
-                                <img src="/svgs/book-person.svg" style="margin-inline:8px;"/>
-                                البيانات الشخصية للمريض
+                                <img src="/svgs/date-out.svg" style="margin-inline:8px;"/>
+                              الموعد المقترح
                             </div>
 
                             <div class="row">
@@ -102,11 +102,12 @@
                                     </select>
                                 </div>
 
-                                <div class="mb-3">
+                                <div class="mb-3 mt-3">
                                     <label for="message" class="form-label text-primary">الرسالة</label>
                                     <textarea class="form-control" id="message" rows="5" placeholder="اكتب تفاصيل استفسارك هنا "></textarea>
                                 </div>
                             </div>
+
                             <%-- //TODO COMPLETE THE FORM UI  --%>
                             <button type="submit" class="btn-signup" >  انشاء الحساب
                                 <img src="./svgs/arrow-left.svg" alt="icon" style="margin-right: 16px;">
