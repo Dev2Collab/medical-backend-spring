@@ -237,8 +237,28 @@
                         </div>
                     </div>
                 </section>
+                <section class="flex justify-content-center ">
+                    <div class="green-card row align-items-center justify-content-between text-center">
+                    <div  class="mb-3">
+                    <img src="/svgs/shield.svg" alt="icon" width="50px">
+                    </div>
+                        <h2 class="mb-5">
+                            صحتك أمانة.. ومكانها عيادة
+                            الشفاء
+                        </h2>
+                        <p class='text-gold'>
+                            انضم إلى آلاف المستفيدين من خدماتنا الطبية المتميزة. نحن هنا لخدمتك على مدار الساعة
+                            بمهنية وفخامة.
+                        </p>
 
-                <%@ include file="shared/footer.jsp" %>
-                <script src="./js/bootstrap.min.js"></script>
-            </body>
-        </html>
+                        <div class="row flex justify-content-around" style="gap:16px;margin-top:32px;">
+                            <a href="/book-appointment" class="btn btn-gold btn-lg text-gold col-5" style="border-radius: 12px; line-height: normal;"> احجز موعدك الآن</a>
+                            <a href="/contact" class="btn btn-secondary btn-lg text-white col-5" style="background-color: inherit;">
+                                تحدث مع خدمة العملاء</a>
+                            </div>
+                        </div>
+                    </section>
+                    <%@ include file="shared/footer.jsp" %>
+                    <script src="./js/bootstrap.min.js"></script>
+                </body>
+            </html>

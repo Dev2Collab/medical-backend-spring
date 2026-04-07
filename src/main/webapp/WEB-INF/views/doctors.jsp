@@ -24,7 +24,13 @@
                     <br>
                     الاستشاريين في بيئة طبية فاخرة.
                 </p>
-                <%-- //TODO add the search  --%>
+             <div class="mb-3 col-md-6" >
+                            <div  class="input-holder">
+                                <input type="text"  class="form-control"  placeholder="ادخل اسمك " style="padding: 13px 48px 13px 16px; direction: rtl; border-radius: 24px; ">
+                                <span>   <img src="./svgs/search.svg" alt="email icon">
+                                </span>
+                            </div>
+                        </div>
             </section>
 
             <section class="section-buttons">
@@ -144,7 +150,22 @@
                 </div>
             </section>
             <section>
-            <%-- //TODO green card  --%>
+                <div class="green-card row align-items-center justify-content-around " style="margin-top: 64px; padding: 32px;">
+                    <div  class="col-9 " >
+                        <h2 class="mb-5" style="text-align: justify;">
+                  هل تنتمي إلى 
+                            <span class="text-gold">النخبة؟</span>
+                        </h2>
+                        <p class='text-gold' style="text-align: justify;">
+                           نحن نبحث دائماً عن الأفضل. انضم إلى صرحنا الطبي الفاخر وساهم في رسم
+مستقبل الرعاية الصحية الراقية.
+                        </p>
+                    </div>
+
+                    <div class="col ">
+                        <a href="#" class="btn btn-gold btn-lg text-gold col-5" style="border-radius: 12px; line-height: normal; width: 100%;"> انضم لفريقنا </a>
+                    </div>
+                </div>
             </section>
         </div>
 

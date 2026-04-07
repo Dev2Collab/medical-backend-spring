@@ -25,8 +25,8 @@
                 </div>
             </div>
         </section>
-        <section class="section-two row justify-content-between">
-            <div class="col-md-5">
+        <section class="section-two row justify-content-between" >
+            <div class="col-md-6 ps-md-4" >
                 <form >
                     <h2 class="text-primary">أرسل لنا رسالة</h2>
                     <p class="text-secondary">سنقوم بالرد عليك في أقرب وقت ممكن عبر بريدك الإلكتروني.</p>
@@ -69,8 +69,31 @@
                         <img src="./svgs/send.svg" alt="icon" style="margin-right: 16px;">
                     </button>
                 </form>
+
+                <div class="whats-card row align-items-center justify-content-around ">
+                    <div class="text-icon col-6">
+                        <div class="round-gold">
+                            <img src="./svgs/logo-dark.svg" alt="logo" class="logo">
+                        </div>
+
+                        <div >
+                            <p class="text-primary mb-0" >
+                                هل
+                                تفضل المحادثة الفورية؟
+                            </p>
+                            <p class="text-secondary mb-0" >
+                                تحدث معنا مباشرة عبر الواتساب
+                            </p>
+                        </div>
+                    </div>
+                    <a href="https://wa.me/201146839894?text=مرحبا%20بك%20" target="_blank" class="whats-button col text-white" >
+                        <img src="./svgs/whatsappmsg.svg" alt="icon" style="margin-right: 16px;">
+                        تواصل واتساب
+                    </a>
+                </div>
+
             </div>
-            <div class="col-md-5">
+            <div class="col-md-6 pe-md-4" >
 
                 <div class="row justify-content-between">
                     <div class="gray-card col-md-5">
@@ -134,6 +157,29 @@
                                 4:00 مساءً - 9:00 مساءً
                             </p>
                         </div>
+                    </div>
+                    <%-- //TODO map  --%>
+                </div>
+            </div>
+        </section>
+        <section class="flex justify-content-center" >
+            <div class="green-card row align-items-center justify-content-around ">
+                <div  class="col-6 " >
+                    <h3 class="text-gold" >
+                        اشترك في نشرتنا الصحية
+                    </h3>
+
+                    <p  style="text-align: justify;">
+                        احصل على نصائح طبية وعروض حصرية تصلك مباشرة إلى بريدك الإلكتروني.
+                    </p>
+                </div>
+
+                <div class="col ">
+                    <div class="row">
+                        <div class=" col-md-6" >
+                            <input type="text"  class="form-control"  placeholder="email " >
+                        </div>
+                        <button href="#" class="col  btn-gold text-gold " style="border-radius: 12px; padding:3px; line-height: normal; width: 100%;"> انضم لفريقنا </button>
                     </div>
                 </div>
             </div>

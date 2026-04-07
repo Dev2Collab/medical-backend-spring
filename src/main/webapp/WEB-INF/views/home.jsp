@@ -352,8 +352,25 @@
                     </div>
                 </div>
             </section>
+            <section>
+                <div class="green-card row align-items-center justify-content-between text-center">
+                    <h2 class="mb-5">
+                        تواصل معناابدأ رحلتك العلاجية مع نخبة من
+                        الاستشاريين اليوم
+                    </h2>
+                    <p >
+                        صحتك هي استثمارك الأهم. لا تتردد في التواصل معنا للحصول على استشارة فورية أو حجز
+                        موعد يناسبك.
+                    </p>
 
-
+                <div class="row flex justify-content-around" style="gap:16px;margin-top:32px;">
+                    <a href="/book-appointment" class="btn btn-gold btn-lg text-gold col-5" style="border-radius: 12px; line-height: normal;"> احجز موعدك الآن</a>
+                    <a href="tel:920000000" class="btn btn-secondary btn-lg text-white col-5" style="background-color: inherit;">
+                    <img src="/svgs/call.svg" alt="icon" style="margin: 10px;"/>
+                    احجز موعدك الان</a>
+                </div>
+                </div>
+            </section>
         </div>
         <%@ include file="shared/footer.jsp" %>
         <script src="./js/bootstrap.min.js"></script>

@@ -35,6 +35,7 @@
             </div>
         </section>
 
+<%-- //TODO section two  --%>
         <section class="section-three">
             <div class="container">
                 <div class="row justify-content-around">
@@ -140,6 +141,8 @@
                     </div>
                 </div>
             </section>
+
+            <%-- //TODO last section  --%>
             <%@ include file="shared/footer.jsp" %>
             <script src="./js/bootstrap.min.js"></script>
         </body>
