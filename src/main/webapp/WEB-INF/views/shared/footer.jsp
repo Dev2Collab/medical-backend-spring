@@ -2,7 +2,6 @@
 
 <footer>
     <div class="footer-box">
-
         <div>
             <div class="text-icon">
                 <div class="footer-logo-holder">

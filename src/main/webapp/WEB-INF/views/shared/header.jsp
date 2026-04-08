@@ -17,6 +17,6 @@
             <li><a href="/contact" class="<%= request.getRequestURI().equals("/WEB-INF/views/contact.jsp") ? "active" : "" %>">اتصل بنا </a> </li>
         </ul>
     </nav>
-    <a href="/book-appointment" type="submit" class="btn btn-primary" >   احجز موعدك
+    <a href="/book-appointment" type="submit" class="btn btn-primary header-btn" >   احجز موعدك
     </a>
 </header>
