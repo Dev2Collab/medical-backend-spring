@@ -106,9 +106,10 @@
 
 
             </div>
-            <div>
+            <div class="footer-map">
                 <img src="/images/map.png"  />
             </div>
+            
         </div>
         <div class="footer-tail">
             <p class="footer-p-text">&copy;  <%= java.time.Year.now().getValue() %> عيادة الشفاء. جميع الحقوق محفوظة.</p>
