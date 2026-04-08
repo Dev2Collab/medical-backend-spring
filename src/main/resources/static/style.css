@@ -238,7 +238,8 @@ input {
   color: var(--primary-text);
   padding-inline: 20px;
   border-radius: 16px;
-  font-weight: 700;
+  font-weight: 900;
+  font-size: 18px;
 }
 
 .btn-primary:hover {
@@ -589,6 +590,7 @@ color: #CBD5E1;
   align-items: center;
 }
 
+
 .section-buttons {
   display: flex;
   gap: 16px;
@@ -596,6 +598,23 @@ color: #CBD5E1;
   height: 108px;
   padding-top: 0;
 }
+
+
 .text-white {
   color: white;
+}
+
+
+.note{
+height: 44px;
+gap: 8px;
+border-radius: 9.6px;
+padding-top: 12px;
+padding-right: 12px;
+padding-bottom: 12px;
+padding-left: 22.33px;
+border-right-width: 4px;
+background-color: #0A2A1B0D;
+border-right: 4px solid #C5A059;
+font-size: medium;
 }

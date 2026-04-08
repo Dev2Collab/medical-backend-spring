@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="./css/bootstrap.min.css">
         <link rel="stylesheet" href="./style.css">
         <link rel="stylesheet" href="./css/home.css">
+        <link rel="stylesheet" href="./responsive.css">
     </head>
     <body>
         <div class="container">
@@ -28,8 +29,7 @@
                             وسلامتكم. فريقنا الطبي المتخصص جاهز لخدمتكم على مدار
                             الساعة لضمان راحة بالكم.
                         </p>
-                        <div>
-
+                        <div class="hero-btns">
                             <a href="#" class="btn btn-primary btn-lg">احجز موعدك الان </a>
                             <a href="#" class="btn btn-secondary btn-lg"> تعرف علينا </a>
                         </div>
@@ -73,7 +73,8 @@
                         </p>
                     </div>
 
-                    <div class="row" style="justify-content:space-around;gap:16px">
+                    <div class="row home-features" style="justify-content:space-around; gap:16px">
+                       
                         <div class="col-md-2">
                             <div class="card" >
                                 <div class="card-body">
@@ -91,7 +92,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-2">
+
+                        <div class="col-md-2 ">
                             <div class="card" >
                                 <div class="card-body">
                                     <div class="header-logo-holder">
@@ -142,11 +144,11 @@
             </section>
 
 
-            <section class="bg-gray full-width-section">
+            <section class="bg-gray full-width-section home-services-section">
                 <div class="container">
-                    <div class="row align-items-center">
+                    <div class="row align-items-center home-services">
 
-                        <div class="col-md-12" >
+                        <div class="col-md-12 home-services-head" >
                             <h2 class="text-primary head-line-right-border">
                                 خدماتنا الطبية
                             </h2>
@@ -263,7 +265,7 @@
                 <h5 class="text-gold">آراء المرضى</h5>
                 <h2 class="text-primary">قصص نجاح مرضانا</h2>
                 <div class="row justify-content-around">
-                    <div class="col-md-4">
+                    <div class="col-md-4 mb-3">
                         <div class="card" >
                             <img src="/svgs/66.svg" alt="icon" class="icon-to-left" />
                             <div class="card-body">
@@ -292,7 +294,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 mb-3">
                         <div class="card" >
                             <img src="/svgs/66.svg" alt="icon" class="icon-to-left" />
                             <div class="card-body">
@@ -321,7 +323,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 mb-3">
                         <div class="card" >
                             <img src="/svgs/66.svg" alt="icon" class="icon-to-left" />
                             <div class="card-body">
