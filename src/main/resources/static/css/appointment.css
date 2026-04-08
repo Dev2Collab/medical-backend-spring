@@ -50,3 +50,53 @@ text-align: start;
     direction: rtl;
     padding-left: 20px;
 }
+
+.time-slot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  border-radius: 9.6px;
+  border-width: 2px;
+padding: 12px;
+background: #F9FAFB;
+border: 2px solid #F3F4F6;
+font-weight: 700;
+font-style: Bold;
+text-align: center;
+vertical-align: middle;
+cursor: pointer;
+
+}
+.time-slot-active , .time-slot:hover{
+background: #0A2A1B;
+border: 2px solid #C5A059;
+color: #C5A059;
+;
+} 
+
+
+.feature-icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+height: 64px;
+border-radius: 16px;
+border-width: 1px;
+background: #0A2A1B;
+border: 1px solid #C5A05933;
+}
+
+.features-section{
+    .text-primary{
+font-weight: 700;
+font-style: Bold;
+font-size: 18px;
+    }
+
+    .text-secondary{
+font-weight: 400;
+font-size: 14px;
+
+    }
+}

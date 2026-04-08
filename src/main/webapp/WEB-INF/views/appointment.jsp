@@ -32,12 +32,12 @@
                     <div class="form row">
                         <div class="top-gradient"></div>
                         <form >
-                            <div class="flex text-primary" >
+                            <div class="flex text-primary mb-2 mt-2" >
                                 <img src="/svgs/book-person.svg" style="margin-inline:8px;"/>
                                 البيانات الشخصية للمريض
                             </div>
 
-                            <div class="row  flex-between">
+                            <div class="row  justify-content-around">
                                 <div class="mb-3 col-md-5" >
                                     <label for="fullName" class="form-label" >الاسم بالكامل   </label>
                                     <div  class="input-holder">
@@ -58,12 +58,12 @@
                             </div>
 
 
-                            <div class="flex text-primary" >
+                            <div class="flex text-primary mb-2 mt-2" >
                                 <img src="/svgs/doc-thing.svg" style="margin-inline:8px;"/>
-                               تحديد الخدمة الطبية
+                                تحديد الخدمة الطبية
                             </div>
 
-                            <div class="row">
+                            <div class="row justify-content-around">
                                 <div class="mb-3 col-md-5">
                                     <label for="email" class="form-label">البريد الالكتروني </label>
                                     <select class="form-control" id="email">
@@ -81,41 +81,98 @@
                                 </div>
                             </div>
 
-                            <div class="flex text-primary" >
+                            <div class="flex text-primary mb-2 mt-2 " >
                                 <img src="/svgs/date-out.svg" style="margin-inline:8px;"/>
-                              الموعد المقترح
+                                الموعد المقترح
                             </div>
 
-                            <div class="row">
+                            <div class="row justify-content-around">
+
                                 <div class="mb-3 col-md-5">
                                     <label for="myDate" class="form-label">البريد الالكتروني </label>
                                     <input  type="date" class="form-control" id="myDate">
 
-                                </div>
+                                    <div class="note mt-4 text-secondary flex">
+                                        <img src="./svgs/info.svg" alt="icon" />
+                                        المواعيد تخضع للتأكيد النهائي من خلال اتصال قسم المواعيد بكم.
+                                    </div>
 
+                                </div>
 
 
                                 <div class="mb-3 col-md-5">
                                     <label for="password" class="form-label">كلمة المرور </label>
-                                    <select class="form-control" id="password">
-                                        <option value="ab">do do</option>
-                                    </select>
+                                    <div class="row justify-content-between">
+                                        <div class="time-slot col-md-5 time-slot-active mb-3">
+                                            19:00 ص
+                                        </div>
+
+                                        <div class="time-slot col-md-5 mb-3">
+                                            19:00 ص
+                                        </div>
+
+                                        <div class="time-slot col-md-5 mb-3">
+                                            19:00 ص
+                                        </div>
+
+                                        <div class="time-slot col-md-5 mb-3">
+                                            19:00 ص
+                                        </div>
+
+
+                                    </div>
                                 </div>
 
                                 <div class="mb-3 mt-3">
-                                    <label for="message" class="form-label text-primary">الرسالة</label>
-                                    <textarea class="form-control" id="message" rows="5" placeholder="اكتب تفاصيل استفسارك هنا "></textarea>
+                                    <label for="message" class="form-label text-primary">ملاحظات طبية إضافية</label>
+                                    <textarea class="form-control" id="message" rows="5" placeholder="يرجى كتابة أي ملاحظات أو استفسارات طبية ترغب في مشاركتها مع الطبيب..."></textarea>
                                 </div>
                             </div>
 
-                            <%-- //TODO COMPLETE THE FORM UI  --%>
-                            <button type="submit" class="btn-signup" >  انشاء الحساب
-                                <img src="./svgs/arrow-left.svg" alt="icon" style="margin-right: 16px;">
-                            </button>
+                            <div class="row mb-5 mt-5 justify-content-around">
+                                <p class="text-secondary col-md-5">
+                                    بتقديم هذا الطلب، فإنك توافق على سياسة الخصوصية الخاصة
+                                    <br>
+                                    بالمركز الطبي واستخدام بياناتك لأغراض جدولة المواعيد.
+                                </p>
+                                <button type="submit" class="btn-primary col-md-4"  >  تأكيد طلب الحجز
+                                    <img src="./svgs/appointment.svg" alt="icon" style="margin-right: 16px;">
+                                </button>
+                            </div>
                         </form>
-                        <%-- //TODO ADD THE THREE CARDS FROM THE DESIGN  --%>
                     </div>
                 </section>
+                <section class="row justify-content-around features-section">
+
+                    <div class="flex-column  col-md-3 ">
+                        <div class="feature-icon mb-4">
+                            <img src="/svgs/certification.svg" alt="icon"/>
+                        </div>
+
+                        <h4 class="text-primary">شهادات عالمية</h4>
+                        <p class="text-secondary">معايير جودة طبية تتوافق مع البروتوكولات العالمية
+                        </p>
+                    </div>
+                    <div class="flex-column  col-md-3 text-center ">
+                        <div class="feature-icon mb-4">
+                            <img src="/svgs/privacy.svg" alt="icon"/>
+                        </div>
+                        <h4 class="text-primary"> خصوصية تامة</h4>
+                        <p class="text-secondary">بياناتكم الطبية مشفرة ومحفوظة بأعلى درجات السرية
+                        </p>
+                    </div>
+                    <div class="flex-column  col-md-3 ">
+                        <div class="feature-icon mb-4">
+                            <img src="/svgs/support.svg" alt="icon"/>
+                        </div>
+
+                        <h4 class="text-primary"> دعم متواصل</h4>
+                        <p class="text-secondary">
+                            فريق التنسيق الطبي متاح للإجابة على اتصالاتكم
+                        </p>
+                    </div>
+                </section>
+
             </div>
             <%@ include file="shared/footer.jsp" %>
             <script src="./js/bootstrap.min.js"></script>

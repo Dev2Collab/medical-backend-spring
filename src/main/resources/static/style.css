@@ -235,7 +235,8 @@ input {
   color: var(--primary-text);
   padding-inline: 20px;
   border-radius: 16px;
-  font-weight: 700;
+  font-weight: 900;
+  font-size: 18px;
 }
 
 .btn-primary:hover {
@@ -553,4 +554,18 @@ gap: 8px;
   align-items: stretch;
   height: 108px;
   padding-top: 0;
+}
+
+.note{
+height: 44px;
+gap: 8px;
+border-radius: 9.6px;
+padding-top: 12px;
+padding-right: 12px;
+padding-bottom: 12px;
+padding-left: 22.33px;
+border-right-width: 4px;
+background-color: #0A2A1B0D;
+border-right: 4px solid #C5A059;
+font-size: medium;
 }
