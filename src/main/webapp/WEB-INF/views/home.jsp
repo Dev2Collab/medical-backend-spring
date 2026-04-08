@@ -365,9 +365,10 @@
 
                 <div class="row flex justify-content-around" style="gap:16px;margin-top:32px;">
                     <a href="/book-appointment" class="btn btn-gold btn-lg text-gold col-5" style="border-radius: 12px; line-height: normal;"> احجز موعدك الآن</a>
-                    <a href="tel:920000000" class="btn btn-secondary btn-lg text-white col-5" style="background-color: inherit;">
+                    <a href="tel:+201146839894" dir="ltr" class="btn btn-secondary btn-lg text-white col-5" style="background-color: inherit;">
+             +201146839894 
                     <img src="/svgs/call.svg" alt="icon" style="margin: 10px;"/>
-                    احجز موعدك الان</a>
+             </a>
                 </div>
                 </div>
             </section>
