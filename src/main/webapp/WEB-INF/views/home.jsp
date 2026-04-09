@@ -356,16 +356,16 @@
             </section>
             <section>
                 <div class="green-card row align-items-center justify-content-between text-center">
-                    <h2 class="mb-5">
+                    <h2 class="mb-2 mb-md-5">
                         تواصل معناابدأ رحلتك العلاجية مع نخبة من
                         الاستشاريين اليوم
                     </h2>
-                    <p >
+                    <p>
                         صحتك هي استثمارك الأهم. لا تتردد في التواصل معنا للحصول على استشارة فورية أو حجز
                         موعد يناسبك.
                     </p>
 
-                <div class="row flex justify-content-around" style="gap:16px;margin-top:32px;">
+                <div class="row flex justify-content-around mt-md-5" >
                     <a href="/book-appointment" class="btn btn-gold btn-lg text-gold col-5" style="border-radius: 12px; line-height: normal;"> احجز موعدك الآن</a>
                     <a href="tel:+201146839894" dir="ltr" class="btn btn-secondary btn-lg text-white col-5" style="background-color: inherit;">
              +201146839894 
