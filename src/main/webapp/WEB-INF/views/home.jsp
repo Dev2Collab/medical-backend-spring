@@ -30,8 +30,8 @@
                             الساعة لضمان راحة بالكم.
                         </p>
                         <div class="hero-btns">
-                            <a href="#" class="btn btn-primary btn-lg">احجز موعدك الان </a>
-                            <a href="#" class="btn btn-secondary btn-lg"> تعرف علينا </a>
+                            <a href="/book-appointment" class="btn btn-primary btn-lg">احجز موعدك الان </a>
+                            <a href="/about" class="btn btn-secondary btn-lg"> تعرف علينا </a>
                         </div>
 
                         <div class="hero-rate">

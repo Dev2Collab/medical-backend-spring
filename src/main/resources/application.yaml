@@ -25,9 +25,11 @@ spring:
         view:
             suffix: .jsp
             prefix: /WEB-INF/views/
+      
 
 #logging settings
 logging:
+
     level:
         org:
             springframework:

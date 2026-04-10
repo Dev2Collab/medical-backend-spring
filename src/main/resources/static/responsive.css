@@ -27,6 +27,11 @@
   .header-btn {
     display: none;
   }
+    .menu-toggle {
+        display: block;
+        cursor: pointer;
+        font-size: 24px;
+    }
 
   h1 {
     font-weight: 700;
@@ -41,7 +46,7 @@
   /* //buttons */
 
   .btn-primary {
-    padding-inline: 8px;
+    padding: 6px 8px ;
     border-radius: 14px;
     font-size: 12px;
   }
@@ -122,6 +127,7 @@
     width: 100%;
     margin: 0px;
   }
+ 
   .home-features .card-body {
     padding: 16px;
     gap: 12px;
@@ -163,7 +169,48 @@
   .green-card > div {
     padding-left: 0px;
   }
+/* //login */
 
+.login-main{
+  height: 100dvh;
+  
+
+}
+.card {
+  min-width: 330px;
+  padding: 8px 8px;
+  border: #c5a059 solid 1px;
+  border-radius: 16px;
+margin-bottom: 16px;
+}
+
+/* //signup */
+.signup-right-side{
+  display: none;
+  
+}
+
+.left-side {
+  min-width: 300px;
+  padding: 6px;
+  form{
+    padding: 0 12px;
+  }
+
+}
+
+.group-input {
+  grid-template-columns:  1fr;
+  gap: 6px;
+}
+
+
+.hero-sub-header{
+  margin: 0px !important;
+}
+.btn-signup{
+  margin-bottom: 6px;
+}
   footer {
     padding: 16px 8px;
     gap:24px
@@ -174,6 +221,10 @@
     grid-template-rows: repeat(2, auto);
     row-gap: 24px;
     padding-bottom: 0;
+  }
+  footer .icon-holder{
+     width: 40px;
+  height: 40px;
   }
 
 .footer-box >div:nth-child(3) {

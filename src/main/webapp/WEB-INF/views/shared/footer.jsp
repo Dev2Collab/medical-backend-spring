@@ -107,7 +107,9 @@
 
             </div>
             <div class="footer-map">
+            <a href="https://maps.app.goo.gl/W4H2F3D5N2QLAtVa8" target="_blank">
                 <img src="/images/map.png"  />
+            </a>
             </div>
 
         </div>

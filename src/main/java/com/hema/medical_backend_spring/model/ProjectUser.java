@@ -17,7 +17,8 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "users")
-@Getter @Setter
+@Getter
+@Setter
 public class ProjectUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,17 +30,17 @@ public class ProjectUser {
     @Column(nullable = false)
     private String password;
 
-    @Enumerated(EnumType.STRING)
     @ColumnDefault("'PATIENT'")
-    private Role role;
+    @Enumerated(EnumType.STRING)
+    private Role role = Role.PATIENT;
 
     private String fullName;
     private String phoneNumber;
 
-    @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Doctor doctor;
 
-    public enum Role {
+    static public enum Role {
         PATIENT,
         DOCTOR,
         ADMIN
