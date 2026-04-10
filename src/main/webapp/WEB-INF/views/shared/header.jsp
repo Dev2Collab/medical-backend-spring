@@ -17,14 +17,19 @@
             <li><a href="/contact" class="<%= request.getRequestURI().equals("/WEB-INF/views/contact.jsp") ? "active" : "" %>">اتصل بنا </a> </li>
         </ul>
     </nav>
+    <div class="menu-toggle">
+        ☰
+    </div>
+    <div>
+    ${username}
+    </div>
+
+    <% if (request.getAttribute("user") == null) { %>
     <div class="header-btn">
         <a href="/signup" type="submit" class="btn btn-secondary " >  انشاء حساب
         </a>
         <a href="/login" type="submit" class="btn btn-primary " >  سجل دخولك
         </a>
-    </div>
-    <div class="menu-toggle">
-        ☰
     </div>
     <div class="mobile-menu">
         <ul>
@@ -35,19 +40,26 @@
             <li><a href="/doctors" class="<%= request.getRequestURI().equals("/WEB-INF/views/doctors.jsp") ? "active" : "" %>">الاطباء</a> </li>
             <li><a href="/contact" class="<%= request.getRequestURI().equals("/WEB-INF/views/contact.jsp") ? "active" : "" %>">اتصل بنا </a> </li>
             <li>
-            <a href="/login" class="<%= request.getRequestURI().equals("/WEB-INF/views/login.jsp") ? "active" : "" %>"> سجل دخولك </a> </li>
-            <li><a href="/signup" class="<%= request.getRequestURI().equals("/WEB-INF/views/signup.jsp") ? "active" : "" %>"> انشاء حساب </a> </li>
-        </ul>
-    </div>
-    <script>
-        const toggleBtn = document.querySelector('.menu-toggle');
-        const mobileMenu = document.querySelector('.mobile-menu');
-        
-        toggleBtn.addEventListener('click', () => {
-            mobileMenu.style.display =
-            mobileMenu.style.display === 'block' ? 'none' : 'block';
-        });
-    </script>
+                <a href="/login" class="<%= request.getRequestURI().equals("/WEB-INF/views/login.jsp") ? "active" : "" %>"> سجل دخولك </a> </li>
+                <li><a href="/signup" class="<%= request.getRequestURI().equals("/WEB-INF/views/signup.jsp") ? "active" : "" %>"> انشاء حساب </a> </li>
+            </ul>
+        </div>
+        <% }else { %>
+        <div class="header-btn">
+            <a href="/profile" type="submit" class="btn btn-secondary " >  مرحبا، ${user.email}
+            </a>
+            <a href="/logout" type="submit" class="btn btn-primary " >  تسجيل خروج
+            </a>
+        <% } %>
+        <script>
+            const toggleBtn = document.querySelector('.menu-toggle');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            
+            toggleBtn.addEventListener('click', () => {
+                mobileMenu.style.display =
+                mobileMenu.style.display === 'block' ? 'none' : 'block';
+            });
+        </script>
 
 
-</header>
+    </header>

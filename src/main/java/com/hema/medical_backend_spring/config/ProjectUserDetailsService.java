@@ -28,7 +28,7 @@ public class ProjectUserDetailsService implements UserDetailsService {
         List<GrantedAuthority> authorities = List.of(
             new SimpleGrantedAuthority(user.getRole().toString())
         );
-        return new User(user.getEmail(),user.getPassword(),authorities);
+        return new CustomUserDetails(user.getEmail(),user.getPassword(),user,authorities);
     }
 
 }

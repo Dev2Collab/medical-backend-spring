@@ -33,8 +33,12 @@ public class ProjectUser {
     @ColumnDefault("'PATIENT'")
     @Enumerated(EnumType.STRING)
     private Role role = Role.PATIENT;
+    @ColumnDefault("'default.png'")
+    private String photo="default.png";
 
+    @Column(nullable = false)
     private String fullName;
+    
     private String phoneNumber;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)

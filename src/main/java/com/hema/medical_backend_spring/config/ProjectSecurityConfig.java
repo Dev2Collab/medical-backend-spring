@@ -43,7 +43,7 @@ public class ProjectSecurityConfig {
 
     // return new InMemoryUserDetailsManager(user1,user2);
     // }
-
+    
     @Bean
     PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();

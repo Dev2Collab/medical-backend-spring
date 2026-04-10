@@ -23,7 +23,7 @@ public class ProjectAuthenticationProvider implements AuthenticationProvider {
         String password = authentication.getCredentials().toString();
         UserDetails userDetails = userDetailsService.loadUserByUsername(email);
         if (passwordEncoder.matches(password, userDetails.getPassword())) {
-            return new UsernamePasswordAuthenticationToken(email, password, userDetails.getAuthorities());
+            return new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());
         } else {
             throw new BadCredentialsException("Invalid Password");
         }
