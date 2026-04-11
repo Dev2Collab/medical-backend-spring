@@ -1,22 +1,30 @@
 package com.hema.medical_backend_spring.model;
 
-import org.hibernate.annotations.ColumnDefault;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
-import jakarta.persistence.CascadeType;
+import org.hibernate.annotations.ColumnDefault;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Table(name = "users")
+@Inheritance(strategy = InheritanceType.JOINED)
+@EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
 public class ProjectUser {
@@ -34,15 +42,22 @@ public class ProjectUser {
     @Enumerated(EnumType.STRING)
     private Role role = Role.PATIENT;
     @ColumnDefault("'default.png'")
-    private String photo="default.png";
+    private String photo = "default.png";
 
     @Column(nullable = false)
     private String fullName;
-    
+
+    private boolean isActive = false;
+
+    private LocalDate dateOfBirth;
+    private String address;
+
     private String phoneNumber;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private Doctor doctor;
+
+    @CreatedDate
+    @Column(updatable = false)
+    private LocalDateTime createdAt;
 
     static public enum Role {
         PATIENT,

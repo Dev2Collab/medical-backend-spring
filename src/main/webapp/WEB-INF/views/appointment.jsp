@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="./css/bootstrap.min.css">
         <link rel="stylesheet" href="./style.css">
         <link rel="stylesheet" href="./css/appointment.css">
+        <link rel="stylesheet" href="./responsive.css">
     </head>
     <body>
         <div class="container">

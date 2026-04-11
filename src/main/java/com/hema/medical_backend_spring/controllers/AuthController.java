@@ -38,6 +38,13 @@ public class AuthController {
         }
         return "auth/signup";
     }
+    @GetMapping("/doctor-signup")
+    public String getDoctorSignupPage(Authentication authentication) {
+        if (authentication != null && authentication.isAuthenticated()) {
+            return "redirect:/home";
+        }
+        return "auth/doctor-signup";
+    }
 
     @PostMapping("/signup")
     public String registerUser(
@@ -70,7 +77,7 @@ public class AuthController {
         
 
         System.out.println(user.toString());
-        userService.saveUser(user);
+        userService.registerPatient(user);
         return "redirect:/login";
     }
 

@@ -16,11 +16,11 @@ public class HomeController {
             CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
             model.addAttribute("user", userDetails.getProjectUser());
             if (authentication.getAuthorities().toArray()[0].toString().equals("PATIENT"))
-                return "dashboard/patient";
+                return "profile/patient";
             else if (authentication.getAuthorities().toArray()[0].toString().equals("DOCTOR"))
-                return "dashboard/doctor";
+                return "profile/doctor";
             else if (authentication.getAuthorities().toArray()[0].toString().equals("ADMIN"))
-                return "dashboard/admin";
+                return "profile/admin";
 
             return "/home";
         }

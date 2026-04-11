@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="./css/bootstrap.min.css">
         <link rel="stylesheet" href="./style.css">
         <link rel="stylesheet" href="./css/about.css">
+        <link rel="stylesheet" href="./responsive.css">
     </head>
     <body>
         <div class="container">
@@ -18,11 +19,10 @@
         <section class="section-one">
             <div class="glass-bg"></div>
             <div class="container">
-                <p class="btn-gold">تأسست لترتقي بتجربتك الصحية</p>
+                <p class="btn-gold ">تأسست لترتقي بتجربتك الصحية</p>
                 <h1>
                     عيادة الشفاء: إرث من
                     الثقة ورؤية لمستقبل
-
                     <span>الرعاية الصحية</span>
                 </h1>
                 <p>
@@ -39,7 +39,7 @@
         <section class="section-three">
             <div class="container">
                 <div class="row justify-content-around">
-                    <div class="overlay-card col-md-5">
+                    <div class="overlay-card col-md-5 mb-3">
                         <div class="icon-holder">
                             <img src="/svgs/web.svg" alt="icon"/>
                         </div>

@@ -35,17 +35,19 @@ public class CustomUserDetails implements UserDetails, CredentialsContainer {
    private final boolean accountNonLocked;
    private final boolean credentialsNonExpired;
    private final boolean enabled;
+   private final boolean isActive;
    private final ProjectUser projectUser;
 
-   public CustomUserDetails(String username, String password,ProjectUser projectUser, Collection<? extends GrantedAuthority> authorities) {
-      this(username, password,projectUser, true, true, true, true, authorities);
+   public CustomUserDetails(String username, String password,ProjectUser projectUser,boolean isActive, Collection<? extends GrantedAuthority> authorities) {
+      this(username, password,projectUser, isActive,true, true, true, true, authorities);
    }
 
-   public CustomUserDetails(String username, String password,ProjectUser projectUser, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
+   public CustomUserDetails(String username, String password,ProjectUser projectUser,boolean isActive , boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
       Assert.isTrue(username != null && !"".equals(username) && password != null, "Cannot pass null or empty values to constructor");
       this.username = username;
       this.password = password;
       this.projectUser = projectUser;
+      this.isActive = isActive;
       this.enabled = enabled;
       this.accountNonExpired = accountNonExpired;
       this.credentialsNonExpired = credentialsNonExpired;
@@ -71,6 +73,9 @@ public class CustomUserDetails implements UserDetails, CredentialsContainer {
 
    public boolean isEnabled() {
       return this.enabled;
+   }
+   public boolean isActive() {
+      return this.isActive;
    }
 
    public boolean isAccountNonExpired() {
@@ -168,6 +173,7 @@ public class CustomUserDetails implements UserDetails, CredentialsContainer {
       private String password;
       private ProjectUser projectUser;
       private List<GrantedAuthority> authorities = new ArrayList();
+      private boolean isActive;
       private boolean accountExpired;
       private boolean accountLocked;
       private boolean credentialsExpired;
@@ -231,6 +237,10 @@ public class CustomUserDetails implements UserDetails, CredentialsContainer {
          this.accountExpired = accountExpired;
          return this;
       }
+      public UserBuilder isActive(boolean isActive) {
+         this.isActive = isActive;
+         return this;
+      }
 
       public UserBuilder accountLocked(boolean accountLocked) {
          this.accountLocked = accountLocked;
@@ -249,7 +259,7 @@ public class CustomUserDetails implements UserDetails, CredentialsContainer {
 
       public UserDetails build() {
          String encodedPassword = (String)this.passwordEncoder.apply(this.password);
-         return new CustomUserDetails(this.username, encodedPassword, this.projectUser, !this.disabled, !this.accountExpired, !this.credentialsExpired, !this.accountLocked, this.authorities);
+         return new CustomUserDetails(this.username, encodedPassword, this.projectUser,this.isActive , !this.disabled, !this.accountExpired, !this.credentialsExpired, !this.accountLocked, this.authorities);
       }
    }
 }

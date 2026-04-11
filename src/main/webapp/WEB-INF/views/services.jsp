@@ -9,18 +9,17 @@
         <link rel="stylesheet" href="./css/bootstrap.min.css">
         <link rel="stylesheet" href="./style.css">
         <link rel="stylesheet" href="./css/services.css">
+        <link rel="stylesheet" href="./responsive.css">
     </head>
     <body>
         <div class="container">
             <%@ include file="shared/header.jsp" %>
             <section class="text-center">
-                <div class="flex-column">
+                <div class="flex-column service-hero">
                     <p class="btn-gold">تأسست لترتقي بتجربتك الصحية</p>
                     <div>
-                        <h1 class="text-primary">
-                            رعاية صحية ملكية
-                            <br>
-                            تليق بك وبعائلتك
+                        <h1 class="text-primary ">
+                            رعاية صحية ملكية تليق بك وبعائلتك
                         </h1>
                         <p class="text-secondary">
                             نجمع بين الخبرة الطبية العريقة وأحدث التقنيات العالمية في أجواء من الفخامة والخصوصية
@@ -38,7 +37,7 @@
                 </div>
                 <section class="section-three">
                     <div class="row justify-content-around">
-                        <div class="gray-card col-md-3">
+                        <div class="gray-card col-md-3 mb-3">
                             <div class="flex-between">
                                 <p class="btn-square-gold">
                                     <img src="/svgs/location.svg" alt="icon" />
@@ -73,7 +72,7 @@
                             </div>
                         </div>
 
-                        <div class="gray-card col-md-3">
+                        <div class="gray-card col-md-3 mb-3">
                             <div class="flex-between">
                                 <p class="btn-square-gold">
                                     <img src="/svgs/location.svg" alt="icon" />
@@ -107,7 +106,7 @@
                             </div>
                         </div>
 
-                        <div class="gray-card col-md-3">
+                        <div class="gray-card col-md-3 mb-3">
                             <div class="flex-between">
                                 <p class="btn-square-gold">
                                     <img src="/svgs/location.svg" alt="icon" />
@@ -151,7 +150,7 @@
                         <div class="row align-items-center">
 
                             <div class="col-md-12" >
-                                <h2 class="text-primary head-line-right-border">
+                                <h2 class="text-primary head-line-right-border ">
                                     الأقسام التخصصية
                                 </h2>
                                 <div class="sub-header-holder">
@@ -242,7 +241,7 @@
                     <div  class="mb-3">
                     <img src="/svgs/shield.svg" alt="icon" width="50px">
                     </div>
-                        <h2 class="mb-5">
+                        <h2 class="mb-md-5">
                             صحتك أمانة.. ومكانها عيادة
                             الشفاء
                         </h2>
@@ -251,7 +250,7 @@
                             بمهنية وفخامة.
                         </p>
 
-                        <div class="row flex justify-content-around" style="gap:16px;margin-top:32px;">
+                        <div class="row flex justify-content-around mt-md-5" style="gap:16px;">
                             <a href="/book-appointment" class="btn btn-gold btn-lg text-gold col-5" style="border-radius: 12px; line-height: normal;"> احجز موعدك الآن</a>
                             <a href="/contact" class="btn btn-secondary btn-lg text-white col-5" style="background-color: inherit;">
                                 تحدث مع خدمة العملاء</a>

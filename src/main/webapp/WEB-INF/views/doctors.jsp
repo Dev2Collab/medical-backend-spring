@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="./css/bootstrap.min.css">
         <link rel="stylesheet" href="./style.css">
         <%-- <link rel="stylesheet" href="./css/doctors.css"> --%>
+        <link rel="stylesheet" href="./responsive.css">
     </head>
     <body>
         <div class="container">
@@ -152,7 +153,7 @@
             <section>
                 <div class="green-card row align-items-center justify-content-around " style="margin-top: 64px; padding: 32px;">
                     <div  class="col-9 " >
-                        <h2 class="mb-5" style="text-align: justify;">
+                        <h2 class="mb-md-5" style="text-align: justify;">
                   هل تنتمي إلى 
                             <span class="text-gold">النخبة؟</span>
                         </h2>
@@ -162,7 +163,7 @@
                         </p>
                     </div>
 
-                    <div class="col ">
+                    <div class="col-md ">
                         <a href="#" class="btn btn-gold btn-lg text-gold col-5" style="border-radius: 12px; line-height: normal; width: 100%;"> انضم لفريقنا </a>
                     </div>
                 </div>

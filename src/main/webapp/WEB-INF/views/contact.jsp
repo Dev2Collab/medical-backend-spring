@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="./css/bootstrap.min.css">
         <link rel="stylesheet" href="./style.css">
         <link rel="stylesheet" href="./css/contact.css">
+        <link rel="stylesheet" href="./responsive.css">
     </head>
     <body>
         <div class="container">
@@ -16,7 +17,7 @@
         </div>
         <section class="section-one">
             <div class="container ">
-                <div>
+                <div class="contact-s1">
                     <p class="btn-gold ">تأسست لترتقي بتجربتك الصحية</p>
                     <h1 class="text-primary">تواصل مع فريقنا الطبي </h1>
                     <p class="text-secondary">نسعد بالإجابة على استفساراتكم الطبية ومساعدتكم في حجز المواعيد. فريقنا جاهز
@@ -32,7 +33,7 @@
                     <p class="text-secondary">سنقوم بالرد عليك في أقرب وقت ممكن عبر بريدك الإلكتروني.</p>
                     <div class="form-group row">
 
-                        <div class="mb-3 col" >
+                        <div class="mb-3 col-md" >
                             <label for="fullName" class="form-label text-primary">الاسم بالكامل</label>
                             <div  class="input-holder">
                                 <input type="text" class="form-control" id="fullName" placeholder="ادخل اسمك ">
@@ -86,8 +87,8 @@
                             </p>
                         </div>
                     </div>
-                    <a href="https://wa.me/201146839894?text=مرحبا%20بك%20" target="_blank" class="whats-button col text-white" >
-                        <img src="./svgs/whatsappmsg.svg" alt="icon" style="margin-right: 16px;">
+                    <a href="https://wa.me/201146839894?text=مرحبا%20بك%20" target="_blank" class="whats-button col text-white pe-md-3" >
+                        <img src="./svgs/whatsappmsg.svg" alt="icon" >
                         تواصل واتساب
                     </a>
                 </div>
@@ -96,7 +97,7 @@
             <div class="col-md-6 pe-md-4" >
 
                 <div class="row justify-content-between">
-                    <div class="gray-card col-md-5">
+                    <div class="gray-card col-md-5 mb-3">
                         <div class="col-md-5 flex">
                             <p class="btn-square-gold">
                                 <img src="/svgs/location.svg" alt="icon" />
@@ -127,13 +128,13 @@
 
                 <div class="gray-card row mt-3">
                     <div class=" row justify-content-between">
-                        <div class="col-md-5 flex">
+                        <div class="col-5 flex">
                             <p class="btn-square-gold">
                                 <img src="/svgs/clock.svg" alt="icon" />
                             </p>
                         </div>
 
-                        <div class="col-md-5 flex-l">
+                        <div class="col-5 flex-l">
                             <p class="btn-gold ">
                                 مفتوح الآن
                             </p>
@@ -164,7 +165,7 @@
         </section>
         <section class="flex justify-content-center" >
             <div class="green-card row align-items-center justify-content-around ">
-                <div  class="col-6 " >
+                <div  class="col-md-6 " >
                     <h3 class="text-gold" >
                         اشترك في نشرتنا الصحية
                     </h3>
@@ -176,10 +177,10 @@
 
                 <div class="col ">
                     <div class="row">
-                        <div class=" col-md-6" >
+                        <div class=" col-8 col-md-6" >
                             <input type="text"  class="form-control"  placeholder="email " >
                         </div>
-                        <button href="#" class="col  btn-gold text-gold " style="border-radius: 12px; padding:3px; line-height: normal; width: 100%;"> انضم لفريقنا </button>
+                        <button href="#" class="col green-card-contact  btn-gold text-gold " style="border-radius: 12px; padding:3px; line-height: normal; width: 100%;"> انضم لفريقنا </button>
                     </div>
                 </div>
             </div>
