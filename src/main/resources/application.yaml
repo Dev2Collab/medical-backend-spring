@@ -1,11 +1,7 @@
 spring:
+    
     application:
         name: medical_backend_spring
-#security credentials
-    # security:
-    #     user:
-    #         name: ${SECURITY_USERNAME:hema}
-    #         password: ${SECURITY_PASSWORD:{noop}12345}
 
 # database credentials
     datasource:
@@ -37,3 +33,7 @@ logging:
 
     pattern:
         console: ${LOGPATTERN_CONSOLE:%green(%d{HH:mm:ss.SSS}) %blue(%-5level) %red([%thread]) %yellow(%logger{15}) - %msg%n}
+
+jwt:
+    secret: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+    expiration: 86400000

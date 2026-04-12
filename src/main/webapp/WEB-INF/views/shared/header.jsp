@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <header>
-    <div class="<%= request.getAttribute("user") != null?"hidden-sm":"" %>">
+    <div class="<%= request.getAttribute("username") != null?"hidden-sm":"" %>">
         <div class="header-logo-holder">
             <img src="./svgs/logo.svg" alt="logo" class="logo">
         </div>
@@ -31,7 +31,7 @@
     </div>
 
 
-    <% if (request.getAttribute("user") == null) { %>
+    <% if (request.getAttribute("username") == null) { %>
     <div class="header-btn">
         <a href="/signup" type="submit" class="btn btn-secondary " >  انشاء حساب
         </a>
@@ -54,14 +54,14 @@
         <% }else { %>
         <div class="user-header">
             <div >
-                <p class="text-primary">${user.fullName} </p>
+                <p class="text-primary">${username} </p>
                 <p class="text-gold">مريض ذهبي </p>
 
             </div>
-            <img src="./images/${user.photo}" width="40" alt="user" class="avatar">
+            <img src="./images/${photo}" width="40" alt="user" class="avatar">
         </div>
 
-        <div class="mobile-menu" >
+        <div class="mobile-menu mobile-menu-right" >
             <ul>
                 <li><a href="/home" class='<%= request.getRequestURI().equals("/WEB-INF/views/home.jsp") ? "active" : "" %>'> الرئيسية</a> </li>
                 <li><a href="/book-appointment" class="<%= request.getRequestURI().equals("/WEB-INF/views/appointment.jsp") ? "active" : "" %>"> حجز موعد </a> </li>

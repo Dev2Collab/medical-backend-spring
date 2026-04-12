@@ -15,7 +15,7 @@
             <%@ include file="../shared/header.jsp" %>
         </div>
 
-            <h1>مرحبا بك في لوحة التحكم الخاصة بك ${user.fullName}</h1>
+            <h1>مرحبا بك في لوحة التحكم الخاصة بك ${fullName}</h1>
 
 
             <%@ include file="../shared/footer.jsp" %>

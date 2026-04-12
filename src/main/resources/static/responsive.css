@@ -21,7 +21,8 @@
   .hidden-sm{
   display: none !important;
 }
-.mobile-menu {
+
+.mobile-menu-right {
 right: 0;
 z-index: 1050;
 }

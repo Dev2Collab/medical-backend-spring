@@ -4,49 +4,79 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.context.DelegatingSecurityContextRepository;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
+import org.springframework.security.web.context.RequestAttributeSecurityContextRepository;
+import org.springframework.security.web.context.SecurityContextRepository;
+
+import com.hema.medical_backend_spring.filter.JwtAuthFilter;
+
+import lombok.AllArgsConstructor;
 
 @Configuration
 @EnableWebSecurity
+@AllArgsConstructor
 public class ProjectSecurityConfig {
 
-    @Bean
-    SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .formLogin(form -> form
-                        .loginPage("/login")
-                        .loginProcessingUrl("/perform_login")
-                        .defaultSuccessUrl("/home", true)
-                        .failureUrl("/login?error=true")
-                        .permitAll())
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/customLogin", "/signup","/css/**", "/js/**", "/images/**", "/fonts/**","/","/contact","/about",
-                                "/svgs/**", "/style.css", "/responsive.css", "/WEB-INF/views/**","/home")
-                        .permitAll()
-                        .anyRequest().authenticated())
-                .logout(logout -> logout
-                        .logoutUrl("/logout")
-                        .logoutSuccessUrl("/login?logout=true"))
-                .csrf(csrf -> csrf.disable());
+        private final JwtAuthFilter jwtAuthFilter;
+        private final CustomAuthSuccessHandler customAuthSuccessHandler;
 
-        return http.build();
-    }
+        @Bean
+        SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+                http
+                                .formLogin(form -> form
+                                                .loginPage("/login")
+                                                .loginProcessingUrl("/perform_login")
+                                                .successHandler(customAuthSuccessHandler)
+                                                .failureUrl("/login?error=true")
+                                                .permitAll())
+                                .sessionManagement(session -> session
+                                                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
+                                .securityContext(context -> context
+                                                .securityContextRepository(securityContextRepository()))
+                                .authorizeHttpRequests(auth -> auth
+                                                .requestMatchers("/customLogin", "/signup", "/css/**", "/js/**",
+                                                                "/images/**", "/fonts/**", "/", "/contact", "/about",
+                                                                "/svgs/**", "/style.css", "/responsive.css",
+                                                                "/WEB-INF/views/**", "/home")
+                                                .permitAll()
+                                                .requestMatchers("/admin/**").hasAuthority("ADMIN")
+                                                .requestMatchers("/doctor/**").hasAuthority("DOCTOR")
+                                                .requestMatchers("/patient/**").hasAuthority("PATIENT")
+                                                .anyRequest().authenticated())
+                                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+                                .logout(logout -> logout
+                                                .logoutUrl("/logout")
+                                                .logoutSuccessUrl("/login?logout=true")
+                                                .deleteCookies("jwt"))
+                                .csrf(csrf -> csrf.disable());
+                return http.build();
+        }
 
-    // @Bean
-    // UserDetailsService userDetailsService(){
-    // UserDetails
-    // user1=User.withUsername("hema").password("{noop}12345").authorities("read").build();
-    // UserDetails
-    // user2=User.withUsername("admin").password("{noop}12345").authorities("admin").build();
+        // @Bean
+        // UserDetailsService userDetailsService(){
+        // UserDetails
+        // user1=User.withUsername("hema").password("{noop}12345").authorities("read").build();
+        // UserDetails
+        // user2=User.withUsername("admin").password("{noop}12345").authorities("admin").build();
 
-    // return new InMemoryUserDetailsManager(user1,user2);
-    // }
-    
-    @Bean
-    PasswordEncoder passwordEncoder() {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-    }
+        // return new InMemoryUserDetailsManager(user1,user2);
+        // }
+        @Bean
+        SecurityContextRepository securityContextRepository() {
+                return new DelegatingSecurityContextRepository(
+                                new HttpSessionSecurityContextRepository(),
+                                new RequestAttributeSecurityContextRepository());
+        }
+
+        @Bean
+        PasswordEncoder passwordEncoder() {
+                return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        }
 
 }
