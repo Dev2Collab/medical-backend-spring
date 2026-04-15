@@ -50,9 +50,10 @@ public class ProjectUser {
     private boolean isActive = false;
 
     private LocalDate dateOfBirth;
-    private String address;
+    private String address="غير محدد";
+    private String phoneNumber="غير محدد";
+    private String gender="غير محدد";
 
-    private String phoneNumber;
 
 
     @CreatedDate

@@ -2,7 +2,6 @@ package com.hema.medical_backend_spring.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,7 +40,6 @@ public class AuthController {
     public String login(@RequestParam String username,
             @RequestParam String password,
             HttpServletResponse response) {
-        System.out.println(username + " " + password);
 
         CustomUserDetails userDetails = (CustomUserDetails) userDetailsService.loadUserByUsername(username);
 

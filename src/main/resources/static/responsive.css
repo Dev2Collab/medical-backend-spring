@@ -268,6 +268,63 @@ margin-bottom: 16px;
 .btn-signup{
   margin-bottom: 6px;
 }
+
+/* //patient */
+ .profile-header{
+  flex-direction: column;
+  .info-grid{
+    grid-template-columns: 1fr;
+  }
+}
+.profile-top{
+  padding-inline: 12px;
+}
+
+th {
+  height: 52px;
+  padding: 3px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0px;
+  text-align: right;
+  vertical-align: middle;
+  color: #c5a059;
+}
+tr:nth-child(even) {
+      background-color: #f2f2f2aa;
+    }
+td {
+  padding: 3px;
+}
+table{
+  font-size: 12px !important;
+  .special , .doctor-avatar{
+    display: none;
+  }
+
+}
+.section-title, .card-title{
+  font-size: medium;
+}
+.download-row {
+flex-direction: column;
+}
+.content .card-body{
+  padding-inline: 5px;
+}
+.content .card{
+  padding: 0;
+}
+.two-col {
+  grid-template-columns: 1fr;
+}
+.content{
+  justify-content: center;
+}
+.sidebar{
+  display: none;
+}
   footer {
     padding: 16px 8px;
     gap:24px

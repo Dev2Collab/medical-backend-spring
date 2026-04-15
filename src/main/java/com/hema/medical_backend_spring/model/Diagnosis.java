@@ -1,13 +1,10 @@
 package com.hema.medical_backend_spring.model;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.springframework.data.annotation.CreatedDate;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -34,6 +31,10 @@ public class Diagnosis {
     private MedicalRecord medicalRecord;
 
     @ManyToOne
+    @JoinColumn(name = "patient_id")
+    private Patient patient;
+
+    @ManyToOne
     @JoinColumn(name = "doctor_id")
     @OnDelete(action = OnDeleteAction.SET_NULL)
     private Doctor doctor;
@@ -41,6 +42,5 @@ public class Diagnosis {
     private String diagnosisName;
     private LocalDate date;
     private String location; // الفرع / الموقع
-    
 
 }

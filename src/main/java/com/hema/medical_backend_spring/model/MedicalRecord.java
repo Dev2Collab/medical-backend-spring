@@ -53,6 +53,7 @@ public class MedicalRecord {
     @CollectionTable(name = "medications", joinColumns = @JoinColumn(name = "record_id"))
     @Column(name = "medication")
     private List<String> medications;
+    
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime createdAt;

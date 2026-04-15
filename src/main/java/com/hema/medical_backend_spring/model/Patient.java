@@ -28,9 +28,9 @@ import lombok.Setter;
 public class Patient extends ProjectUser {
 
     @Column(name = "emergency_contact_name")
-    private String emergencyContactName;
+    private String emergencyContactName="غير محدد";
     @Column(name = "emergency_contact_phone")
-    private String emergencyContactPhone;
+    private String emergencyContactPhone="غير محدد";
 
     @Enumerated(EnumType.STRING)
     private BloodType bloodType;
@@ -41,7 +41,7 @@ public class Patient extends ProjectUser {
 
     @OneToOne(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private MedicalRecord medicalRecord;
+    private Diagnosis diagnosis;
 
     public enum BloodType {
         A_PLUS, A_MINUS,

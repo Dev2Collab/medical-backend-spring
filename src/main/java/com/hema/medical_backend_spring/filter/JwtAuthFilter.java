@@ -39,7 +39,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         String token = extractTokenFromCookie(request);
 
         if (token == null) {
-            // امسح الـ session لو موجودة
             HttpSession session = request.getSession(false);
             if (session != null) {
                 session.invalidate();
@@ -51,10 +50,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
 
         try {
-            // 2. استخرج الـ email من الـ token
             String email = jwtService.extractEmail(token);
 
-            // 3. لو الـ email موجود ومفيش authentication حالي
             if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
                 String role = jwtService.extractRole(token);
@@ -93,7 +90,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 }
             }
         } catch (Exception e) {
-            // لو الـ token باظ أو منتهي، امسح الـ SecurityContext
             System.out.println(e);
             SecurityContextHolder.clearContext();
         }
