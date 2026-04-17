@@ -4,6 +4,7 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -48,4 +49,9 @@ public class GlobalExceptionHandler {
         return "error";
     }
     
+    @ExceptionHandler(IncorrectPasswordException.class)
+    public String incorrectPassword(Exception ex, RedirectAttributes redirectAttributes){
+        redirectAttributes.addFlashAttribute("failMessage",ex.getMessage());
+        return "redirect:/fail";
+    }
 }

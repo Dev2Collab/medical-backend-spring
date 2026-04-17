@@ -17,16 +17,15 @@ import com.hema.medical_backend_spring.services.UserService;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.AllArgsConstructor;
 
 @Controller
+@AllArgsConstructor
 public class AuthController {
 
-    @Autowired
-    private UserService userService;
-    @Autowired
-    private UserDetailsService userDetailsService;
-    @Autowired
-    private JwtService jwtService;
+    private final UserService userService;
+    private final UserDetailsService userDetailsService;
+    private final JwtService jwtService;
 
     @GetMapping("/login")
     public String login(Authentication authentication) {

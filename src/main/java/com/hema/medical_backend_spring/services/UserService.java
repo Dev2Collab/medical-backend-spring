@@ -7,7 +7,10 @@ import java.util.regex.Pattern;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.hema.medical_backend_spring.dto.UpdatePasswordDto;
+import com.hema.medical_backend_spring.dto.UpdatePatientEmergencyDto;
 import com.hema.medical_backend_spring.dto.UpdateUserPersonalDetailsDto;
+import com.hema.medical_backend_spring.exception.IncorrectPasswordException;
 import com.hema.medical_backend_spring.mapper.UserMapper;
 import com.hema.medical_backend_spring.model.MedicalRecord;
 import com.hema.medical_backend_spring.model.Patient;
@@ -16,6 +19,7 @@ import com.hema.medical_backend_spring.repository.MedicalRecordRepository;
 import com.hema.medical_backend_spring.repository.PatientRepository;
 import com.hema.medical_backend_spring.repository.UserRepo;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -45,14 +49,42 @@ public class UserService {
         medicalRecordRepository.save(record);
     }
 
-    public ProjectUser updateUser(UpdateUserPersonalDetailsDto dto, String email) {
-        ProjectUser user = userRepo.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+    public void updateUser(UpdateUserPersonalDetailsDto dto, String email) {
+        String name = (dto.getFullName() == null || dto.getFullName().isBlank()) ? null : dto.getFullName();
+        String address = (dto.getAddress() == null || dto.getAddress().isBlank()) ? null : dto.getAddress();
+        String gender = (dto.getGender() == null || dto.getGender().isBlank()) ? null : dto.getGender();
+        String phone = (dto.getPhoneNumber() == null || dto.getPhoneNumber().isBlank()) ? null : dto.getPhoneNumber();
 
-        UserMapper.mapToProjectUser(dto, user);
+        int updatedRows = userRepo.updateUserInfo(email, name, dto.getDateOfBirth(), address, gender, phone);
 
-        return userRepo.save(Objects.requireNonNull(user));
+        if (updatedRows == 0) {
+            throw new RuntimeException("User not found");
+        }
     }
+
+@Transactional
+public void updatePassword(UpdatePasswordDto dto, String email) {
+    if(dto.getNewPass().length() <7 ){
+         throw new IncorrectPasswordException("الرقم السري يجب ان يكون اكثر من 8 حروف او ارقام");
+    }
+
+    ProjectUser user = userRepo.findByEmail(email)
+            .orElseThrow(() -> new RuntimeException("User not found"));
+
+    // check old password matches
+    if (!passwordEncoder.matches(dto.getOldPass(), user.getPassword())) {
+        throw new IncorrectPasswordException("الرقم السري غير صحيح ");
+    }
+    
+     if(dto.getNewPass().equals(dto.getOldPass()) ){
+         throw new IncorrectPasswordException("الرقم السري الجديد مطابق للرقم السري القديم ");
+    }
+
+    // update to new password
+    user.setPassword(passwordEncoder.encode(dto.getNewPass()));
+    userRepo.save(user);
+}
+
 
     public boolean isValidEmail(String email) {
         return EMAIL_PATTERN.matcher(email).matches();

@@ -23,20 +23,24 @@ public class PatientService {
         return patientRepository.findById(userId);
     }
 
-    public Patient updatePatientEmergency(UpdatePatientEmergencyDto dto, String email) {
-        Patient patient = patientRepository.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+    public void updatePatientEmergency(UpdatePatientEmergencyDto dto, String email) {
+        String name = (dto.getEmergencyContactName() == null || dto.getEmergencyContactName().isBlank()) ? null
+                : dto.getEmergencyContactName();
+        String address = (dto.getEmergencyContactPhone() == null || dto.getEmergencyContactPhone().isBlank()) ? null
+                : dto.getEmergencyContactPhone();
 
-        PatientMapper.mapFromEmergencyToPatient(dto, patient);
+        int updatedRows = patientRepository.updateEmergencyContact(email, name, address);
 
-        return patientRepository.save(Objects.requireNonNull(patient));
+        if (updatedRows == 0) {
+            throw new RuntimeException("User not found");
+        }
     }
 
-    public Patient updateBloodType(UpdateBloodTypeDto dto, String email) {
-        Patient patient = patientRepository.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+    public void updateBloodType(UpdateBloodTypeDto dto, String email) {
+        int updatedRows = patientRepository.updateBloodType(email, dto.getBloodType());
 
-        PatientMapper.mapFromBloodTypeToPatient(dto, patient);
-        return patientRepository.save(Objects.requireNonNull(patient));
+        if (updatedRows == 0) {
+            throw new RuntimeException("User not found");
+        }
     }
 }

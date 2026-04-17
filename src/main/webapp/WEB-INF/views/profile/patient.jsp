@@ -23,6 +23,7 @@
                 <div class="content">
 
                     <div class="card" id="personalDetails">
+
                         <div class="profile-top">
                             <div class="section-title" style="margin-bottom:0">المعلومات الشخصية</div>
                             <img src="./svgs/edit.svg" alt="edit" width="35" class="edit-icon"  onclick="toggleEditPersonalDetails()" >
@@ -46,7 +47,7 @@
                             <div class="section-title" style="margin-bottom:0">تعديل المعلومات الشخصية</div>
                             <img src="./svgs/close.svg" alt="cancel" width="35" class="edit-icon" onclick="toggleEditPersonalDetails()">
                         </div>
-                        <form class="mb-3 mt-3" action="/user/update-personal-details" method="post">
+                        <form class="mb-3 mt-3" action="/users/update-personal-details" method="post">
                             <div class="info-grid ">
                                 <div class="info-item">
                                     <label>الاسم الكامل</label>
@@ -311,22 +312,29 @@
                         <div class="card" style="margin-bottom:0" id="privacy">
                             <div class="card-title"> تغيير كلمة المرور</div>
                             <div class="card-body">
-                                <div class="mb-3" style="width:100%">
-                                    <label for="password" class="form-label">كلمة المرور </label>
-                                    <div class="input-holder">
-                                        <input required type="password" name="password" class="form-control" id="password" placeholder="Enter your password">
-                                        <span onclick="togglePassword()"><img src="./svgs/lock.svg" alt="icon"></span>
+                                <form action="users/update-password" method="post" >
+                                    <div class="mb-3" style="width:100%">
+                                        <label for="password" class="form-label">كلمة المرور الحالية </label>
+                                        <div class="input-holder">
+                                            <input required type="password" name="oldPass" class="form-control" id="password" placeholder="Enter your password">
+                                            <span onclick="togglePassword()"><img src="./svgs/lock.svg" alt="icon"></span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="mb-3" style="width:100%">
-                                    <label for="password" class="form-label">كلمة المرور </label>
-                                    <div class="input-holder">
-                                        <input required type="password" name="password" class="form-control" id="password" placeholder="Enter your password">
-                                        <span onclick="togglePassword()"><img src="./svgs/lock.svg" alt="icon"></span>
+                                    <div class="mb-3" style="width:100%">
+                                        <label for="password" class="form-label"> كلمة المرور الجديدة </label>
+                                        <div class="input-holder">
+                                            <input required type="password" name="newPass" class="form-control" id="newPassword" placeholder="Enter your password">
+                                            <span onclick="togglePassword()"><img src="./svgs/lock.svg" alt="icon"></span>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <button class="update-btn">🔒 تحديث الأمان</button>
+                                    <% if (request.getAttribute("incorrectPassword") != null) { %>
+                                    <p style="color:red;"><%= request.getAttribute("incorrectPassword") %></p>
+                                    <% } %>
+
+
+                                    <button class="update-btn">🔒 تحديث الأمان</button>
+                                </form>
                             </div>
                         </div>
 
@@ -399,10 +407,13 @@
         <script >
             function togglePassword() {
                 const input = document.getElementById('password');
+                const input1 = document.getElementById('newPassword');
                 if (input.type === "password") {
                     input.type = "text";
+                    input1.type = "text";
                 } else {
                     input.type = "password";
+                    input1.type = "password";
                 }
             }
             document.addEventListener("DOMContentLoaded", function() {
