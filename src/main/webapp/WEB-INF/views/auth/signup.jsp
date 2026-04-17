@@ -42,9 +42,9 @@
                     <div class="header-text">إنشاء حساب جديد</div>
                     <div class="hero-sub-header">انضم إلى نخبة مرضانا واستمتع بخدماتنا المتميزة</div>
                     <% if (request.getAttribute("error") != null) { %>
-                        <div class="alert alert-danger" role="alert" style="margin-bottom: 1rem;">
-                            <%= request.getAttribute("error") %>
-                        </div>
+                    <div class="alert alert-danger" role="alert" style="margin-bottom: 1rem;">
+                        <%= request.getAttribute("error") %>
+                    </div>
                     <% } %>
 
                     <%-- form details --%>
@@ -108,6 +108,13 @@
                                 و
                                 <a href="#">سياسة الخصوصية</a>
                             </label>
+                            <div class="mb-3 col-md-5">
+                                <label for="gender" class="form-label">البريد الالكتروني </label>
+                                <select class="form-control" id="gender"  name="gender">
+                                    <option default value="ذكر"> ذكر</option>
+                                    <option value="انثي">انثي</option>
+                                </select>
+                            </div>
                         </div>
 
                         <button type="submit" class="btn-signup" >  انشاء الحساب

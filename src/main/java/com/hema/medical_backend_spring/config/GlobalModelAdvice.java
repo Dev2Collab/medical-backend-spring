@@ -26,13 +26,10 @@ public class GlobalModelAdvice {
             if (cookie.getName().equals("jwt")) {
                 String token = cookie.getValue();
                 try {
-                    System.out.println(jwtService.extractFullName(token));
                     model.addAttribute("userId", jwtService.extractUserId(token));
                     model.addAttribute("username", jwtService.extractEmail(token));
                     model.addAttribute("role", jwtService.extractRole(token));
                     model.addAttribute("isActive", jwtService.extractIsActive(token));
-                    model.addAttribute("photo", jwtService.extractPhoto(token));
-                    model.addAttribute("fullName", jwtService.extractFullName(token));
                 } catch (Exception ignored) {}
                 break;
             }

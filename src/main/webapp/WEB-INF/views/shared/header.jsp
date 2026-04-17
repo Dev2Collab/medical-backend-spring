@@ -3,7 +3,7 @@
 <header>
     <div class="<%= request.getAttribute("username") != null?"hidden-sm":"" %>">
         <div class="header-logo-holder">
-            <img src="./svgs/logo.svg" alt="logo" class="logo">
+            <img src="/svgs/logo.svg" alt="logo" class="logo">
         </div>
         عيادة الشفاء
     </div>
@@ -58,7 +58,7 @@
                 <p class="text-gold">مريض ذهبي </p>
 
             </div>
-            <img src="./images/${photo}" width="40" alt="user" class="avatar">
+            <img src="/images/default.png" width="40" alt="user" class="avatar">
         </div>
 
         <div class="mobile-menu mobile-menu-right" >

@@ -5,19 +5,23 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>not found </title>
-        <link rel="stylesheet" href="./css/bootstrap.min.css">
-        <link rel="stylesheet" href="./style.css">
-        <link rel="stylesheet" href="./css/home.css">
+        <title>Home </title>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/style.css">
+        <link rel="stylesheet" href="/css/home.css">
+        <link rel="stylesheet" href="/responsive.css">
     </head>
     <body>
         <div class="container">
             <%@ include file="shared/header.jsp" %>
-        </div>
+
         <div class="container">
         not found
         </div>
+
         <%@ include file="shared/footer.jsp" %>
-        <script src="./js/bootstrap.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
     </body>
 </html>
+
+

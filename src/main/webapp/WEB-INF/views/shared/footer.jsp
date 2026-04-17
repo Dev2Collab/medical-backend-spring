@@ -5,7 +5,7 @@
         <div>
             <div class="text-icon">
                 <div class="footer-logo-holder">
-                    <img src="./svgs/logo-dark.svg" alt="logo" class="logo">
+                    <img src="/svgs/logo-dark.svg" alt="logo" class="logo">
                 </div>
                 <p class="footer-head-line">
                     عيادة الشفاء
@@ -45,7 +45,7 @@
 
 
                 <div class="text-icon">
-                    <img src="./svgs/location.svg" alt="logo" width="16" >
+                    <img src="/svgs/location.svg" alt="logo" width="16" >
                     <p class="footer-p-text">
                         الرياض، شارع الملك فهد،
                         مبنى النخبة الطبي، الدور
@@ -53,13 +53,13 @@
                     </p>
                 </div>
                 <div class="text-icon">
-                    <img src="./svgs/call.svg" alt="icon" width="16" >
+                    <img src="/svgs/call.svg" alt="icon" width="16" >
                     <p class="footer-p-text" style="direction:ltr;">
                         +20 114 683 9894
                     </p>
                 </div>
                 <div class="text-icon">
-                    <img src="./svgs/mail.svg" alt="logo" width="16" >
+                    <img src="/svgs/mail.svg" alt="logo" width="16" >
                     <p class="footer-p-text">
                         hema@abusallem.com
                     </p>

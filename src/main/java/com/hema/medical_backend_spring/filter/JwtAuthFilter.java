@@ -56,8 +56,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
                 String role = jwtService.extractRole(token);
                 Long userId = jwtService.extractUserId(token);
-                String fullName = jwtService.extractFullName(token);
-                String photo = jwtService.extractPhoto(token);
                 boolean isActive = jwtService.extractIsActive(token);
 
                 if (!jwtService.isTokenExpired(token)) {
@@ -65,8 +63,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                     ProjectUser user = new ProjectUser();
                     user.setId(userId);
                     user.setEmail(email);
-                    user.setFullName(fullName);
-                    user.setPhoto(photo);
                     user.setRole(ProjectUser.Role.valueOf(role));
                     user.setActive(isActive);
 

@@ -1,42 +1,37 @@
-package com.hema.medical_backend_spring.model;
+package com.hema.medical_backend_spring.model.sub;
 
-import java.time.LocalDate;
-
+import org.hibernate.annotations.ManyToAny;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import com.hema.medical_backend_spring.model.MedicalRecord;
+import com.hema.medical_backend_spring.model.Patient;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "diagnoses")
+@EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
-public class Diagnosis {
-
+public class ChronicDiseases {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "patient_id")
+    @JoinColumn(name = "medical_record_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private Patient patient;
+    private MedicalRecord medicalRecord;
 
-    @ManyToOne
-    @JoinColumn(name = "doctor_id")
-    @OnDelete(action = OnDeleteAction.SET_NULL)
-    private Doctor doctor;
-
-    private String diagnosisName;
-    private LocalDate date;
-    private String location; // الفرع / الموقع
+    private String disease;
 
 }

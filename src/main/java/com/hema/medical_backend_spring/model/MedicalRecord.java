@@ -8,15 +8,19 @@ import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import jakarta.persistence.CollectionTable;
+import com.hema.medical_backend_spring.model.sub.Allergies;
+import com.hema.medical_backend_spring.model.sub.ChronicDiseases;
+import com.hema.medical_backend_spring.model.sub.Medications;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -38,21 +42,18 @@ public class MedicalRecord {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Patient patient;
     
+     @OneToMany(mappedBy = "medicalRecord", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private List<Allergies> allergies;
+    
+    @OneToMany(mappedBy = "medicalRecord", cascade = CascadeType.ALL, orphanRemoval = true)
+   @OnDelete(action = OnDeleteAction.CASCADE)
+   private List<ChronicDiseases> chronicDiseases;
 
-    @ElementCollection
-    @CollectionTable(name = "allergies", joinColumns = @JoinColumn(name = "record_id"))
-    @Column(name = "allergy")
-    private List<String> allergies;
+    @OneToMany(mappedBy = "medicalRecord", cascade = CascadeType.ALL, orphanRemoval = true)
+   @OnDelete(action = OnDeleteAction.CASCADE)
+   private List<Medications> medications;
 
-    @ElementCollection
-    @CollectionTable(name = "chronic_diseases", joinColumns = @JoinColumn(name = "record_id"))
-    @Column(name = "disease")
-    private List<String> chronicDiseases;
-
-    @ElementCollection
-    @CollectionTable(name = "medications", joinColumns = @JoinColumn(name = "record_id"))
-    @Column(name = "medication")
-    private List<String> medications;
     
     @CreatedDate
     @Column(updatable = false)

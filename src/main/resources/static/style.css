@@ -645,3 +645,9 @@ input {
   border-right: 4px solid #c5a059;
   font-size: medium;
 }
+
+.edit-icon{
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+}

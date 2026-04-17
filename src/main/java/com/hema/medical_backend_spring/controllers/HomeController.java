@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.hema.medical_backend_spring.config.CustomUserDetails;
 import com.hema.medical_backend_spring.model.Patient;
+import com.hema.medical_backend_spring.model.sub.Allergies;
 import com.hema.medical_backend_spring.services.PatientService;
 
 import lombok.AllArgsConstructor;
@@ -25,6 +26,7 @@ public class HomeController {
             CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
             if (authentication.getAuthorities().toArray()[0].toString().equals("PATIENT")){
                 Patient patient=patientService.getPatient(userDetails.getProjectUser().getId()).orElse(null);
+            model.addAttribute("medicalRecord", patient.getMedicalRecord());
             model.addAttribute("user", patient);
                 return "profile/patient";
             }
