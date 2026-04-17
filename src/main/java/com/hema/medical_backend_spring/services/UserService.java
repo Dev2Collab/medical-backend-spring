@@ -1,0 +1,103 @@
+package com.hema.medical_backend_spring.services;
+
+import java.util.Objects;
+import java.util.Optional;
+import java.util.regex.Pattern;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import com.hema.medical_backend_spring.dto.UpdatePasswordDto;
+import com.hema.medical_backend_spring.dto.UpdatePatientEmergencyDto;
+import com.hema.medical_backend_spring.dto.UpdateUserPersonalDetailsDto;
+import com.hema.medical_backend_spring.exception.IncorrectPasswordException;
+import com.hema.medical_backend_spring.mapper.UserMapper;
+import com.hema.medical_backend_spring.model.MedicalRecord;
+import com.hema.medical_backend_spring.model.Patient;
+import com.hema.medical_backend_spring.model.ProjectUser;
+import com.hema.medical_backend_spring.repository.MedicalRecordRepository;
+import com.hema.medical_backend_spring.repository.PatientRepository;
+import com.hema.medical_backend_spring.repository.UserRepo;
+
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class UserService {
+
+    private final UserRepo userRepo;
+    private final PasswordEncoder passwordEncoder;
+    private final PatientRepository patientRepository;
+    private final MedicalRecordRepository medicalRecordRepository;
+
+    public void registerPatient(ProjectUser user) {
+
+        // 1. إنشاء المريض
+        Patient patient = new Patient();
+        patient.setFullName(user.getFullName());
+        patient.setEmail(user.getEmail());
+        patient.setPassword(passwordEncoder.encode(user.getPassword()));
+        patient.setPhoneNumber(user.getPhoneNumber());
+        patient.setRole(ProjectUser.Role.PATIENT);
+
+        Patient savedPatient = patientRepository.save(patient);
+
+        // 2. إنشاء ملف طبي فاضي تلقائياً
+        MedicalRecord record = new MedicalRecord();
+        record.setPatient(savedPatient);
+        medicalRecordRepository.save(record);
+    }
+
+    public void updateUser(UpdateUserPersonalDetailsDto dto, String email) {
+        String name = (dto.getFullName() == null || dto.getFullName().isBlank()) ? null : dto.getFullName();
+        String address = (dto.getAddress() == null || dto.getAddress().isBlank()) ? null : dto.getAddress();
+        String gender = (dto.getGender() == null || dto.getGender().isBlank()) ? null : dto.getGender();
+        String phone = (dto.getPhoneNumber() == null || dto.getPhoneNumber().isBlank()) ? null : dto.getPhoneNumber();
+
+        int updatedRows = userRepo.updateUserInfo(email, name, dto.getDateOfBirth(), address, gender, phone);
+
+        if (updatedRows == 0) {
+            throw new RuntimeException("User not found");
+        }
+    }
+
+@Transactional
+public void updatePassword(UpdatePasswordDto dto, String email) {
+    if(dto.getNewPass().length() <7 ){
+         throw new IncorrectPasswordException("الرقم السري يجب ان يكون اكثر من 8 حروف او ارقام");
+    }
+
+    ProjectUser user = userRepo.findByEmail(email)
+            .orElseThrow(() -> new RuntimeException("User not found"));
+
+    // check old password matches
+    if (!passwordEncoder.matches(dto.getOldPass(), user.getPassword())) {
+        throw new IncorrectPasswordException("الرقم السري غير صحيح ");
+    }
+    
+     if(dto.getNewPass().equals(dto.getOldPass()) ){
+         throw new IncorrectPasswordException("الرقم السري الجديد مطابق للرقم السري القديم ");
+    }
+
+    // update to new password
+    user.setPassword(passwordEncoder.encode(dto.getNewPass()));
+    userRepo.save(user);
+}
+
+
+    public boolean isValidEmail(String email) {
+        return EMAIL_PATTERN.matcher(email).matches();
+    }
+
+    private static final Pattern EMAIL_PATTERN = Pattern
+            .compile("^[A-Za-z0-9][A-Za-z0-9._%+-]*@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
+
+    public Optional<ProjectUser> findByEmail(String email) {
+        return userRepo.findByEmail(email);
+    }
+
+    public Optional<ProjectUser> loadUserByEmail(String email) {
+        return userRepo.findByEmail(email);
+    }
+}

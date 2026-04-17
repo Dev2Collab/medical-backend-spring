@@ -1,0 +1,166 @@
+:root {
+  --primary-color: #1a3c34;
+  --bg-color: #546e68;
+  --primary-text: #c5a059;
+  --opacity-text: #1a3c3499;
+}
+@font-face {
+  font-family: "Cairo";
+  src: url("/fonts/Cairo-VariableFont_slnt\,wght.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: "Cairo", sans-serif;
+  color: var(--primary-text);
+  margin: 0;
+  padding: 0;
+}
+
+.login-main {
+  background-color: var(--bg-color);
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  min-width: 448px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  padding: 16px 8px;
+  border: #c5a059 solid 1px;
+  border-radius: 16px;
+}
+
+.logo-holder {
+  width: 90px;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: #c5a059 solid 3px;
+}
+.header-logo {
+  color: var(--primary-color);
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 30px;
+  line-height: 36px;
+  letter-spacing: -0.75px;
+  text-align: right;
+  vertical-align: middle;
+}
+.hero-sub-header {
+  color: var(--opacity-text);
+  font-weight: 600;
+  font-style: SemiBold;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0px;
+  text-align: right;
+  vertical-align: middle;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.log-text {
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: 0px;
+  vertical-align: middle;
+}
+
+.hr {
+  width: 48px;
+  height: 2px;
+  background-color: var(--primary-text);
+}
+
+form {
+  width: 100%;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+label {
+  color: var(--opacity-text);
+  
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.6px;
+  text-align: right;
+  vertical-align: middle;
+  text-transform: uppercase;
+}
+input {
+  direction: ltr;
+  padding-right: 32px;
+}
+
+
+.input-holder {
+  position: relative;
+}
+.input-holder span {
+  position: absolute;
+  top: 0;
+  right: 6px;
+  margin-top: 6px;
+}
+.btn-login {
+  width: 100%;
+  background-color: var(--primary-color);
+  color: var(--primary-text);
+  padding: 16px 8px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+.signup-box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  padding-top: 32px;
+  border-top-width: 12px;
+  border: solid;
+  border-color: #c5a05966;
+  border-width: 2px 0 0 0;
+  margin-bottom: 24px;
+}
+.signup-link {
+  color: #1a3c34b2;
+
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0px;
+  vertical-align: middle;
+}
+.signup-link a {
+  color: var(--primary-color);
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0px;
+  vertical-align: middle;
+  text-decoration: none;
+  margin-right: 5px;
+}
+
+footer{
+    position: fixed;
+    bottom:0;
+}

@@ -1,0 +1,243 @@
+:root {
+  --primary-color: #1a3c34;
+  --bg-color: #546e68;
+  --primary-text: #c5a059;
+  --opacity-text: #1a3c3499;
+}
+@font-face {
+  font-family: "Cairo";
+  src: url("/fonts/Cairo-VariableFont_slnt\,wght.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: "Cairo", sans-serif;
+  color: var(--primary-text);
+  margin: 0;
+  padding: 0;
+}
+
+.login-main {
+  background-color: var(--bg-color);
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  min-width: 448px;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: row;
+  border: #c5a059 solid 1px;
+  border-radius: 16px;
+}
+
+.left-side {
+  width: 100%;
+  min-width: 448px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 32px;
+}
+
+.right-side {
+  background-color: var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+  border-radius: 0 16px 16px 0;
+}
+.hero {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border: #c5a059 solid 1px;
+}
+
+.hero-header {
+  color: var(--primary-text);
+  font-weight: 200;
+  font-style: ExtraLight;
+  font-size: 30px;
+  line-height: 37.5px;
+  letter-spacing: 0px;
+  text-align: center;
+  vertical-align: middle;
+}
+.sub-hero-header {
+  color: var(--primary-text);
+  font-size: 15px;
+  line-height: 29.25px;
+  letter-spacing: 0px;
+  text-align: center;
+  vertical-align: middle;
+}
+.bottom-text {
+    color: #C5A05966;
+  position: absolute;
+  bottom: 3px;
+font-weight: 200;
+font-style: ExtraLight;
+font-size: 14px;
+line-height: 20px;
+letter-spacing: 1.4px;
+text-align: center;
+vertical-align: middle;
+text-transform: uppercase;
+
+}
+.logo-holder {
+  width: 90px;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: #c5a059 solid 3px;
+}
+
+.header-text {
+  color: #0a2e1f;
+  font-size: 30px;
+  line-height: 36px;
+  letter-spacing: 0px;
+  text-align: right;
+  vertical-align: middle;
+}
+.hero-sub-header {
+  color: var(--opacity-text);
+  font-weight: 600;
+  font-style: SemiBold;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0px;
+  text-align: right;
+  vertical-align: middle;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.log-text {
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: 0px;
+  vertical-align: middle;
+}
+
+.hr {
+  width: 48px;
+  height: 2px;
+  background-color: var(--primary-text);
+}
+
+form {
+  width: 100%;
+  padding: 0 20px;
+  /* display: flex;
+  flex-direction: column;
+  gap: 16px; */
+}
+#fullName {
+  padding-right: 28px;
+}
+.group-input {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.group-input input {
+  direction: ltr;
+  padding-right: 32px;
+}
+.input-holder {
+  position: relative;
+}
+
+label {
+  color: var(--opacity-text);
+
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.6px;
+  text-align: right;
+  vertical-align: middle;
+  text-transform: uppercase;
+}
+
+.input-holder span {
+  position: absolute;
+  top: 0;
+  right: 6px;
+  margin-top: 6px;
+}
+
+.form-check {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin-bottom: 24px;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0px;
+  text-align: right;
+  vertical-align: middle;
+}
+.form-check a {
+  color: var(--primary-text);
+  text-decoration: none;
+}
+.btn-signup {
+  width: 100%;
+  background-color: var(--primary-color);
+  color: var(--primary-text);
+  padding: 16px 8px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+.login-box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+.login-link {
+  color: #1a3c34b2;
+
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0px;
+  vertical-align: middle;
+}
+.login-link a {
+  color: var(--primary-color);
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0px;
+  vertical-align: middle;
+  text-decoration: none;
+  margin-right: 5px;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+}
