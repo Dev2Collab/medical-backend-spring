@@ -7,6 +7,8 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.data.annotation.CreatedDate;
 
+import com.hema.medical_backend_spring.model.sub.Certification;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -25,6 +27,9 @@ public class Doctor extends ProjectUser {
     
 @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
 private List<Appointment> appointments;
+
+@OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
+private List<Certification> certifications;
 
     private String specialization;
     private String work;
