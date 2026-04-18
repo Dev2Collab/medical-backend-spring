@@ -5,8 +5,7 @@
   --primary-text: #c5a059;
   --opacity-text: #1a3c3499;
   --opacity-bg: #ffffff1a;
-  --secondary-color: #64748B;
-
+  --secondary-color: #64748b;
 }
 
 @font-face {
@@ -80,7 +79,7 @@ header nav li a {
   border-right: 1px solid #0d2b1a1a;
   * {
     margin-bottom: 0;
-    line-height: 8px;
+    line-height: 10px;
   }
 
   .text-gold {
@@ -274,6 +273,28 @@ input {
 }
 
 /* buttons */
+button[type="submit"] {
+  position: relative;
+}
+button[type="submit"]:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+  color: transparent;
+}
+
+button[type="submit"]:disabled::after {
+  content: "";
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #2c3e50;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  animation: spin 1s linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
 .btn-primary {
   background-color: var(--primary-color);
@@ -336,13 +357,13 @@ input {
   border-radius: 9999px;
   border-width: 1px;
 }
-.btn-gold-primary{
-    border-radius: 16px;
-    padding: 16px;
-    text-decoration: none;
-    background-color: var(--primary-text);
-    font-weight: 900;
-    font-size: 16px;
+.btn-gold-primary {
+  border-radius: 16px;
+  padding: 16px;
+  text-decoration: none;
+  background-color: var(--primary-text);
+  font-weight: 900;
+  font-size: 16px;
 }
 .btn-green {
   background-color: var(--primary-color);
@@ -646,8 +667,17 @@ input {
   font-size: medium;
 }
 
-.edit-icon{
+.edit-icon {
   cursor: pointer;
   padding: 0;
   margin: 0;
+}
+
+@keyframes spin {
+  0% {
+    transform: translateY(-50%) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-50%) rotate(360deg);
+  }
 }

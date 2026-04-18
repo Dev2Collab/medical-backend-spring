@@ -47,7 +47,7 @@
                             <div class="section-title" style="margin-bottom:0">تعديل المعلومات الشخصية</div>
                             <img src="./svgs/close.svg" alt="cancel" width="35" class="edit-icon" onclick="toggleEditPersonalDetails()">
                         </div>
-                        <form class="mb-3 mt-3" action="/users/update-personal-details" method="post">
+                        <form class="mb-3 mt-3" action="/users/update-personal-details" method="post" onsubmit="this.querySelector('button[type=submit]').disabled=true">
                             <div class="info-grid ">
                                 <div class="info-item">
                                     <label>الاسم الكامل</label>
@@ -178,7 +178,7 @@
                             </div>
                             <div class="card-body" >
                                 <div class="" style="width:100%;" >
-                                    <form class="row" action="/patient/update-blood-type" method="post">
+                                    <form class="row" action="/patient/update-blood-type" method="post" onsubmit="this.querySelector('button[type=submit]').disabled=true">
                                         <span class="text-secondary col-md">
                                             فصيلة الدم
                                         </span>
@@ -225,7 +225,7 @@
                             <div class="card-title"> اتصال الطوارئ
                                 <img src="./svgs/edit.svg" alt="edit" width="35" class="edit-icon" onclick="toggleEditEmergency()">
                             </div>
-                            <form class="mb-3 mt-3" action="/patient/update-emergency-contact" method="post">
+                            <form class="mb-3 mt-3" action="/patient/update-emergency-contact" method="post" onsubmit="this.querySelector('button[type=submit]').disabled=true">
                                 <div class="card-body">
                                     <div class="medical-row"><span class="medical-label">الاسم</span><input name="emergencyContactName" type="text" class="form-control" style="direction:ltr;text-align:right" value="${user.emergencyContactName}"></div>
                                     <div class="medical-row"><span class="medical-label">رقم الجوال</span><input type="text" name="emergencyContactPhone" class="form-control"  value="${user.emergencyContactPhone}">
@@ -312,7 +312,7 @@
                         <div class="card" style="margin-bottom:0" id="privacy">
                             <div class="card-title"> تغيير كلمة المرور</div>
                             <div class="card-body">
-                                <form action="users/update-password" method="post" >
+                                <form action="users/update-password" method="post" onsubmit="this.querySelector('button[type=submit]').disabled=true">
                                     <div class="mb-3" style="width:100%">
                                         <label for="password" class="form-label">كلمة المرور الحالية </label>
                                         <div class="input-holder">

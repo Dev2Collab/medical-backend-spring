@@ -12,9 +12,11 @@ import com.hema.medical_backend_spring.dto.UpdatePatientEmergencyDto;
 import com.hema.medical_backend_spring.dto.UpdateUserPersonalDetailsDto;
 import com.hema.medical_backend_spring.exception.IncorrectPasswordException;
 import com.hema.medical_backend_spring.mapper.UserMapper;
+import com.hema.medical_backend_spring.model.Doctor;
 import com.hema.medical_backend_spring.model.MedicalRecord;
 import com.hema.medical_backend_spring.model.Patient;
 import com.hema.medical_backend_spring.model.ProjectUser;
+import com.hema.medical_backend_spring.repository.DoctorRepository;
 import com.hema.medical_backend_spring.repository.MedicalRecordRepository;
 import com.hema.medical_backend_spring.repository.PatientRepository;
 import com.hema.medical_backend_spring.repository.UserRepo;
@@ -29,6 +31,7 @@ public class UserService {
     private final UserRepo userRepo;
     private final PasswordEncoder passwordEncoder;
     private final PatientRepository patientRepository;
+    private final DoctorRepository doctorRepository;
     private final MedicalRecordRepository medicalRecordRepository;
 
     public void registerPatient(ProjectUser user) {
@@ -37,6 +40,7 @@ public class UserService {
         Patient patient = new Patient();
         patient.setFullName(user.getFullName());
         patient.setEmail(user.getEmail());
+        patient.setGender(user.getGender());
         patient.setPassword(passwordEncoder.encode(user.getPassword()));
         patient.setPhoneNumber(user.getPhoneNumber());
         patient.setRole(ProjectUser.Role.PATIENT);
@@ -47,6 +51,20 @@ public class UserService {
         MedicalRecord record = new MedicalRecord();
         record.setPatient(savedPatient);
         medicalRecordRepository.save(record);
+    }
+
+    public void registerDoctor(ProjectUser user) {
+
+        // 1. إنشاء الدكتور
+        Doctor doctor = new Doctor();
+        doctor.setFullName(user.getFullName());
+        doctor.setEmail(user.getEmail());
+        doctor.setGender(user.getGender());
+        doctor.setPassword(passwordEncoder.encode(user.getPassword()));
+        doctor.setPhoneNumber(user.getPhoneNumber());
+        doctor.setRole(ProjectUser.Role.DOCTOR);
+        doctorRepository.save(doctor);
+
     }
 
     public void updateUser(UpdateUserPersonalDetailsDto dto, String email) {
@@ -62,29 +80,28 @@ public class UserService {
         }
     }
 
-@Transactional
-public void updatePassword(UpdatePasswordDto dto, String email) {
-    if(dto.getNewPass().length() <7 ){
-         throw new IncorrectPasswordException("الرقم السري يجب ان يكون اكثر من 8 حروف او ارقام");
+    @Transactional
+    public void updatePassword(UpdatePasswordDto dto, String email) {
+        if (dto.getNewPass().length() < 7) {
+            throw new IncorrectPasswordException("الرقم السري يجب ان يكون اكثر من 8 حروف او ارقام");
+        }
+
+        ProjectUser user = userRepo.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        // check old password matches
+        if (!passwordEncoder.matches(dto.getOldPass(), user.getPassword())) {
+            throw new IncorrectPasswordException("الرقم السري غير صحيح ");
+        }
+
+        if (dto.getNewPass().equals(dto.getOldPass())) {
+            throw new IncorrectPasswordException("الرقم السري الجديد مطابق للرقم السري القديم ");
+        }
+
+        // update to new password
+        user.setPassword(passwordEncoder.encode(dto.getNewPass()));
+        userRepo.save(user);
     }
-
-    ProjectUser user = userRepo.findByEmail(email)
-            .orElseThrow(() -> new RuntimeException("User not found"));
-
-    // check old password matches
-    if (!passwordEncoder.matches(dto.getOldPass(), user.getPassword())) {
-        throw new IncorrectPasswordException("الرقم السري غير صحيح ");
-    }
-    
-     if(dto.getNewPass().equals(dto.getOldPass()) ){
-         throw new IncorrectPasswordException("الرقم السري الجديد مطابق للرقم السري القديم ");
-    }
-
-    // update to new password
-    user.setPassword(passwordEncoder.encode(dto.getNewPass()));
-    userRepo.save(user);
-}
-
 
     public boolean isValidEmail(String email) {
         return EMAIL_PATTERN.matcher(email).matches();

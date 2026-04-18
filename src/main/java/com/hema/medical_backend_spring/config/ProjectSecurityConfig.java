@@ -40,7 +40,8 @@ public class ProjectSecurityConfig {
                                 .securityContext(context -> context
                                                 .securityContextRepository(securityContextRepository()))
                                 .authorizeHttpRequests(auth -> auth
-                                                .requestMatchers("/customLogin", "/signup", "/css/**", "/js/**",
+                                                .requestMatchers("/customLogin", "/signup", "/doctor-signup", "/css/**",
+                                                                "/js/**",
                                                                 "/images/**", "/fonts/**", "/", "/contact", "/about",
                                                                 "/svgs/**", "/style.css", "/responsive.css",
                                                                 "/WEB-INF/views/**", "/home")

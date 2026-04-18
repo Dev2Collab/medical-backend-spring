@@ -8,8 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.hema.medical_backend_spring.config.CustomUserDetails;
+import com.hema.medical_backend_spring.model.Doctor;
 import com.hema.medical_backend_spring.model.Patient;
 import com.hema.medical_backend_spring.model.sub.Allergies;
+import com.hema.medical_backend_spring.services.DoctorService;
 import com.hema.medical_backend_spring.services.PatientService;
 
 import lombok.AllArgsConstructor;
@@ -17,24 +19,25 @@ import lombok.AllArgsConstructor;
 @Controller
 @AllArgsConstructor
 public class HomeController {
-   private final PatientService patientService;
+    private final PatientService patientService;
+    private final DoctorService doctorService;
+
     @GetMapping(path = { "/home", "/" })
     public String getHomePage(Authentication authentication, Model model) {
 
-
         if (authentication != null && authentication.isAuthenticated()) {
             CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-            if (authentication.getAuthorities().toArray()[0].toString().equals("PATIENT")){
-                Patient patient=patientService.getPatient(userDetails.getProjectUser().getId()).orElse(null);
-            model.addAttribute("medicalRecord", patient.getMedicalRecord());
-            model.addAttribute("user", patient);
+            if (authentication.getAuthorities().toArray()[0].toString().equals("PATIENT")) {
+                Patient patient = patientService.getPatient(userDetails.getProjectUser().getId()).orElse(null);
+                model.addAttribute("medicalRecord", patient.getMedicalRecord());
+                model.addAttribute("user", patient);
                 return "profile/patient";
-            }
-            else if (authentication.getAuthorities().toArray()[0].toString().equals("DOCTOR"))
+            } else if (authentication.getAuthorities().toArray()[0].toString().equals("DOCTOR")) {
+                Doctor doctor = doctorService.getDoctor(userDetails.getProjectUser().getId()).orElse(null);
+                model.addAttribute("user", doctor);
                 return "profile/doctor";
-            else if (authentication.getAuthorities().toArray()[0].toString().equals("ADMIN"))
+            } else if (authentication.getAuthorities().toArray()[0].toString().equals("ADMIN"))
                 return "profile/admin";
-
             return "/home";
         }
         return new String("home");

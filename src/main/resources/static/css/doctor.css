@@ -53,6 +53,65 @@ section {
 .card {
   border: 1px solid #0d2b1a1a;
 }
+
+.content .avatar {
+  width: 128px;
+  height: 128px;
+  padding: 4px;
+  border: 4px solid #c5a059;
+}
+.doctor-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24px;
+  padding-right: 32px;
+  padding-bottom: 24px;
+  padding-left: 32px;
+  background: #1A3C34;
+  border-radius: 12px ;
+}
+
+.dashboard-link{
+  display: flex;
+min-height: 56px;
+gap: 8px;
+border-radius: 16px;
+padding: 16px 32px ;
+background: #D4AF37;
+box-shadow: 0px 8px 10px -6px #D4AF3733;
+box-shadow: 0px 20px 25px -5px #D4AF3733;
+color: #1A3C34;
+font-weight: 900;
+font-size: 16px;
+line-height: 24px;
+letter-spacing: 0px;
+}
+.info-username{
+font-weight: 700;
+font-size: 30px;
+line-height: 36px;
+letter-spacing: 0px;
+text-align: right;
+color: white;
+}
+.info-major{
+font-weight: 700;
+font-size: 18px;
+line-height: 28px;
+letter-spacing: 0px;
+color: #D4AF37;
+
+}
+#personalDetails{
+  position: relative;
+}
+#personalDetails .edit-icon{
+  position: absolute;
+  right: 0;
+}
+
+
 .profile-top {
   display: flex;
   justify-content: space-between;
@@ -63,6 +122,50 @@ section {
   padding-left: 32px;
   background: #0d2b1a;
   border-radius: 12px 12px 0 0;
+}
+
+.section-title svg {
+  width: 16px;
+  height: 16px;
+  color: #1a3a2a;
+}
+
+
+.profile-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  padding: 24px;
+}
+
+
+
+.info-grid {
+  width: calc(100% - 150px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 1.5rem;
+}
+
+.info-item label,
+.medical-label {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0px;
+  color: #c5a059;
+  display: block;
+  margin-bottom: 4px;
+}
+.info-item span,
+.medical-val {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: 0px;
+  text-align: right;
+  vertical-align: middle;
+  color: var(--color-text-primary);
 }
 
 .section-title {
@@ -97,11 +200,7 @@ section {
   vertical-align: middle;
   margin-bottom: 0;
 }
-.section-title svg {
-  width: 16px;
-  height: 16px;
-  color: #1a3a2a;
-}
+
 .edit-btn {
   display: flex;
   padding-top: 6px;
@@ -114,18 +213,8 @@ section {
   color: #0d2b1a;
 }
 
-.content .avatar {
-  width: 128px;
-  height: 128px;
-  padding: 4px;
-  border: 4px solid #c5a059;
-}
-.profile-header {
-  display: flex;
-  align-items: flex-start;
-  gap: 32px;
-  padding: 24px;
-}
+
+
 
 .profile-info {
   flex: 1;
@@ -137,33 +226,7 @@ section {
   margin-bottom: 0.75rem;
 }
 
-.info-grid {
-  width: calc(100% - 150px);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px 1.5rem;
-}
 
-.info-item label,
-.medical-label {
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 16px;
-  letter-spacing: 0px;
-  color: #c5a059;
-  display: block;
-  margin-bottom: 4px;
-}
-.info-item span,
-.medical-val {
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 28px;
-  letter-spacing: 0px;
-  text-align: right;
-  vertical-align: middle;
-  color: var(--color-text-primary);
-}
 
 table {
   width: 100%;
@@ -199,6 +262,17 @@ td {
 tr:last-child td {
   border-bottom: none;
 }
+tr td:last-child  {
+  padding-right: 0px;
+}
+tr th:last-child  {
+  padding-left: 16px;
+  padding-right: 0px;
+}
+tr:nth-child(even){
+  background: #eeeeee51;
+}
+
 
 .badge {
   padding-top: 7.5px;
@@ -235,6 +309,8 @@ tr:last-child td {
   cursor: pointer;
   text-decoration: none;
 }
+
+
 .card-body {
   padding: 24px;
 }
@@ -244,6 +320,22 @@ tr:last-child td {
   gap: 1rem;
   margin-bottom: 1rem;
 }
+
+.brief{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  row-gap: 24px;
+  column-gap: 24px;
+}
+.brief .brief-card{
+  width: 277.3333435058594px;
+height: 166px;
+border-radius: 16px;
+/* column-span:s 1; */
+border-width: 1px;
+background: #da2525;
+}
+
 .medical-row {
   display: flex;
   flex-direction: column;
@@ -276,13 +368,6 @@ tr:last-child td {
   vertical-align: middle;
 }
 
-.emergency-warning {
-  border-radius: 8px;
-  border-width: 1px;
-  padding: 16px;
-  background: #c5a0591a;
-  border: 1px solid #c5a05933;
-}
 
 .download-row {
   display: flex;

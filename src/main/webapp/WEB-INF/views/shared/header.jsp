@@ -55,7 +55,7 @@
         <div class="user-header">
             <div >
                 <p class="text-primary">${username} </p>
-                <p class="text-gold">مريض ذهبي </p>
+                <p class="text-gold">${role =="PATIENT"?"مريض ذهبي ": "دكتور ذهبي " }</p>
 
             </div>
             <img src="/images/default.png" width="40" alt="user" class="avatar">

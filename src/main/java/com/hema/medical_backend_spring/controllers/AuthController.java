@@ -1,6 +1,5 @@
 package com.hema.medical_backend_spring.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hema.medical_backend_spring.config.CustomUserDetails;
 import com.hema.medical_backend_spring.model.ProjectUser;
+import com.hema.medical_backend_spring.model.ProjectUser.Role;
 import com.hema.medical_backend_spring.services.JwtService;
 import com.hema.medical_backend_spring.services.UserService;
 
@@ -76,9 +76,10 @@ public class AuthController {
         if (authentication != null && authentication.isAuthenticated()) {
             return "redirect:/home";
         }
-        return "auth/doctor-signup";
+        return "auth/signup-doctor";
     }
 
+    
     @PostMapping("/signup")
     public String registerUser(
             @ModelAttribute ProjectUser user,
@@ -110,6 +111,38 @@ public class AuthController {
 
         System.out.println(user.toString());
         userService.registerPatient(user);
+        return "redirect:/login";
+    }
+
+    @PostMapping("/doctor-signup")
+    public String registerDoctor(
+            @ModelAttribute ProjectUser user,
+            @RequestParam(name = "passwordCheck", required = false) String passwordCheck,
+            Model model) {
+
+        // chek fields
+        if (user.getEmail() == null || user.getPassword() == "" || user.getFullName() == "") {
+            model.addAttribute("error", "جميع الحقول مطلوبة");
+            return "auth/signup";
+        }
+        // check matching password
+        if (user.getPassword() == null || !user.getPassword().equals(passwordCheck)) {
+            model.addAttribute("error", "كلمات المرور غير متطابقة");
+            return "auth/signup";
+        }
+        // check if its valid name
+        if (!userService.isValidEmail(user.getEmail())) {
+            System.out.println(userService.isValidEmail(user.getEmail()));
+            model.addAttribute("error", "البريد الالكتروني غير صالح");
+            return "auth/signup";
+        }
+
+        // check if user exist
+        if (userService.findByEmail(user.getEmail()).isPresent()) {
+            model.addAttribute("error", "البريد الالكتروني مستخدم بالفعل");
+            return "auth/signup";
+        }
+        userService.registerDoctor(user);
         return "redirect:/login";
     }
 
