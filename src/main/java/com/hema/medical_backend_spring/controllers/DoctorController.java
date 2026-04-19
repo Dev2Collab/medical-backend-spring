@@ -26,10 +26,7 @@ import lombok.AllArgsConstructor;
 public class DoctorController {
     private final DoctorService doctorService;
 
-    @GetMapping("/add-certification")
-    public String getAddCertificationPage() {
-        return new String("certification/add-certification");
-    }
+  
 
  @GetMapping("/update-career-details")
 public String getCareerPage(Authentication authentication, Model model) {
@@ -50,27 +47,5 @@ public String getCareerPage(Authentication authentication, Model model) {
         return "redirect:/success";
     }
 
-    @PostMapping("/add-certification")
-    public String addCertification(@ModelAttribute CertificationDto certification, Authentication authentication,
-            RedirectAttributes redirectAttributes) {
-        doctorService.addCertification(certification, authentication);
-        redirectAttributes.addFlashAttribute("successMessage", "تم اضافة الشهاده بنجاح");
-        return "redirect:/success";
-    }
-
-    @PostMapping("/edit-certification/{id}")
-    public String editCertification(@ModelAttribute CertificationDto certification, Authentication authentication,
-            RedirectAttributes redirectAttributes, @PathVariable Long id) {
-        doctorService.editCertification(CertificationMapper.toEntity(certification, id, null), authentication);
-        redirectAttributes.addFlashAttribute("successMessage", "تم تعديل الشهاده بنجاح");
-        return "redirect:/success";
-    }
-
-    @GetMapping("/certification/{id}")
-    public String getCertificationById(@PathVariable Long id, Model model, Authentication authentication) {
-        Certification certification = doctorService.getCertificationById(id, authentication);
-        model.addAttribute("certification", certification);
-        return "certification/edit-certification";
-    }
 
 }

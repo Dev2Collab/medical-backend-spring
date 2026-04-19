@@ -328,12 +328,40 @@ tr:nth-child(even){
   column-gap: 24px;
 }
 .brief .brief-card{
-  width: 277.3333435058594px;
-height: 166px;
-border-radius: 16px;
-/* column-span:s 1; */
-border-width: 1px;
-background: #da2525;
+  height: 166px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-radius: 16px;
+  /* column-span:s 1; */
+  border-width: 1px;
+  border: 1px solid #0D2B1A0D;
+  box-shadow: 0px 1px 2px 0px #0000000D;
+
+}
+.brief .brief-card div:first-child{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0px;
+  text-align: right;
+  vertical-align: middle;
+  color: #16A34A;
+}
+.brief .brief-card .text{
+font-weight: 900;
+font-size: 30px;
+line-height: 36px;
+letter-spacing: 0px;
+text-align: right;
+vertical-align: middle;
+color: #0D2B1A;
+
 }
 
 .medical-row {
@@ -343,56 +371,7 @@ background: #da2525;
   margin-bottom: 0.5rem;
 }
 
-.blood-row {
-  width: 100%;
-  display: flex;
-  height: 56px;
-  justify-content: space-between;
-  border-radius: 8px;
-  padding: 12px;
-  background: #0d2b1a0d;
-}
 
-.blood-badge {
-  padding-top: 4px;
-  padding-right: 12px;
-  padding-bottom: 4px;
-  padding-left: 12px;
-  border-radius: 4px;
-  background: #13ec5b33;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 24px;
-  letter-spacing: 0px;
-  text-align: right;
-  vertical-align: middle;
-}
-
-
-.download-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 10px;
-  border: 0.5px solid var(--color-border-tertiary);
-  border-radius: 8px;
-  margin-top: 8px;
-  font-size: 13px;
-}
-.pdf-icon {
-  background: #fee2e2;
-  color: #dc2626;
-  border-radius: 5px;
-  padding: 2px 6px;
-  font-size: 11px;
-  font-weight: 700;
-}
-.dl-icon {
-  color: #1a3a2a;
-  font-size: 16px;
-  margin-right: 4px;
-  cursor: pointer;
-}
 
 .toggle-row {
   width: 100%;
@@ -479,19 +458,4 @@ background: #da2525;
   font-size: 11px;
   font-weight: 500;
   color: #1a3a2a;
-}
-.diagnosis-row th {
-  background-color: white;
-  border-bottom: 1px solid #0d2b1a1a;
-  border-image: linear-gradient(
-      to right,
-      transparent 5%,
-      #0d2b1a1a 5%,
-      #0d2b1a1a 95%,
-      transparent 95%
-    )
-    1;
-}
-.diagnosis-row td:first-child {
-  font-weight: 500;
 }

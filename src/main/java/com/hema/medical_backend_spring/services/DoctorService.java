@@ -20,27 +20,12 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class DoctorService {
     private final DoctorRepository doctorRepository;
-    private final CertificationRepository certificationRepository;
 
     public Optional<Doctor> getDoctor(long userId) {
         return doctorRepository.findById(userId);
     }
 
-    public void addCertification(CertificationDto dto, Authentication authentication) {
-        certificationRepository.insertCertification(HelperDto.getProjectUser(authentication).getId(), dto.getName(),
-                dto.getPlace(), dto.getOrganization(), dto.getPhoto());
-    }
-
-    public void editCertification(Certification certification, Authentication authentication) {
-        certificationRepository.updateCertification(certification.getId(),
-                HelperDto.getProjectUser(authentication).getId(), certification.getName(), certification.getPlace(),
-                certification.getOrganization(), certification.getPhoto());
-    }
-
-    public Certification getCertificationById(Long id, Authentication authentication) {
-        return certificationRepository.findByIdAndDoctorId(id, HelperDto.getProjectUser(authentication).getId())
-                .orElseThrow(() -> new PageNotFoundException("could not find a certificate with this id "));
-    }
+   
 
     public void updateDoctor(DoctorDto dto, Authentication authentication) {
 

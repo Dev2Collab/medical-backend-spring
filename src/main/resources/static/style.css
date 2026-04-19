@@ -389,7 +389,8 @@ button[type="submit"]:disabled::after {
 /* text  */
 .text-secondary {
   color: #546e68;
-  font-size: 18px;
+  font-size: 16px;
+  
 }
 
 .text-primary {

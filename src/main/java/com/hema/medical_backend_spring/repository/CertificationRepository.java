@@ -34,4 +34,7 @@ public interface CertificationRepository extends JpaRepository<Certification, Lo
                      @Param("photo") String photo);
 
        Optional<Certification> findByIdAndDoctorId(Long id, Long doctorId);
+
+         @Transactional
+       int deleteByIdAndDoctorId(long id, long doctorId);
 }

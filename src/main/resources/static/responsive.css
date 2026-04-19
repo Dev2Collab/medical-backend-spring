@@ -186,7 +186,20 @@ z-index: 1050;
       min-width: 80px;
     }
   }
+  
+  
+  .doctor-details ,
+  .doctor-details div:first-child{
+flex-direction: column;
+gap: 20px;
+}
 
+.brief{
+  grid-template-columns: 1fr;
+}
+.brief-card{
+  width:260px;
+}
   section {
     padding: 16px 8px !important;
   }
@@ -272,9 +285,10 @@ margin-bottom: 16px;
 /* //patient */
  .profile-header{
   flex-direction: column;
-  .info-grid{
-    grid-template-columns: 1fr;
-  }
+}
+.info-grid{
+  width: 100%;
+  grid-template-columns: 1fr !important;
 }
 .profile-top{
   padding-inline: 12px;
