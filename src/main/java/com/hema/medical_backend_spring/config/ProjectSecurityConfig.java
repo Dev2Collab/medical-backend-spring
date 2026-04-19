@@ -2,6 +2,7 @@ package com.hema.medical_backend_spring.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -47,7 +48,7 @@ public class ProjectSecurityConfig {
                                                                 "/WEB-INF/views/**", "/home")
                                                 .permitAll()
                                                 .requestMatchers("/admin/**").hasAuthority("ADMIN")
-                                                .requestMatchers("/doctor/**").hasAuthority("DOCTOR")
+                                                .requestMatchers(HttpMethod.POST,"/doctors/**").hasAuthority("DOCTOR")
                                                 .requestMatchers("/patient/**").hasAuthority("PATIENT")
                                                 .anyRequest().authenticated())
                                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)

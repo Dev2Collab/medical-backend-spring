@@ -1,7 +1,5 @@
 package com.hema.medical_backend_spring.controllers;
 
-import java.util.Optional;
-
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.hema.medical_backend_spring.config.CustomUserDetails;
 import com.hema.medical_backend_spring.model.Doctor;
 import com.hema.medical_backend_spring.model.Patient;
-import com.hema.medical_backend_spring.model.sub.Allergies;
 import com.hema.medical_backend_spring.services.DoctorService;
 import com.hema.medical_backend_spring.services.PatientService;
 
@@ -34,6 +31,13 @@ public class HomeController {
                 return "profile/patient";
             } else if (authentication.getAuthorities().toArray()[0].toString().equals("DOCTOR")) {
                 Doctor doctor = doctorService.getDoctor(userDetails.getProjectUser().getId()).orElse(null);
+                // Split the about text into sentences
+                String[] aboutSentences = doctor.getAbout() != null
+                        ? doctor.getAbout().split("\\.")
+                        : new String[0];
+                model.addAttribute("education", doctor.getCertifications());
+                model.addAttribute("about", aboutSentences);
+
                 model.addAttribute("user", doctor);
                 return "profile/doctor";
             } else if (authentication.getAuthorities().toArray()[0].toString().equals("ADMIN"))
@@ -43,7 +47,7 @@ public class HomeController {
         return new String("home");
     }
 
-      @GetMapping("/doctors")
+    @GetMapping("/doctors")
     public String getMethodName() {
         return new String("doctors");
     }
