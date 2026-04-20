@@ -32,7 +32,7 @@ public class DoctorService {
         doctorRepository.updateDoctorPartial(
                 HelperDto.getProjectUser(authentication).getId(),
                 dto.getSpecialization(),
-                dto.getWork(), dto.getAbout());
+                dto.getWork(), dto.getAbout(),dto.getSpecialty());
     }
 
     // public void updateBloodType(UpdateBloodTypeDto dto, String email) {

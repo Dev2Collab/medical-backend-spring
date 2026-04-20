@@ -12,6 +12,8 @@ import com.hema.medical_backend_spring.model.sub.Certification;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
@@ -22,20 +24,31 @@ import lombok.Setter;
 @Table(name = "doctors")
 @PrimaryKeyJoinColumn(name = "user_id")
 @OnDelete(action = OnDeleteAction.CASCADE)
-@Getter @Setter
+@Getter
+@Setter
 public class Doctor extends ProjectUser {
+
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
+    private List<Appointment> appointments;
+
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
+    private List<Certification> certifications;
+
+    @Enumerated(EnumType.STRING)
+    private Specialty specialty;
     
-@OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
-private List<Appointment> appointments;
-
-@OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
-private List<Certification> certifications;
-
     private String specialization;
     private String work;
     private String about;
 
-     @CreatedDate
+    @CreatedDate
     @Column(updatable = false)
     private LocalDateTime createdAt;
+
+    public enum Specialty {
+        GENERAL,
+        DENTISTRY,
+        DERMATOLOGY,
+        OPHTHALMOLOGY
+    }
 }

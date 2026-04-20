@@ -5,17 +5,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.hema.medical_backend_spring.dto.CertificationDto;
 import com.hema.medical_backend_spring.dto.DoctorDto;
-import com.hema.medical_backend_spring.mapper.CertificationMapper;
 import com.hema.medical_backend_spring.mapper.HelperDto;
 import com.hema.medical_backend_spring.model.Doctor;
-import com.hema.medical_backend_spring.model.sub.Certification;
 import com.hema.medical_backend_spring.services.DoctorService;
 
 import lombok.AllArgsConstructor;
@@ -26,7 +22,11 @@ import lombok.AllArgsConstructor;
 public class DoctorController {
     private final DoctorService doctorService;
 
-  
+@GetMapping("/search")
+  public String searchDoctors(){
+
+    return "doctors";
+  }
 
  @GetMapping("/update-career-details")
 public String getCareerPage(Authentication authentication, Model model) {
