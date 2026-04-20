@@ -1,6 +1,10 @@
 package com.hema.medical_backend_spring.repository;
 
 
+import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -11,6 +15,9 @@ import com.hema.medical_backend_spring.model.Doctor;
 import com.hema.medical_backend_spring.model.Doctor.Specialty;
 
 public interface DoctorRepository extends JpaRepository<Doctor, Long> {
+    Page<Doctor> findBySpecialty(Specialty specialty,Pageable pageable);
+    Page<Doctor> findByFullNameContainingIgnoreCaseOrAboutContainingIgnoreCaseOrSpecializationContainingIgnoreCaseOrWorkContainingIgnoreCase(String fullName, String about,String specialization,String work,Pageable pageable);
+
     
     @Modifying
     @Transactional

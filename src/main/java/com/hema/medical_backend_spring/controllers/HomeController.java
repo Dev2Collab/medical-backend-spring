@@ -47,8 +47,5 @@ public class HomeController {
         return new String("home");
     }
 
-    @GetMapping("/doctors")
-    public String getMethodName() {
-        return new String("doctors");
-    }
+  
 }

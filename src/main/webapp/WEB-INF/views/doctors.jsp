@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="com.hema.medical_backend_spring.model.Doctor" %>
+<%@ page import="java.util.List" %>
 
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
@@ -6,10 +8,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title> Doctors </title>
-        <link rel="stylesheet" href="./css/bootstrap.min.css">
-        <link rel="stylesheet" href="./style.css">
-        <%-- <link rel="stylesheet" href="./css/doctors.css"> --%>
-        <link rel="stylesheet" href="./responsive.css">
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/style.css">
+        <%-- <link rel="stylesheet" href="/css/doctors.css"> --%>
+        <link rel="stylesheet" href="/responsive.css">
     </head>
     <body>
         <div class="container">
@@ -25,25 +27,38 @@
                     <br>
                     الاستشاريين في بيئة طبية فاخرة.
                 </p>
-             <div class="mb-3 col-md-6" >
-                            <div  class="input-holder">
-                                <input type="text"  class="form-control"  placeholder="ادخل اسمك " style="padding: 13px 48px 13px 16px; direction: rtl; border-radius: 24px; ">
-                                <span>   <img src="./svgs/search.svg" alt="email icon">
-                                </span>
-                            </div>
+                <form method="get" action="/doctors/search" >
+                    <div class="mb-3 col-md-6" >
+                        <div  class="input-holder">
+                            <input required type="text"  class="form-control"  placeholder="ادخل اسمك " style="padding: 13px 48px 13px 16px; direction: rtl; border-radius: 24px; " name="s">
+                            <span onclick="this.closest('form').submit()" style="cursor:pointer;">   <img src="/svgs/search.svg" alt="email icon">
+                            </span>
                         </div>
+                    </div>
+                </form>
             </section>
 
             <section class="section-buttons">
-                <button class="btn-primary">الكل  </button>
-                <button class="btn-secondary">طب عام  </button>
-                <button class="btn-secondary">اسنان  </button>
-                <button class="btn-secondary">جلدية </button>
-                <button class="btn-secondary">عيون </button>
+                <button class="${empty param.specialty ? 'btn-primary' : 'btn-secondary'}"
+                onclick="window.location = '/doctors'">الكل</button>
+
+                <button class="${param.specialty == 'general' ? 'btn-primary' : 'btn-secondary'}"
+                onclick="window.location = '/doctors?specialty=general'">طب عام</button>
+
+                <button class="${param.specialty == 'dentistry' ? 'btn-primary' : 'btn-secondary'}"
+                onclick="window.location = '/doctors?specialty=dentistry'">اسنان</button>
+
+                <button class="${param.specialty == 'dermatology' ? 'btn-primary' : 'btn-secondary'}"
+                onclick="window.location = '/doctors?specialty=dermatology'">جلدية</button>
+
+                <button class="${param.specialty == 'ophthalmology' ? 'btn-primary' : 'btn-secondary'}"
+                onclick="window.location = '/doctors?specialty=ophthalmology'">عيون</button>
             </section>
+
             <section >
                 <div class="row justify-content-between">
-
+                    <% List<Doctor> doctors =(List<Doctor>) request.getAttribute("doctors"); %>
+                    <% for(Doctor doctor:doctors){%>
                     <div class="col-md-3">
                         <div class="card card-doctor" >
                             <div class="tag-in-img">
@@ -57,7 +72,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="btn-primary">   القلب والأوعية الدموية </div>
-                                <h3 class="text-primary">  د. محمد العلي</h3>
+                                <h3 class="text-primary">  د. <%= doctor.getFullName() %> </h3>
                                 <h6 class="text-gold"> استشاري أول - خبرة 15 عاماً</h6>
                                 <p class="text-secondary">
                                     متخصص في القسطرة
@@ -70,6 +85,8 @@
                             </div>
                         </div>
                     </div>
+                    <%}%>
+
                     <div class="col-md-3">
                         <div class="card card-doctor" >
                             <div class="tag-in-img">
@@ -154,12 +171,12 @@
                 <div class="green-card row align-items-center justify-content-around " style="margin-top: 64px; padding: 32px;">
                     <div  class="col-9 " >
                         <h2 class="mb-md-5" style="text-align: justify;">
-                  هل تنتمي إلى 
+                            هل تنتمي إلى
                             <span class="text-gold">النخبة؟</span>
                         </h2>
                         <p class='text-gold' style="text-align: justify;">
-                           نحن نبحث دائماً عن الأفضل. انضم إلى صرحنا الطبي الفاخر وساهم في رسم
-مستقبل الرعاية الصحية الراقية.
+                            نحن نبحث دائماً عن الأفضل. انضم إلى صرحنا الطبي الفاخر وساهم في رسم
+                            مستقبل الرعاية الصحية الراقية.
                         </p>
                     </div>
 
@@ -172,6 +189,6 @@
 
 
         <%@ include file="shared/footer.jsp" %>
-        <script src="./js/bootstrap.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
     </body>
 </html>
