@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hema.medical_backend_spring.config.CustomUserDetails;
 import com.hema.medical_backend_spring.model.ProjectUser;
-import com.hema.medical_backend_spring.model.ProjectUser.Role;
 import com.hema.medical_backend_spring.services.JwtService;
 import com.hema.medical_backend_spring.services.UserService;
 

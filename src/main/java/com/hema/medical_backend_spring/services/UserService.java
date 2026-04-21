@@ -4,6 +4,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,7 @@ import com.hema.medical_backend_spring.dto.UpdatePasswordDto;
 import com.hema.medical_backend_spring.dto.UpdatePatientEmergencyDto;
 import com.hema.medical_backend_spring.dto.UpdateUserPersonalDetailsDto;
 import com.hema.medical_backend_spring.exception.IncorrectPasswordException;
+import com.hema.medical_backend_spring.mapper.HelperDto;
 import com.hema.medical_backend_spring.mapper.UserMapper;
 import com.hema.medical_backend_spring.model.Doctor;
 import com.hema.medical_backend_spring.model.MedicalRecord;
@@ -101,6 +103,15 @@ public class UserService {
         // update to new password
         user.setPassword(passwordEncoder.encode(dto.getNewPass()));
         userRepo.save(user);
+    }
+
+    @SuppressWarnings("null")
+    public void deleteAccount(Authentication authentication) {
+        try {
+            userRepo.deleteById(HelperDto.getProjectUser(authentication).getId());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public boolean isValidEmail(String email) {

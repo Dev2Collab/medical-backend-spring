@@ -42,7 +42,7 @@
                         </div>
                     </div>
                     <div class="lc-block">
-                        <a class="btn btn-lg btn-secondary" href="#" role="button">Back to homepage</a>
+                        <a class="btn btn-lg btn-secondary" href="/home" role="button">Back to homepage</a>
                     </div>
                 </div>
             </div>

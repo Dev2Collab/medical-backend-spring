@@ -49,7 +49,7 @@ public class ProjectSecurityConfig {
                                                 .permitAll()
                                                 .requestMatchers("/admin/**").hasAuthority("ADMIN")
                                                 .requestMatchers(HttpMethod.POST,"/doctors/**").hasAuthority("DOCTOR")
-                                                .requestMatchers("/patient/**").hasAuthority("PATIENT")
+                                                .requestMatchers(HttpMethod.POST,"/patient/**").hasAuthority("PATIENT")
                                                 .anyRequest().authenticated())
                                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                                 .logout(logout -> logout
@@ -60,6 +60,7 @@ public class ProjectSecurityConfig {
                 return http.build();
         }
 
+        
         // @Bean
         // UserDetailsService userDetailsService(){
         // UserDetails

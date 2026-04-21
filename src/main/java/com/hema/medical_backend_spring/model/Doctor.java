@@ -7,6 +7,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.data.annotation.CreatedDate;
 
+import com.hema.medical_backend_spring.mapper.HelperDto;
 import com.hema.medical_backend_spring.model.sub.Certification;
 
 import jakarta.persistence.CascadeType;
@@ -36,7 +37,7 @@ public class Doctor extends ProjectUser {
 
     @Enumerated(EnumType.STRING)
     private Specialty specialty;
-    
+
     private String specialization;
     private String work;
     private String about;
@@ -45,10 +46,19 @@ public class Doctor extends ProjectUser {
     @Column(updatable = false)
     private LocalDateTime createdAt;
 
-    public enum Specialty {
-        GENERAL,
-        DENTISTRY,
-        DERMATOLOGY,
-        OPHTHALMOLOGY
+    public String getSpecialtyString() {
+        return HelperDto.getSpecialtyString(this.specialty);
     }
+
+ public enum Specialty {
+    GENERAL,              // طب عام
+    DENTISTRY,            // أسنان
+    DERMATOLOGY,          // جلدية
+    OPHTHALMOLOGY,        // عيون
+    CARDIOLOGY,           // القلب والأوعية الدموية
+    COSMETIC_DERMATOLOGY, // الجلدية والتجميل
+    PEDIATRICS,           // طب الأطفال
+    FAMILY_MEDICINE       // طب الأسرة
+}
+
 }

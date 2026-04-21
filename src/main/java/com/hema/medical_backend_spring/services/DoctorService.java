@@ -50,6 +50,14 @@ public class DoctorService {
                     return doctorRepository.findBySpecialty(Specialty.DERMATOLOGY,pageable);
                 case "OPHTHALMOLOGY":
                     return doctorRepository.findBySpecialty(Specialty.OPHTHALMOLOGY,pageable);
+                case "CARDIOLOGY":
+                    return doctorRepository.findBySpecialty(Specialty.CARDIOLOGY,pageable);
+                case "COSMETIC_DERMATOLOGY":
+                    return doctorRepository.findBySpecialty(Specialty.COSMETIC_DERMATOLOGY,pageable);
+                case "FAMILY_MEDICINE":
+                    return doctorRepository.findBySpecialty(Specialty.FAMILY_MEDICINE,pageable);
+                case "PEDIATRICS":
+                    return doctorRepository.findBySpecialty(Specialty.PEDIATRICS,pageable);
                 default:
                     return doctorRepository.findAll(pageable);
             }

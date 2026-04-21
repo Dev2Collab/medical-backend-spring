@@ -3,6 +3,7 @@ package com.hema.medical_backend_spring.services;
 import java.util.Objects;
 import java.util.Optional;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import com.hema.medical_backend_spring.dto.UpdateBloodTypeDto;
@@ -43,4 +44,5 @@ public class PatientService {
             throw new RuntimeException("User not found");
         }
     }
+
 }

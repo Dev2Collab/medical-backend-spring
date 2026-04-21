@@ -399,6 +399,9 @@
                         </svg>
                         تسجيل الخروج
                     </div>
+                    <form action="/users/delete-account" method="post">
+                        <button class="btn btn-danger" type="submit" >مسح الاكونت </button>
+                        </form>
                 </aside>
             </section>
         </div>

@@ -15,7 +15,9 @@ import com.hema.medical_backend_spring.model.Doctor;
 import com.hema.medical_backend_spring.model.Doctor.Specialty;
 
 public interface DoctorRepository extends JpaRepository<Doctor, Long> {
+    
     Page<Doctor> findBySpecialty(Specialty specialty,Pageable pageable);
+
     Page<Doctor> findByFullNameContainingIgnoreCaseOrAboutContainingIgnoreCaseOrSpecializationContainingIgnoreCaseOrWorkContainingIgnoreCase(String fullName, String about,String specialization,String work,Pageable pageable);
 
     
