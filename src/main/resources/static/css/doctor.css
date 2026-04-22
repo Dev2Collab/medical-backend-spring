@@ -327,18 +327,40 @@ tr:nth-child(even){
   row-gap: 24px;
   column-gap: 24px;
 }
+.brief-grid{
+  grid-template-columns: 1fr 1fr;
+  row-gap: 16px;
+  column-gap: 16px;
+ 
+}
 .brief .brief-card{
+  min-width: 183px;
   height: 166px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 16px 24px;
   border-radius: 16px;
-  /* column-span:s 1; */
   border-width: 1px;
   border: 1px solid #0D2B1A0D;
   box-shadow: 0px 1px 2px 0px #0000000D;
+  
+}
+.brief-grid .brief-card:hover{
+  background: #D4AF371A;
+}
 
+.brief-grid .brief-card{
+height: 80px;
+gap: 4px;
+padding: 16px;
+border-radius: 8px;
+background: #1A3C340D;
+ 
+}
+.brief-grid .brief-card div:first-child{
+  display: flex;
+  flex-direction: column;
 }
 .brief .brief-card div:first-child{
   display: flex;
