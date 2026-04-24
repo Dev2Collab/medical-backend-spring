@@ -41,13 +41,13 @@ public class ProjectSecurityConfig {
                                 .securityContext(context -> context
                                                 .securityContextRepository(securityContextRepository()))
                                 .authorizeHttpRequests(auth -> auth
-                                                .requestMatchers("/customLogin", "/signup", "/doctor-signup", "/css/**",
+                                                .requestMatchers("/customLogin", "/signup", "/css/**",
                                                                 "/js/**",
                                                                 "/images/**", "/fonts/**", "/", "/contact", "/about",
                                                                 "/svgs/**", "/style.css", "/responsive.css",
                                                                 "/WEB-INF/views/**", "/home")
                                                 .permitAll()
-                                                .requestMatchers("/admin/**").hasAuthority("ADMIN")
+                                                .requestMatchers("/admin/**", "/doctor-signup").hasAuthority("ADMIN")
                                                 .requestMatchers(HttpMethod.POST,"/doctors/**").hasAuthority("DOCTOR")
                                                 .requestMatchers(HttpMethod.POST,"/patient/**").hasAuthority("PATIENT")
                                                 .anyRequest().authenticated())
