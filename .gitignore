@@ -33,3 +33,4 @@ build/
 .vscode/
 src/main/webapp
 src/main/resources/application-prod.yaml
+docker-compose.yml

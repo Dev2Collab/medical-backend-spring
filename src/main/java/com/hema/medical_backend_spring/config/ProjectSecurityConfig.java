@@ -45,7 +45,7 @@ public class ProjectSecurityConfig {
                                                                 "/js/**",
                                                                 "/images/**", "/fonts/**", "/", "/contact", "/about",
                                                                 "/svgs/**", "/style.css", "/responsive.css",
-                                                                "/WEB-INF/views/**", "/home")
+                                                                "/WEB-INF/views/**", "/home","/error")
                                                 .permitAll()
                                                 .requestMatchers("/admin/**", "/doctor-signup").hasAuthority("ADMIN")
                                                 .requestMatchers(HttpMethod.POST,"/doctors/**").hasAuthority("DOCTOR")

@@ -20,7 +20,7 @@ spring:
     mvc:
         view:
             suffix: .jsp
-            prefix: /WEB-INF/views/
+            prefix: ${JSP_PREFIX:/WEB-INF/views/}
       
 
 #logging settings
