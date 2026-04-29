@@ -1,6 +1,7 @@
 package com.hema.medical_backend_spring.exception;
 
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.Authentication;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -14,7 +15,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(NoResourceFoundException.class)
     public String handleNotFound(NoResourceFoundException ex, Model model , 
-                              HttpServletRequest request) throws NoResourceFoundException {
+                              HttpServletRequest request,Authentication authentication) throws NoResourceFoundException {
          String path = request.getRequestURI();
     
     // let static resources 404 normally

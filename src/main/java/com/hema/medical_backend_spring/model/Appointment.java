@@ -40,6 +40,11 @@ public class Appointment {
     private Patient patient;
 
     @ManyToOne
+    @JoinColumn(name = "service_id")
+    @OnDelete(action = OnDeleteAction.SET_NULL)
+    private MedicalServiceEntity medicalService;
+
+    @ManyToOne
     @JoinColumn(name = "doctor_id", nullable = false)
     @OnDelete(action = OnDeleteAction.SET_NULL)
     private Doctor doctor;
@@ -54,7 +59,7 @@ public class Appointment {
     @Column(nullable = false)
     private LocalTime appointmentTime;
 
-    private String medicalNotes; // ملاحظات طبية إضافية
+    private String notes; // ملاحظات طبية إضافية
 
     @Enumerated(EnumType.STRING)
     private Status status = Status.PENDING;
@@ -69,4 +74,5 @@ public class Appointment {
         CANCELLED, // ملغى
         COMPLETED // منتهى
     }
+
 }

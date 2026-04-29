@@ -43,179 +43,188 @@
                     String specialtyParam = request.getParameter("specialty");
                 %>
                 <button class="<%= (specialtyParam == null || specialtyParam.isEmpty()) ? "btn-primary" : "btn-secondary" %>"
-                    onclick="window.location = '/doctors'">الكل</button>
+                    onclick="window.location = '/doctors'">الكل
+                </button>
 
-                    <button class="<%= "general".equalsIgnoreCase(specialtyParam) ? "btn-primary" : "btn-secondary" %>"
-                        onclick="window.location = '/doctors?specialty=general'">طب عام</button>
+                <button class="<%= "general".equalsIgnoreCase(specialtyParam) ? "btn-primary" : "btn-secondary" %>"
+                    onclick="window.location = '/doctors?specialty=general'">طب عام
+                </button>
 
-                        <button class="<%= "dentistry".equalsIgnoreCase(specialtyParam) ? "btn-primary" : "btn-secondary" %>"
-                            onclick="window.location = '/doctors?specialty=dentistry'">أسنان</button>
+                <button class="<%= "dentistry".equalsIgnoreCase(specialtyParam) ? "btn-primary" : "btn-secondary" %>"
+                    onclick="window.location = '/doctors?specialty=dentistry'">أسنان
+                </button>
 
-                            <button class="<%= "dermatology".equalsIgnoreCase(specialtyParam) ? "btn-primary" : "btn-secondary" %>"
-                                onclick="window.location = '/doctors?specialty=dermatology'">جلدية</button>
+                <button class="<%= "dermatology".equalsIgnoreCase(specialtyParam) ? "btn-primary" : "btn-secondary" %>"
+                    onclick="window.location = '/doctors?specialty=dermatology'">جلدية
+                </button>
 
-                                <button class="<%= "ophthalmology".equalsIgnoreCase(specialtyParam) ? "btn-primary" : "btn-secondary" %>"
-                                    onclick="window.location = '/doctors?specialty=ophthalmology'">عيون</button>
+                <button class="<%= "ophthalmology".equalsIgnoreCase(specialtyParam) ? "btn-primary" : "btn-secondary" %>"
+                    onclick="window.location = '/doctors?specialty=ophthalmology'">عيون
+                </button>
 
-                                    <button class="<%= "cardiology".equalsIgnoreCase(specialtyParam) ? "btn-primary" : "btn-secondary" %>"
-                                        onclick="window.location = '/doctors?specialty=cardiology'">القلب والأوعية الدموية</button>
+                <button class="<%= "cardiology".equalsIgnoreCase(specialtyParam) ? "btn-primary" : "btn-secondary" %>"
+                    onclick="window.location = '/doctors?specialty=cardiology'">القلب والأوعية الدموية
+                </button>
 
-                                        <button class="<%= "cosmetic_dermatology".equalsIgnoreCase(specialtyParam) ? "btn-primary" : "btn-secondary" %>"
-                                            onclick="window.location = '/doctors?specialty=cosmetic_dermatology'">الجلدية والتجميل</button>
+                <button class="<%= "cosmetic_dermatology".equalsIgnoreCase(specialtyParam) ? "btn-primary" : "btn-secondary" %>"
+                    onclick="window.location = '/doctors?specialty=cosmetic_dermatology'">الجلدية والتجميل
+                </button>
 
-                                            <button class="<%= "pediatrics".equalsIgnoreCase(specialtyParam) ? "btn-primary" : "btn-secondary" %>"
-                                                onclick="window.location = '/doctors?specialty=pediatrics'">طب الأطفال</button>
+                <button class="<%= "pediatrics".equalsIgnoreCase(specialtyParam) ? "btn-primary" : "btn-secondary" %>"
+                    onclick="window.location = '/doctors?specialty=pediatrics'">طب الأطفال
+                </button>
 
-                                                <button class="<%= "family_medicine".equalsIgnoreCase(specialtyParam) ? "btn-primary" : "btn-secondary" %>"
-                                                    onclick="window.location = '/doctors?specialty=family_medicine'">طب الأسرة</button>
-                                                </section>
-
-
-                                                <section >
-                                                    <div class="row justify-content-between">
-                                                        <% List<Doctor> doctors =(List<Doctor>) request.getAttribute("doctors"); %>
-                                                        <% for(Doctor doctor:doctors){%>
-                                                        <div class="col-md-3">
-                                                            <div class="card card-doctor" >
-                                                                <div class="tag-in-img">
-                                                                    <img src="/images/doc1.png" class="card-img-top" alt="image">
-                                                                    <div class="img-tag">
-                                                                        <p class="btn-primary">
-                                                                            <img src="/svgs/star-outlet.svg" alt="star icon">
-                                                                            <span style="color:white;">4.9</span>
-                                                                        </p>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="card-body">
-                                                                    <div class="btn-primary">   <%= doctor.getSpecialtyString() %> </div>
-                                                                    <h3 class="text-primary">  د. <%= doctor.getFullName() %>  </h3>
-                                                                    <h6 class="text-gold">
-                                                                        <%= (doctor.getSpecialization() != null && doctor.getSpecialization().split(" ").length > 0
-                                                                        ? doctor.getSpecialization().split(" ")[0] : "") %>
-                                                                        <%= (doctor.getSpecialization() != null && doctor.getSpecialization().split(" ").length > 1
-                                                                        ? doctor.getSpecialization().split(" ")[1] : "") %>
-                                                                        - خبرة 15 عاماً</h6>
-                                                                        <p class="text-secondary">
-                                                                            <%
-                                                                                String about = doctor.getAbout();
-                                                                                int maxLength = 62;
-                                                                                String safeText = (about != null && about.length() > maxLength)
-                                                                                ? about.substring(0, maxLength)
-                                                                                : about;
-                                                                            %>
-                                                                            <%= safeText %>...
-                                                                        </p>
-                                                                        <a href="#" class="btn-gold flex-between">
-                                                                            <p class="text-primary">     احجز مع الطبيب  </p>
-                                                                            <img width="18" src="/svgs/arrow-left-short-dark.svg" alt="icon" />
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <%}%>
-
-                                                            <div class="col-md-3">
-                                                                <div class="card card-doctor" >
-                                                                    <div class="tag-in-img">
-                                                                        <img src="/images/doc2.png" class="card-img-top" alt="image">
-                                                                        <div class="img-tag">
-                                                                            <p class="btn-primary">
-                                                                                <img src="/svgs/star-outlet.svg" alt="star icon">
-                                                                                <span style="color:white;">4.8</span>
-                                                                            </p>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="card-body">
-                                                                        <div class="btn-primary"> الجلدية والتجميل</div>
-                                                                        <h3 class="text-primary">  د. سارة المنصور</h3>
-                                                                        <h6 class="text-gold"> أخصائية - خبرة 10 أعوام</h6>
-                                                                        <p class="text-secondary">خبرة واسعة في الحقن
-                                                                            التجميلي، الليزر، وعلاج الأمرا...
-                                                                        </p>
-                                                                        <a href="#" class="btn-gold flex-between">
-                                                                            <p class="text-primary">     احجز مع الطبيب  </p>
-                                                                            <img width="18" src="/svgs/arrow-left-short-dark.svg" alt="icon" />
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                <div class="card card-doctor" >
-                                                                    <div class="tag-in-img">
-                                                                        <img src="/images/doc3.png" class="card-img-top" alt="image">
-                                                                        <div class="img-tag">
-                                                                            <p class="btn-primary">
-                                                                                <img src="/svgs/star-outlet.svg" alt="star icon">
-                                                                                <span style="color:white;">5.0</span>
-                                                                            </p>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="card-body">
-                                                                        <div class="btn-primary">  طب الأطفال</div>
-                                                                        <h3 class="text-primary">  د. فهد الراشد</h3>
-                                                                        <h6 class="text-gold"> استشاري - خبرة 12 عاماً</h6>
-                                                                        <p class="text-secondary">
-                                                                            متخصص في العناية بحديثي
-                                                                            الولادة، متابعة النمو،...
-                                                                        </p>
-                                                                        <a href="#" class="btn-gold flex-between">
-                                                                            <p class="text-primary">     احجز مع الطبيب  </p>
-                                                                            <img width="18" src="/svgs/arrow-left-short-dark.svg" alt="icon" />
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                <div class="card card-doctor" >
-                                                                    <div class="tag-in-img">
-                                                                        <img src="/images/doc4.png" class="card-img-top" alt="image">
-                                                                        <div class="img-tag">
-                                                                            <p class="btn-primary">
-                                                                                <img src="/svgs/star-outlet.svg" alt="star icon">
-                                                                                <span style="color:white;">4.5</span>
-                                                                            </p>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="card-body">
-                                                                        <div class="btn-primary"> طب الأسرة   </div>
-                                                                        <h3 class="text-primary">  د. نورة السالم</h3>
-                                                                        <h6 class="text-gold"> طبيبة أسرة - خبرة 8 أعوام</h6>
-                                                                        <p class="text-secondary">
-                                                                            رعاية وقائية شاملة لكافة
-                                                                            أفراد الأسرة، ومتابعة الأمرا...
-                                                                        </p>
-                                                                        <a href="#" class="btn-gold flex-between">
-                                                                            <p class="text-primary">     احجز مع الطبيب  </p>
-                                                                            <img width="18" src="/svgs/arrow-left-short-dark.svg" alt="icon" />
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-                                                    </section>
-                                                    <section>
-                                                        <div class="green-card row align-items-center justify-content-around " style="margin-top: 64px; padding: 32px;">
-                                                            <div  class="col-9 " >
-                                                                <h2 class="mb-md-5" style="text-align: justify;">
-                                                                    هل تنتمي إلى
-                                                                    <span class="text-gold">النخبة؟</span>
-                                                                </h2>
-                                                                <p class='text-gold' style="text-align: justify;">
-                                                                    نحن نبحث دائماً عن الأفضل. انضم إلى صرحنا الطبي الفاخر وساهم في رسم
-                                                                    مستقبل الرعاية الصحية الراقية.
-                                                                </p>
-                                                            </div>
-
-                                                            <div class="col-md ">
-                                                                <a href="#" class="btn btn-gold btn-lg text-gold col-5" style="border-radius: 12px; line-height: normal; width: 100%;"> انضم لفريقنا </a>
-                                                            </div>
-                                                        </div>
-                                                    </section>
-                                                </div>
+                <button class="<%= "family_medicine".equalsIgnoreCase(specialtyParam) ? "btn-primary" : "btn-secondary" %>"
+                    onclick="window.location = '/doctors?specialty=family_medicine'">طب الأسرة
+                </button>
+            </section>
 
 
-                                                <%@ include file="shared/footer.jsp" %>
-                                                <script src="/js/bootstrap.min.js"></script>
-                                            </body>
-                                        </html>
+            <section >
+                <div class="row justify-content-between">
+                    <% List<Doctor> doctors =(List<Doctor>) request.getAttribute("doctors"); %>
+                    <% for(Doctor doctor:doctors){%>
+                    <div class="col-md-3">
+                        <div class="card card-doctor" >
+                            <div class="tag-in-img">
+                                <img src="/images/doc1.png" class="card-img-top" alt="image">
+                                <div class="img-tag">
+                                    <p class="btn-primary">
+                                        <img src="/svgs/star-outlet.svg" alt="star icon">
+                                        <span style="color:white;">4.9</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="btn-primary">   <%= doctor.getSpecialtyString() %> </div>
+                                <h3 class="text-primary">  د. <%= doctor.getFullName() %>  </h3>
+                                <h6 class="text-gold">
+                                    <%= (doctor.getSpecialization() != null && doctor.getSpecialization().split(" ").length > 0
+                                    ? doctor.getSpecialization().split(" ")[0] : "") %>
+                                    <%= (doctor.getSpecialization() != null && doctor.getSpecialization().split(" ").length > 1
+                                    ? doctor.getSpecialization().split(" ")[1] : "") %>
+                                    - خبرة 15 عاماً</h6>
+                                    <p class="text-secondary">
+                                        <%
+                                            String about = doctor.getAbout();
+                                            int maxLength = 62;
+                                            String safeText = (about != null && about.length() > maxLength)
+                                            ? about.substring(0, maxLength)
+                                            : about;
+                                        %>
+                                        <%= safeText %>...
+                                    </p>
+                                    <a href="#" class="btn-gold flex-between">
+                                        <p class="text-primary">     احجز مع الطبيب  </p>
+                                        <img width="18" src="/svgs/arrow-left-short-dark.svg" alt="icon" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <%}%>
+
+                        <div class="col-md-3">
+                            <div class="card card-doctor" >
+                                <div class="tag-in-img">
+                                    <img src="/images/doc2.png" class="card-img-top" alt="image">
+                                    <div class="img-tag">
+                                        <p class="btn-primary">
+                                            <img src="/svgs/star-outlet.svg" alt="star icon">
+                                            <span style="color:white;">4.8</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="btn-primary"> الجلدية والتجميل</div>
+                                    <h3 class="text-primary">  د. سارة المنصور</h3>
+                                    <h6 class="text-gold"> أخصائية - خبرة 10 أعوام</h6>
+                                    <p class="text-secondary">خبرة واسعة في الحقن
+                                        التجميلي، الليزر، وعلاج الأمرا...
+                                    </p>
+                                    <a href="#" class="btn-gold flex-between">
+                                        <p class="text-primary">     احجز مع الطبيب  </p>
+                                        <img width="18" src="/svgs/arrow-left-short-dark.svg" alt="icon" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card card-doctor" >
+                                <div class="tag-in-img">
+                                    <img src="/images/doc3.png" class="card-img-top" alt="image">
+                                    <div class="img-tag">
+                                        <p class="btn-primary">
+                                            <img src="/svgs/star-outlet.svg" alt="star icon">
+                                            <span style="color:white;">5.0</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="btn-primary">  طب الأطفال</div>
+                                    <h3 class="text-primary">  د. فهد الراشد</h3>
+                                    <h6 class="text-gold"> استشاري - خبرة 12 عاماً</h6>
+                                    <p class="text-secondary">
+                                        متخصص في العناية بحديثي
+                                        الولادة، متابعة النمو،...
+                                    </p>
+                                    <a href="#" class="btn-gold flex-between">
+                                        <p class="text-primary">     احجز مع الطبيب  </p>
+                                        <img width="18" src="/svgs/arrow-left-short-dark.svg" alt="icon" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card card-doctor" >
+                                <div class="tag-in-img">
+                                    <img src="/images/doc4.png" class="card-img-top" alt="image">
+                                    <div class="img-tag">
+                                        <p class="btn-primary">
+                                            <img src="/svgs/star-outlet.svg" alt="star icon">
+                                            <span style="color:white;">4.5</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="btn-primary"> طب الأسرة   </div>
+                                    <h3 class="text-primary">  د. نورة السالم</h3>
+                                    <h6 class="text-gold"> طبيبة أسرة - خبرة 8 أعوام</h6>
+                                    <p class="text-secondary">
+                                        رعاية وقائية شاملة لكافة
+                                        أفراد الأسرة، ومتابعة الأمرا...
+                                    </p>
+                                    <a href="#" class="btn-gold flex-between">
+                                        <p class="text-primary">     احجز مع الطبيب  </p>
+                                        <img width="18" src="/svgs/arrow-left-short-dark.svg" alt="icon" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+                <section>
+                    <div class="green-card row align-items-center justify-content-around " style="margin-top: 64px; padding: 32px;">
+                        <div  class="col-9 " >
+                            <h2 class="mb-md-5" style="text-align: justify;">
+                                هل تنتمي إلى
+                                <span class="text-gold">النخبة؟</span>
+                            </h2>
+                            <p class='text-gold' style="text-align: justify;">
+                                نحن نبحث دائماً عن الأفضل. انضم إلى صرحنا الطبي الفاخر وساهم في رسم
+                                مستقبل الرعاية الصحية الراقية.
+                            </p>
+                        </div>
+
+                        <div class="col-md ">
+                            <a href="#" class="btn btn-gold btn-lg text-gold col-5" style="border-radius: 12px; line-height: normal; width: 100%;"> انضم لفريقنا </a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+
+            <%@ include file="shared/footer.jsp" %>
+            <script src="/js/bootstrap.min.js"></script>
+        </body>
+    </html>

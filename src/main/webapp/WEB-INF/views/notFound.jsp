@@ -13,8 +13,6 @@
     </head>
     <body>
         <div class="container">
-            <%@ include file="shared/header.jsp" %>
-
       <section class="d-flex align-items-center min-vh-100 py-5">
         <div class="container py-5">
             <div class="row align-items-center">
@@ -49,7 +47,6 @@
         </div>
     </section>
 
-        <%@ include file="shared/footer.jsp" %>
         <script src="/js/bootstrap.min.js"></script>
     </body>
 </html>

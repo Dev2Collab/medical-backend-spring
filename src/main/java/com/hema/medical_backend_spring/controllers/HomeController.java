@@ -6,8 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.hema.medical_backend_spring.config.CustomUserDetails;
+import com.hema.medical_backend_spring.model.Admin;
 import com.hema.medical_backend_spring.model.Doctor;
 import com.hema.medical_backend_spring.model.Patient;
+import com.hema.medical_backend_spring.services.AdminService;
 import com.hema.medical_backend_spring.services.DoctorService;
 import com.hema.medical_backend_spring.services.PatientService;
 
@@ -18,6 +20,7 @@ import lombok.AllArgsConstructor;
 public class HomeController {
     private final PatientService patientService;
     private final DoctorService doctorService;
+    private final AdminService adminService;
 
     @GetMapping(path = { "/home", "/" })
     public String getHomePage(Authentication authentication, Model model) {
@@ -31,17 +34,18 @@ public class HomeController {
                 return "profile/patient";
             } else if (authentication.getAuthorities().toArray()[0].toString().equals("DOCTOR")) {
                 Doctor doctor = doctorService.getDoctor(userDetails.getProjectUser().getId()).orElse(null);
-                // Split the about text into sentences
                 String[] aboutSentences = doctor.getAbout() != null
                         ? doctor.getAbout().split("\\.")
                         : new String[0];
                 model.addAttribute("education", doctor.getCertifications());
                 model.addAttribute("about", aboutSentences);
-
                 model.addAttribute("user", doctor);
                 return "profile/doctor";
-            } else if (authentication.getAuthorities().toArray()[0].toString().equals("ADMIN"))
+            } else if (authentication.getAuthorities().toArray()[0].toString().equals("ADMIN")) {
+                Admin admin = adminService.getAdmin(userDetails.getProjectUser().getId()).orElse(null);
+                model.addAttribute("user", admin);
                 return "profile/admin";
+            }
             return "/home";
         }
         return new String("home");
