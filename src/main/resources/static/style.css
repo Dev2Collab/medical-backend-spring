@@ -303,11 +303,11 @@ button[type="submit"]:disabled::after {
   border-radius: 16px;
   font-weight: 900;
   font-size: 18px;
+  cursor: pointer;
 }
 
 .btn-primary:hover {
   background-color: var(--primary-color-hover);
-  color: white;
   padding-inline: 20px;
   border-radius: 16px;
   font-weight: 700;
@@ -385,6 +385,19 @@ button[type="submit"]:disabled::after {
   padding: 8px;
   background-color: #c5a0591a;
 }
+.floating-button {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--opacity-text);
+  border-radius: 50%;
+  cursor: pointer;
+}
 
 /* text  */
 .text-secondary {
@@ -440,7 +453,7 @@ button[type="submit"]:disabled::after {
 
 .gray-card {
   border: 1px solid #d1dcd5;
-  width: 276;
+  min-width: 276px;
   border-radius: 12px;
   padding: 16px;
   display: flex;
@@ -672,6 +685,16 @@ button[type="submit"]:disabled::after {
   cursor: pointer;
   padding: 0;
   margin: 0;
+}
+
+.grid-2{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.grid-3{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+ 
 }
 
 @keyframes spin {

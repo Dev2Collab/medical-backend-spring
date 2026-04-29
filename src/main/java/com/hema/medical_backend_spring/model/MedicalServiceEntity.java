@@ -44,7 +44,7 @@ public class MedicalServiceEntity {
 
     // MedicalServiceEntity.java
     @OneToMany(mappedBy = "medicalService", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ServiceFeatures> features; // @OnDelete removed, not needed here
+    private List<ServiceFeatures> features; 
 
     private boolean mostRequested = false;
 

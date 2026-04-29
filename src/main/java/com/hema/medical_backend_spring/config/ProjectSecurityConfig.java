@@ -48,6 +48,7 @@ public class ProjectSecurityConfig {
                                                                 "/WEB-INF/views/**", "/home","/error")
                                                 .permitAll()
                                                 .requestMatchers("/admin/**", "/doctor-signup").hasAuthority("ADMIN")
+                                                .requestMatchers(HttpMethod.POST,"/services/**").hasAuthority("ADMIN")
                                                 .requestMatchers(HttpMethod.POST,"/doctors/**").hasAuthority("DOCTOR")
                                                 .requestMatchers(HttpMethod.POST,"/patient/**").hasAuthority("PATIENT")
                                                 .anyRequest().authenticated())

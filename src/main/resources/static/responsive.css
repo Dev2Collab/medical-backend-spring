@@ -57,6 +57,9 @@ z-index: 1050;
     font-size: 16px !important;
   }
 
+.grid-2{
+grid-template-columns: 1fr;
+}
   /* //buttons */
 
   .btn-primary {
