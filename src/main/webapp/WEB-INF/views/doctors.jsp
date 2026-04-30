@@ -7,7 +7,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title> Doctors </title>
+        <title> Doctors | <%= request.getParameter("specialty") != null ? request.getParameter("specialty") : "all" %> </title>
         <link rel="stylesheet" href="/css/bootstrap.min.css">
         <link rel="stylesheet" href="/style.css">
         <%-- <link rel="stylesheet" href="/css/doctors.css"> --%>
@@ -30,7 +30,7 @@
                 <form method="get" action="/doctors/search" >
                     <div class="mb-3 col-md-6" >
                         <div  class="input-holder">
-                            <input required type="text"  class="form-control"  placeholder="ادخل اسمك " style="padding: 13px 48px 13px 16px; direction: rtl; border-radius: 24px; " name="s">
+                            <input required type="text"  class="form-control"  placeholder="ادخل اسم طبيب او معلومه عنه " style="padding: 13px 48px 13px 16px; direction: rtl; border-radius: 24px; " name="s">
                             <span onclick="this.closest('form').submit()" style="cursor:pointer;">   <img src="/svgs/search.svg" alt="email icon">
                             </span>
                         </div>
@@ -122,86 +122,11 @@
                             </div>
                         </div>
                         <%}%>
-
-                        <div class="col-md-3">
-                            <div class="card card-doctor" >
-                                <div class="tag-in-img">
-                                    <img src="/images/doc2.png" class="card-img-top" alt="image">
-                                    <div class="img-tag">
-                                        <p class="btn-primary">
-                                            <img src="/svgs/star-outlet.svg" alt="star icon">
-                                            <span style="color:white;">4.8</span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="btn-primary"> الجلدية والتجميل</div>
-                                    <h3 class="text-primary">  د. سارة المنصور</h3>
-                                    <h6 class="text-gold"> أخصائية - خبرة 10 أعوام</h6>
-                                    <p class="text-secondary">خبرة واسعة في الحقن
-                                        التجميلي، الليزر، وعلاج الأمرا...
-                                    </p>
-                                    <a href="#" class="btn-gold flex-between">
-                                        <p class="text-primary">     احجز مع الطبيب  </p>
-                                        <img width="18" src="/svgs/arrow-left-short-dark.svg" alt="icon" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card card-doctor" >
-                                <div class="tag-in-img">
-                                    <img src="/images/doc3.png" class="card-img-top" alt="image">
-                                    <div class="img-tag">
-                                        <p class="btn-primary">
-                                            <img src="/svgs/star-outlet.svg" alt="star icon">
-                                            <span style="color:white;">5.0</span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="btn-primary">  طب الأطفال</div>
-                                    <h3 class="text-primary">  د. فهد الراشد</h3>
-                                    <h6 class="text-gold"> استشاري - خبرة 12 عاماً</h6>
-                                    <p class="text-secondary">
-                                        متخصص في العناية بحديثي
-                                        الولادة، متابعة النمو،...
-                                    </p>
-                                    <a href="#" class="btn-gold flex-between">
-                                        <p class="text-primary">     احجز مع الطبيب  </p>
-                                        <img width="18" src="/svgs/arrow-left-short-dark.svg" alt="icon" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card card-doctor" >
-                                <div class="tag-in-img">
-                                    <img src="/images/doc4.png" class="card-img-top" alt="image">
-                                    <div class="img-tag">
-                                        <p class="btn-primary">
-                                            <img src="/svgs/star-outlet.svg" alt="star icon">
-                                            <span style="color:white;">4.5</span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="btn-primary"> طب الأسرة   </div>
-                                    <h3 class="text-primary">  د. نورة السالم</h3>
-                                    <h6 class="text-gold"> طبيبة أسرة - خبرة 8 أعوام</h6>
-                                    <p class="text-secondary">
-                                        رعاية وقائية شاملة لكافة
-                                        أفراد الأسرة، ومتابعة الأمرا...
-                                    </p>
-                                    <a href="#" class="btn-gold flex-between">
-                                        <p class="text-primary">     احجز مع الطبيب  </p>
-                                        <img width="18" src="/svgs/arrow-left-short-dark.svg" alt="icon" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
+
+                    <% if(doctors.isEmpty()) { %>
+                    <p class="text-secondary" style="text-align: center;">لا يوجد اطباء متاحين في هذا المجال الان .</p>
+                    <% } %>
                 </section>
                 <section>
                     <div class="green-card row align-items-center justify-content-around " style="margin-top: 64px; padding: 32px;">
