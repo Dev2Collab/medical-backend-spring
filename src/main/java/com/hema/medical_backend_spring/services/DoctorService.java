@@ -2,6 +2,7 @@ package com.hema.medical_backend_spring.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -10,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.hema.medical_backend_spring.dto.DoctorApiDto;
 import com.hema.medical_backend_spring.dto.DoctorDto;
 import com.hema.medical_backend_spring.mapper.HelperDto;
 import com.hema.medical_backend_spring.model.Doctor;
@@ -36,28 +38,39 @@ public class DoctorService {
                 dto.getSpecialty());
     }
 
-    public Page<Doctor> getDoctorsBySpecialty(String specialty,int page,int size ) {
-        Pageable pageable = PageRequest.of(page, size);
+    public List<DoctorApiDto> findBySpecialization(Specialty specialization) {
+        return doctorRepository.findBySpecialty(specialization, Pageable.unpaged())
+                .stream()
+                .map(d -> {
+                    DoctorApiDto dto = new DoctorApiDto();
+                    dto.setId(d.getId());
+                    dto.setFullName(d.getFullName());
+                    return dto;
+                })
+                .collect(Collectors.toList());
+    }
 
+    public Page<Doctor> getDoctorsBySpecialty(String specialty, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
 
         if (specialty != null) {
             switch (specialty.toUpperCase()) {
                 case "GENERAL":
-                    return doctorRepository.findBySpecialty(Specialty.GENERAL,pageable);
+                    return doctorRepository.findBySpecialty(Specialty.GENERAL, pageable);
                 case "DENTISTRY":
-                    return doctorRepository.findBySpecialty(Specialty.DENTISTRY,pageable);
+                    return doctorRepository.findBySpecialty(Specialty.DENTISTRY, pageable);
                 case "DERMATOLOGY":
-                    return doctorRepository.findBySpecialty(Specialty.DERMATOLOGY,pageable);
+                    return doctorRepository.findBySpecialty(Specialty.DERMATOLOGY, pageable);
                 case "OPHTHALMOLOGY":
-                    return doctorRepository.findBySpecialty(Specialty.OPHTHALMOLOGY,pageable);
+                    return doctorRepository.findBySpecialty(Specialty.OPHTHALMOLOGY, pageable);
                 case "CARDIOLOGY":
-                    return doctorRepository.findBySpecialty(Specialty.CARDIOLOGY,pageable);
+                    return doctorRepository.findBySpecialty(Specialty.CARDIOLOGY, pageable);
                 case "COSMETIC_DERMATOLOGY":
-                    return doctorRepository.findBySpecialty(Specialty.COSMETIC_DERMATOLOGY,pageable);
+                    return doctorRepository.findBySpecialty(Specialty.COSMETIC_DERMATOLOGY, pageable);
                 case "FAMILY_MEDICINE":
-                    return doctorRepository.findBySpecialty(Specialty.FAMILY_MEDICINE,pageable);
+                    return doctorRepository.findBySpecialty(Specialty.FAMILY_MEDICINE, pageable);
                 case "PEDIATRICS":
-                    return doctorRepository.findBySpecialty(Specialty.PEDIATRICS,pageable);
+                    return doctorRepository.findBySpecialty(Specialty.PEDIATRICS, pageable);
                 default:
                     return doctorRepository.findAll(pageable);
             }
@@ -65,11 +78,13 @@ public class DoctorService {
         return doctorRepository.findAll(pageable);
     }
 
-    public Page<Doctor> searchDoctors(String s,int page,int size ) {
+    public Page<Doctor> searchDoctors(String s, int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
- 
-        if(s!=null){
-            return doctorRepository.findByFullNameContainingIgnoreCaseOrAboutContainingIgnoreCaseOrSpecializationContainingIgnoreCaseOrWorkContainingIgnoreCase( s, s, s, s,pageable);
+
+        if (s != null) {
+            return doctorRepository
+                    .findByFullNameContainingIgnoreCaseOrAboutContainingIgnoreCaseOrSpecializationContainingIgnoreCaseOrWorkContainingIgnoreCase(
+                            s, s, s, s, pageable);
         }
         return doctorRepository.findAll(pageable);
     }

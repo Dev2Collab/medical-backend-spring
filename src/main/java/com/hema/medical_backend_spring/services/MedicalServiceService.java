@@ -10,6 +10,7 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import com.hema.medical_backend_spring.dto.ServiceDto;
+import com.hema.medical_backend_spring.dto.ServiceResponseDto;
 import com.hema.medical_backend_spring.model.Admin;
 import com.hema.medical_backend_spring.model.Doctor.Specialty;
 import com.hema.medical_backend_spring.model.MedicalServiceEntity;
@@ -29,8 +30,6 @@ public class MedicalServiceService {
     
     public Page<MedicalServiceEntity> getServicesBySpecialty(String specialty,int page,int size ) {
         Pageable pageable = PageRequest.of(page, size);
-
-
         if (specialty != null) {
             switch (specialty.toUpperCase()) {
                 case "GENERAL":
@@ -55,6 +54,20 @@ public class MedicalServiceService {
         }
         return medicalServiceRepository.findAll(pageable);
     }
+    public List<ServiceResponseDto> findBySpecialization(Specialty specialization) {
+    return medicalServiceRepository.findBySpecialization(specialization ,Pageable.unpaged())
+            .stream()
+            .map(s -> {
+                ServiceResponseDto dto = new ServiceResponseDto();
+                dto.setId(s.getId());
+                dto.setName(s.getName());
+                dto.setPrice(s.getPrice());
+                dto.setStartFrom(s.getStartFrom());
+                dto.setConsulating(s.getConsulating());
+                return dto;
+            })
+            .collect(Collectors.toList());
+}
 
     public MedicalServiceEntity getServiceById(@NonNull Long id) {
         return medicalServiceRepository.findById(id).orElseThrow(() -> new RuntimeException("Service not found"));

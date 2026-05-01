@@ -50,7 +50,7 @@ public class Appointment {
     private Doctor doctor;
 
     // تحديد الخدمة الطبية
-    private String specialization; // القسم / التخصص
+    private String specialization; 
 
     // الموعد المقترح
     @Column(nullable = false)
@@ -62,13 +62,13 @@ public class Appointment {
     private String notes; // ملاحظات طبية إضافية
 
     @Enumerated(EnumType.STRING)
-    private Status status = Status.PENDING;
+    private AppointmentStatus status = AppointmentStatus.PENDING;
 
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime createdAt;
 
-    public enum Status {
+    public enum AppointmentStatus {
         PENDING, // قيد الانتظار
         CONFIRMED, // مؤكد
         CANCELLED, // ملغى

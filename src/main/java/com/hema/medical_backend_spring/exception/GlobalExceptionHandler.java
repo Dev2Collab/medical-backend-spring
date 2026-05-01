@@ -3,6 +3,7 @@ package com.hema.medical_backend_spring.exception;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -45,7 +46,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public String handleGeneral(Exception ex, Model model) {
-        model.addAttribute("error", "حدث خطأ غير متوقع");
+        model.addAttribute("error", ex.getMessage());
         model.addAttribute("status", 500);
         return "error";
     }
@@ -55,4 +56,26 @@ public class GlobalExceptionHandler {
         redirectAttributes.addFlashAttribute("failMessage",ex.getMessage());
         return "redirect:/fail";
     }
+    
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+public String handleValidationErrors(MethodArgumentNotValidException ex, Model model) {
+    model.addAttribute("error", "البيانات المدخلة غير صالحه");
+    model.addAttribute("details", ex.getBindingResult().getAllErrors());
+    model.addAttribute("status", 400);
+    return "error";
+}
+    @ExceptionHandler(NotValidTimeException.class)
+public String handleValidationErrors(NotValidTimeException ex, Model model) {
+    model.addAttribute("error", ex.getMessage());
+    model.addAttribute("status", 400);
+    return "error";
+}
+    @ExceptionHandler(UserNotFoundException.class)
+public String handleValidationErrors(UserNotFoundException ex, Model model) {
+    model.addAttribute("error", ex.getMessage());
+    model.addAttribute("status", 400);
+    return "error";
+}
+
+
 }

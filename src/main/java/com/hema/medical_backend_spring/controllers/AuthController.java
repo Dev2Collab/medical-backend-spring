@@ -72,13 +72,13 @@ public class AuthController {
 
     @GetMapping("/doctor-signup")
     public String getDoctorSignupPage(Authentication authentication) {
-        if (authentication != null && authentication.isAuthenticated()) {
-            return "redirect:/home";
+        if (authentication != null && authentication.isAuthenticated()
+                && authentication.getAuthorities().toArray()[0].toString().equals("ADMIN")) {
+            return "auth/signup-doctor";
         }
-        return "auth/signup-doctor";
+        return "redirect:/home";
     }
 
-    
     @PostMapping("/signup")
     public String registerUser(
             @ModelAttribute ProjectUser user,
@@ -117,29 +117,33 @@ public class AuthController {
     public String registerDoctor(
             @ModelAttribute ProjectUser user,
             @RequestParam(name = "passwordCheck", required = false) String passwordCheck,
-            Model model) {
+            Model model, Authentication authentication) {
+        if (!authentication.getAuthorities().toArray()[0].toString().equals("ADMIN")) {
+            model.addAttribute("error", "غير مصرح لك بالوصول لهذه الصفحة");
+            return "auth/doctor-signup";
+        }
 
         // chek fields
         if (user.getEmail() == null || user.getPassword() == "" || user.getFullName() == "") {
             model.addAttribute("error", "جميع الحقول مطلوبة");
-            return "auth/signup";
+            return "auth/doctor-signup";
         }
         // check matching password
         if (user.getPassword() == null || !user.getPassword().equals(passwordCheck)) {
             model.addAttribute("error", "كلمات المرور غير متطابقة");
-            return "auth/signup";
+            return "auth/doctor-signup";
         }
         // check if its valid name
         if (!userService.isValidEmail(user.getEmail())) {
             System.out.println(userService.isValidEmail(user.getEmail()));
             model.addAttribute("error", "البريد الالكتروني غير صالح");
-            return "auth/signup";
+            return "auth/doctor-signup";
         }
 
         // check if user exist
         if (userService.findByEmail(user.getEmail()).isPresent()) {
             model.addAttribute("error", "البريد الالكتروني مستخدم بالفعل");
-            return "auth/signup";
+            return "auth/doctor-signup";
         }
         userService.registerDoctor(user);
         return "redirect:/login";

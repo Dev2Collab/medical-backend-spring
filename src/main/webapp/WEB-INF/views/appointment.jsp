@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ page import="com.hema.medical_backend_spring.mapper.HelperDto" %>
+<%@ page import="com.hema.medical_backend_spring.model.Doctor.Specialty" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
     <head>
@@ -32,52 +34,44 @@
                     </div>
                     <div class="form row">
                         <div class="top-gradient"></div>
-                        <form >
-                            <div class="flex text-primary mb-2 mt-2" >
-                                <img src="/svgs/book-person.svg" style="margin-inline:8px;"/>
-                                البيانات الشخصية للمريض
-                            </div>
-
-                            <div class="row  justify-content-around">
-                                <div class="mb-3 col-md-5" >
-                                    <label for="fullName" class="form-label" >الاسم بالكامل   </label>
-                                    <div  class="input-holder">
-                                        <input  type="text" class="form-control" id="fullName" placeholder="ادخل اسمك الثلاثي ">
-                                        <span>   <img src="./svgs/person.svg" alt="icon">
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="mb-3 col-md-5">
-                                    <label for="phoneNumber" class="form-label"> رقم الهاتف </label>
-
-                                    <div  class="input-holder">
-                                        <input  type="text" class="form-control" id="phoneNumber" placeholder="011*********">
-                                        <span>   <img src="./svgs/phone.svg" alt=" icon">
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-
-
+                        <form  method="post" action="/book-appointment">
                             <div class="flex text-primary mb-2 mt-2" >
                                 <img src="/svgs/doc-thing.svg" style="margin-inline:8px;"/>
                                 تحديد الخدمة الطبية
                             </div>
 
+                            <%-- <%= sp.name().equals(service.getSpecialization().toString()) ? "selected" : "" %> --%>
                             <div class="row justify-content-around">
                                 <div class="mb-3 col-md-5">
-                                    <label for="email" class="form-label">البريد الالكتروني </label>
-                                    <select class="form-control" id="email">
-                                        <option value="ab">do do</option>
+                                    <label for="specialization" class="form-label"> القسم / التخصص </label>
+                                    <select class="form-control" name="specialization" id="specialization">
+                                        <option>اختر القسم المطلوب</option>
+                                        <%
+                                            for (Specialty sp : Specialty.values()) {
+                                            %>
+                                            <option value="<%= sp.name() %>" >
+                                                <%= HelperDto.getSpecialtyString(sp) %>
+
+                                            </option>
+                                            <%
+                                            }
+                                        %>
                                     </select>
                                 </div>
 
 
 
                                 <div class="mb-3 col-md-5">
-                                    <label for="password" class="form-label">كلمة المرور </label>
-                                    <select class="form-control" id="password">
-                                        <option value="ab">do do</option>
+                                    <label for="doctor_id" class="form-label"> الطبيب المختص </label>
+                                    <select class="form-control" id="doctor_id" name="doctorId">
+                                        <option >اختر الطبيب المفضل</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3 col-md-11 mx-auto">
+                                    <label for="service_id" class="form-label"> الخدمة الطبية </label>
+                                    <select class="form-control" id="service_id" name="serviceId">
+                                        <option >اختر الخدمه المناسبه</option>
                                     </select>
                                 </div>
                             </div>
@@ -90,8 +84,9 @@
                             <div class="row justify-content-around">
 
                                 <div class="mb-3 col-md-5">
-                                    <label for="myDate" class="form-label">البريد الالكتروني </label>
-                                    <input  type="date" class="form-control" id="myDate">
+                                    <label for="appointmentDate" class="form-label">تاريخ الزيارة</label>
+                                    <input type="date" class="form-control" id="appointmentDate" name="appointmentDate" disabled>
+
 
                                     <div class="note mt-4 text-secondary flex">
                                         <img src="./svgs/info.svg" alt="icon" />
@@ -101,32 +96,34 @@
                                 </div>
 
 
+
                                 <div class="mb-3 col-md-5">
-                                    <label for="password" class="form-label">كلمة المرور </label>
-                                    <div class="row justify-content-between">
-                                        <div class="time-slot col-md-5 time-slot-active mb-3">
-                                            19:00 ص
+                                    <div id="time-slots-container" style="display:none" class="mt-3">
+                                        <label class="form-label">الفترات المتاحة</label>
+                                        <div class="row justify-content-between">
+                                            <label class="time-slot col-md-5 mb-3">
+                                                <input type="radio" name="appointmentTime" value="09:00" hidden>
+                                                ص 9:00
+                                            </label>
+                                            <label class="time-slot col-md-5 mb-3">
+                                                <input type="radio" name="appointmentTime" value="11:30" hidden>
+                                                ص 11:30
+                                            </label>
+                                            <label class="time-slot col-md-5 mb-3">
+                                                <input type="radio" name="appointmentTime" value="16:30" hidden>
+                                                م 4:30
+                                            </label>
+                                            <label class="time-slot col-md-5 mb-3">
+                                                <input type="radio" name="appointmentTime" value="19:00" hidden>
+                                                م 7:00
+                                            </label>
                                         </div>
-
-                                        <div class="time-slot col-md-5 mb-3">
-                                            19:00 ص
-                                        </div>
-
-                                        <div class="time-slot col-md-5 mb-3">
-                                            19:00 ص
-                                        </div>
-
-                                        <div class="time-slot col-md-5 mb-3">
-                                            19:00 ص
-                                        </div>
-
-
                                     </div>
                                 </div>
 
                                 <div class="mb-3 mt-3">
-                                    <label for="message" class="form-label text-primary">ملاحظات طبية إضافية</label>
-                                    <textarea class="form-control" id="message" rows="5" placeholder="يرجى كتابة أي ملاحظات أو استفسارات طبية ترغب في مشاركتها مع الطبيب..."></textarea>
+                                    <label for="notes" class="form-label text-primary">ملاحظات طبية إضافية</label>
+                                    <textarea class="form-control" id="notes" name="notes" rows="5" placeholder="يرجى كتابة أي ملاحظات أو استفسارات طبية ترغب في مشاركتها مع الطبيب..."></textarea>
                                 </div>
                             </div>
 
@@ -177,5 +174,162 @@
             </div>
             <%@ include file="shared/footer.jsp" %>
             <script src="./js/bootstrap.min.js"></script>
+            <script>
+                const doctorSelect = document.getElementById("doctor_id");
+                const serviceSelect = document.getElementById("service_id");
+                document.getElementById("specialization").addEventListener("change", function() {
+                    const specialization = this.value;
+                    
+                    // reset
+                    doctorSelect.innerHTML = "<option>اختر الطبيب المفضل</option>";
+                    serviceSelect.innerHTML = "<option>اختر الخدمة المطلوبة</option>";
+                    document.getElementById("appointmentDate").disabled = true;
+                    document.getElementById("time-slots-container").style.display = "none";
+                    
+                    if (this.value === "اختر القسم المطلوب") return;
+                    
+                    // loading
+                    doctorSelect.innerHTML = "<option>جاري التحميل...</option>";
+                    doctorSelect.disabled = true;
+                    serviceSelect.innerHTML = "<option>جاري التحميل...</option>";
+                    serviceSelect.disabled = true;
+                    
+                    // fetch doctors and services together
+                    
+                    fetch("/api/doctors?specialization=" + specialization).then(r => r.json())
+                    .then((doctors) => {
+                        // doctors
+                        doctorSelect.innerHTML = "<option>اختر الطبيب المفضل</option>";
+                        if (doctors.length === 0) {
+                            doctorSelect.innerHTML = "<option>لا يوجد أطباء في هذا التخصص</option>";
+                            serviceSelect.innerHTML = "<option>لا يوجد طبيب لهذه الخده الان</option>";
+                            serviceSelect.disabled = false;
+                        } else {
+                            doctors.forEach(d => {
+                                const opt = document.createElement("option");
+                                opt.value = d.id;
+                                opt.textContent = d.fullName;
+                                doctorSelect.appendChild(opt);
+                            });
+                            fetchServices(specialization);
+                        }
+                        
+                    })
+                    .catch(() => {
+                        doctorSelect.innerHTML = "<option>حدث خطأ، حاول مرة أخرى</option>";
+                        serviceSelect.innerHTML = "<option>حدث خطأ، حاول مرة أخرى</option>";
+                    })
+                    .finally(() => {
+                        doctorSelect.disabled = false;
+                        serviceSelect.disabled = false;
+                    });
+                });
+                
+                let bookedDates = [];
+                
+                function checkEnableDatePicker() {
+                    const doctorId = document.getElementById("doctor_id").value;
+                    const serviceId = document.getElementById("service_id").value;
+                    
+                    if (doctorId === "اختر الطبيب المفضل" ||
+                    serviceId === "اختر الخدمة المطلوبة") return;
+                    
+                    const dateInput = document.getElementById("appointmentDate");
+                    const today = new Date().toISOString().split("T")[0];
+                    dateInput.min = today;
+                    dateInput.disabled = false;
+                    
+                    // جيب الأيام المحجوزة
+                    fetch("/api/appointments/booked-dates?doctorId=" + doctorId)
+                    .then(r => r.json())
+                    .then(dates => {
+                        bookedDates = dates;
+                    });
+                }
+                
+                document.getElementById("doctor_id").addEventListener("change", checkEnableDatePicker);
+                document.getElementById("service_id").addEventListener("change", checkEnableDatePicker);
+                document.getElementById("appointmentDate").addEventListener("change", function() {
+                    const selected = this.value;
+                    const doctorId = document.getElementById("doctor_id").value;
+                    const slotsContainer = document.getElementById("time-slots-container");
+                    
+                    // reset slots
+                    slotsContainer.style.display = "none";
+                    document.querySelectorAll(".time-slot").forEach(s => {
+                        s.classList.remove("time-slot-disabled");
+                        s.querySelector("input[type='radio']").checked = false;
+                    });
+                    
+                    // لو اليوم محجوز بالكامل
+                    if (bookedDates.includes(selected)) {
+                        this.setCustomValidity("هذا اليوم محجوز بالكامل، اختر يوم آخر");
+                        this.reportValidity();
+                        this.value = "";
+                        return;
+                    }
+                    
+                    this.setCustomValidity("");
+                    
+                    // جيب الـ slots المحجوزة في اليوم ده
+                    fetch("/api/appointments/available-slots?doctorId=" + doctorId + "&date=" + selected)
+                    .then(r => r.json())
+                    .then(bookedSlots => {
+                        slotsContainer.style.display = "block";
+                        
+                        document.querySelectorAll(".time-slot").forEach(slot => {
+                            const value = slot.querySelector("input[type='radio']").value;
+                            if (bookedSlots.includes(value)) {
+                                slot.classList.add("time-slot-disabled");
+                            }
+                        });
+                    });
+                });
+                document.querySelectorAll(".time-slot").forEach(slot => {
+                    slot.addEventListener("click", function() {
+                        // لو محجوز متعملش حاجة
+                        if (this.classList.contains("time-slot-disabled")) return;
+                        
+                        // شيل active من الكل
+                        document.querySelectorAll(".time-slot").forEach(s => {
+                            s.classList.remove("time-slot-active");
+                        });
+                        
+                        // حط active على اللي اتضغط
+                        this.classList.add("time-slot-active");
+                        
+                        // حدد الـ radio button
+                        this.querySelector("input[type='radio']").checked = true;
+                    });
+                });
+                
+                
+                function fetchServices(specialization,isDoctor){
+                    
+                    // fetch services
+                    fetch("/api/services?specialization=" + specialization)
+                    .then(res => res.json())
+                    .then(services => {
+                        serviceSelect.innerHTML = "<option>اختر الخدمة المطلوبة</option>";
+                        
+                        if (services.length === 0) {
+                            serviceSelect.innerHTML = "<option>لا يوجد خدمات في هذا التخصص</option>";
+                            return;
+                        }
+                        
+                        services.forEach(service => {
+                            const option = document.createElement("option");
+                            option.value = service.id;
+                            option.textContent = service.name + " - " + (service.consulating ? "استشاره "+service.consulating + " ر.س" : service.startFrom ? "يبدا من " +service.startFrom + " ر.س" : service.price ? "سعر الكشف  "+service.price + " ر.س" : "");
+                            serviceSelect.appendChild(option);
+                        });
+                    })
+                    .catch(() => {
+                        serviceSelect.innerHTML = "<option>حدث خطأ، حاول مرة أخرى</option>";
+                    })
+                    .finally(() => serviceSelect.disabled = false);
+                }
+            </script>
+
         </body>
     </html>

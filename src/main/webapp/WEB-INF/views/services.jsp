@@ -118,11 +118,7 @@
                                     <%}%>
                                 </div>
                                 <div class="flex">
-                                    <form action="/services/delete-service/<%= service.getId() %>" method="post" onsubmit="return confirm('هل أنت متأكد أنك تريد حذف هذه الخدمة؟');">
-                                        <button class="btn-secondary "> مسح</button>
-                                    </form>
-
-                                    <a class="btn-primary me-2" href="/services/edit/<%= service.getId() %>">تعديل</a>
+                                    <a class="btn-primary me-2" href="#">احجز الآن</a>
                                 </div>
                             </div>
                         </div>
