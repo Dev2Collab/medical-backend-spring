@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.client.HttpServerErrorException.InternalServerError;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
@@ -36,20 +37,22 @@ public class GlobalExceptionHandler {
         model.addAttribute("status", 500);
         return "error";
     }
-
+    
     @ExceptionHandler(AccessDeniedException.class)
     public String handleAccessDenied(AccessDeniedException ex, Model model) {
         model.addAttribute("error", "غير مصرح لك بالوصول");
         model.addAttribute("status", 403);
         return "error";
     }
-
+    
     @ExceptionHandler(Exception.class)
     public String handleGeneral(Exception ex, Model model) {
         model.addAttribute("error", ex.getMessage());
         model.addAttribute("status", 500);
         return "error";
     }
+    
+ 
     
     @ExceptionHandler(IncorrectPasswordException.class)
     public String incorrectPassword(Exception ex, RedirectAttributes redirectAttributes){

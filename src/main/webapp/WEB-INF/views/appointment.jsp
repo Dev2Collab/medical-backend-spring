@@ -8,10 +8,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title> Appointment </title>
-        <link rel="stylesheet" href="./css/bootstrap.min.css">
-        <link rel="stylesheet" href="./style.css">
-        <link rel="stylesheet" href="./css/appointment.css">
-        <link rel="stylesheet" href="./responsive.css">
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/style.css">
+        <link rel="stylesheet" href="/css/appointment.css">
+        <link rel="stylesheet" href="/responsive.css">
     </head>
     <body>
         <div class="container">
@@ -34,13 +34,12 @@
                     </div>
                     <div class="form row">
                         <div class="top-gradient"></div>
-                        <form  method="post" action="/book-appointment">
+                        <form  method="post" action="/appointments/book-appointment">
                             <div class="flex text-primary mb-2 mt-2" >
                                 <img src="/svgs/doc-thing.svg" style="margin-inline:8px;"/>
                                 تحديد الخدمة الطبية
                             </div>
 
-                            <%-- <%= sp.name().equals(service.getSpecialization().toString()) ? "selected" : "" %> --%>
                             <div class="row justify-content-around">
                                 <div class="mb-3 col-md-5">
                                     <label for="specialization" class="form-label"> القسم / التخصص </label>
@@ -89,7 +88,7 @@
 
 
                                     <div class="note mt-4 text-secondary flex">
-                                        <img src="./svgs/info.svg" alt="icon" />
+                                        <img src="/svgs/info.svg" alt="icon" />
                                         المواعيد تخضع للتأكيد النهائي من خلال اتصال قسم المواعيد بكم.
                                     </div>
 
@@ -134,7 +133,7 @@
                                     بالمركز الطبي واستخدام بياناتك لأغراض جدولة المواعيد.
                                 </p>
                                 <button type="submit" class="btn-primary col-md-4"  >  تأكيد طلب الحجز
-                                    <img src="./svgs/appointment.svg" alt="icon" style="margin-right: 16px;">
+                                    <img src="/svgs/appointment.svg" alt="icon" style="margin-right: 16px;">
                                 </button>
                             </div>
                         </form>
@@ -173,7 +172,7 @@
 
             </div>
             <%@ include file="shared/footer.jsp" %>
-            <script src="./js/bootstrap.min.js"></script>
+            <script src="/js/bootstrap.min.js"></script>
             <script>
                 const doctorSelect = document.getElementById("doctor_id");
                 const serviceSelect = document.getElementById("service_id");

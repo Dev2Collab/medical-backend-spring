@@ -340,7 +340,16 @@ flex-direction: column;
   justify-content: center;
 }
 .sidebar{
-  display: none;
+  position: absolute;
+  top: 70px;
+  left: 0px;
+  background: #ffffff;
+display: none;
+}
+.user-small-menu{
+  display: block;
+  position: relative;
+rotate: 270deg;
 }
   footer {
     padding: 16px 8px;

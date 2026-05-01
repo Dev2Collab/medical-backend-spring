@@ -17,7 +17,7 @@
                 uri.equals("/WEB-INF/views/profile/admin.jsp");
             %>
             <li><a href="/home" class='<%= isHome ? "active" : "" %>'> الرئيسية</a> </li>
-            <li><a href="/book-appointment" class="<%= request.getRequestURI().equals("/WEB-INF/views/appointment.jsp") ? "active" : "" %>"> حجز موعد </a> </li>
+            <li><a href="/appointments/book-appointment" class="<%= request.getRequestURI().equals("/WEB-INF/views/appointment.jsp") ? "active" : "" %>"> حجز موعد </a> </li>
             <li><a href="/about" class="<%= request.getRequestURI().equals("/WEB-INF/views/about.jsp") ? "active" : "" %>">عن العيادة </a> </li>
             <li><a href="/services" class="<%= request.getRequestURI().equals("/WEB-INF/views/services.jsp") ? "active" : "" %>">الخدمات</a> </li>
             <li><a href="/doctors" class="<%= request.getRequestURI().equals("/WEB-INF/views/doctors.jsp") ? "active" : "" %>">الاطباء</a> </li>
@@ -41,7 +41,7 @@
     <div class="mobile-menu">
         <ul>
             <li><a href="/home" class='<%= request.getRequestURI().equals("/WEB-INF/views/home.jsp") ? "active" : "" %>'> الرئيسية</a> </li>
-            <li><a href="/book-appointment" class="<%= request.getRequestURI().equals("/WEB-INF/views/appointment.jsp") ? "active" : "" %>"> حجز موعد </a> </li>
+            <li><a href="/appointments/book-appointment" class="<%= request.getRequestURI().equals("/WEB-INF/views/appointment.jsp") ? "active" : "" %>"> حجز موعد </a> </li>
             <li><a href="/about" class="<%= request.getRequestURI().equals("/WEB-INF/views/about.jsp") ? "active" : "" %>">عن العيادة </a> </li>
             <li><a href="/services" class="<%= request.getRequestURI().equals("/WEB-INF/views/services.jsp") ? "active" : "" %>">الخدمات</a> </li>
             <li><a href="/doctors" class="<%= request.getRequestURI().equals("/WEB-INF/views/doctors.jsp") ? "active" : "" %>">الاطباء</a> </li>
@@ -53,7 +53,8 @@
         </div>
         <% }else { %>
         <div class="user-header">
-            <div >
+            <img src="/svgs/arrow-left-short.svg" alt="menu" class="user-small-menu">
+            <div>
                 <p class="text-primary">${username} </p>
                 <p class="text-gold">${role =="PATIENT"?"مريض ذهبي ": "دكتور ذهبي " }</p>
 
@@ -64,7 +65,7 @@
         <div class="mobile-menu mobile-menu-right" >
             <ul>
                 <li><a href="/home" class='<%= request.getRequestURI().equals("/WEB-INF/views/home.jsp") ? "active" : "" %>'> الرئيسية</a> </li>
-                <li><a href="/book-appointment" class="<%= request.getRequestURI().equals("/WEB-INF/views/appointment.jsp") ? "active" : "" %>"> حجز موعد </a> </li>
+                <li><a href="/appointments/book-appointment" class="<%= request.getRequestURI().equals("/WEB-INF/views/appointment.jsp") ? "active" : "" %>"> حجز موعد </a> </li>
                 <li><a href="/about" class="<%= request.getRequestURI().equals("/WEB-INF/views/about.jsp") ? "active" : "" %>">عن العيادة </a> </li>
                 <li><a href="/services" class="<%= request.getRequestURI().equals("/WEB-INF/views/services.jsp") ? "active" : "" %>">الخدمات</a> </li>
                 <li><a href="/doctors" class="<%= request.getRequestURI().equals("/WEB-INF/views/doctors.jsp") ? "active" : "" %>">الاطباء</a> </li>
@@ -80,7 +81,14 @@
                 mobileMenu.style.display =
                 mobileMenu.style.display === 'block' ? 'none' : 'block';
             });
+            
+            document.addEventListener('click', (event) => {
+                const isClickInsideMobileMenu = mobileMenu.contains(event.target);
+                const isClickOnMenuButton = toggleBtn.contains(event.target);
+                
+                if (!isClickInsideMobileMenu && !isClickOnMenuButton) {
+                    mobileMenu.style.display = 'none';
+                }
+            });
         </script>
-
-
     </header>

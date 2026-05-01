@@ -82,12 +82,17 @@ header nav li a {
     line-height: 10px;
   }
 
+
   .text-gold {
     font-weight: 400;
     font-size: 10px;
   }
 }
 
+.user-small-menu {
+  display: none;
+  cursor: pointer;
+}
 .menu-toggle {
   display: none;
 }

@@ -3,6 +3,8 @@
 <%@ page import="com.hema.medical_backend_spring.model.sub.ChronicDiseases" %>
 <%@ page import="com.hema.medical_backend_spring.model.sub.Medications" %>
 <%@ page import="com.hema.medical_backend_spring.model.MedicalRecord" %>
+<%@ page import="com.hema.medical_backend_spring.model.Appointment" %>
+<%@ page import="com.hema.medical_backend_spring.mapper.HelperDto" %>
 <%@ page import="java.util.List" %>
 
 <!DOCTYPE html>
@@ -85,40 +87,33 @@
                     </div>
 
                     <!-- Appointments -->
-                    <div class="card" id="appointments">
+                    <div class="card" id="appointments" >
                         <div class="card-title"> مواعيدي القادمة والسابقة
-                            <img src="./svgs/view-all.svg" alt="edit" width="35" class="edit-icon">
+                            <img src="./svgs/view-all.svg" alt="edit" width="35" class="edit-icon" onclick="window.location='/appointments'">
 
                         </div>
+                        <% List<Appointment> appointments = (List<Appointment>) request.getAttribute("appointments"); %>
                         <table>
                             <thead><tr>
                                 <th>الطبيب</th><th class="special">التخصص</th><th>التاريخ والوقت</th><th>الحالة</th><th>الإجراءات</th>
                             </tr></thead>
                             <tbody>
+                                <% for (Appointment appointment : appointments) {%>
+
                                 <tr>
                                     <td>
                                         <div style="display:flex;align-items:center;gap:8px">
-                                            <div class="doctor-avatar">سأ</div>
-                                            <span>د. سارة الأحمد</span>
+                                            <div class="doctor-avatar"><%= HelperDto.getTwoChars(appointment.getDoctor().getFullName()) %></div>
+                                            <span>د. <%= appointment.getDoctor().getFullName() %></span>
                                         </div>
                                     </td>
-                                    <td class="special">طب القلب</td>
-                                    <td>24 أكتوبر 2023 | 10:00 ص</td>
-                                    <td><span class="badge badge-green">مؤكد</span></td>
+                                    <td class="special"><%= appointment.getDoctor().getSpecialization() %></td>
+                                    <td> <%= HelperDto.getDate(appointment.getAppointmentDate()) %>  |  <%= HelperDto.getTime(appointment.getAppointmentTime()) %> </td>
+                                    <td><span class="badge badge-green"><%= HelperDto.getStatusString(appointment.getStatus()) %></span></td>
                                     <td><a class="action-link">إدارة الموعد</a></td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <div style="display:flex;align-items:center;gap:8px">
-                                            <div class="doctor-avatar">خف</div>
-                                            <span>د. خالد الفيصل</span>
-                                        </div>
-                                    </td>
-                                    <td class="special">الطب العام</td>
-                                    <td>12 سبتمبر 2023 | 04:30 م</td>
-                                    <td><span class="badge badge-gray">مكتمل</span></td>
-                                    <td><a class="action-link">عرض التقرير</a></td>
-                                </tr>
+                                <%}%>
+
                             </tbody>
                         </table>
                     </div>

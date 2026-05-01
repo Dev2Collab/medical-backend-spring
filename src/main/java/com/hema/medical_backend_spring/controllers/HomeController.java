@@ -10,6 +10,7 @@ import com.hema.medical_backend_spring.model.Admin;
 import com.hema.medical_backend_spring.model.Doctor;
 import com.hema.medical_backend_spring.model.Patient;
 import com.hema.medical_backend_spring.services.AdminService;
+import com.hema.medical_backend_spring.services.AppointmentService;
 import com.hema.medical_backend_spring.services.DoctorService;
 import com.hema.medical_backend_spring.services.PatientService;
 
@@ -21,6 +22,7 @@ public class HomeController {
     private final PatientService patientService;
     private final DoctorService doctorService;
     private final AdminService adminService;
+    private final AppointmentService appointmentService;
 
     @GetMapping(path = { "/home", "/" })
     public String getHomePage(Authentication authentication, Model model) {
@@ -31,6 +33,7 @@ public class HomeController {
                 Patient patient = patientService.getPatient(userDetails.getProjectUser().getId()).orElse(null);
                 model.addAttribute("medicalRecord", patient.getMedicalRecord());
                 model.addAttribute("user", patient);
+                model.addAttribute("appointments", appointmentService.getAppointmentsForPatient(userDetails.getProjectUser().getEmail(), 0, 5).getContent());
                 return "profile/patient";
             } else if (authentication.getAuthorities().toArray()[0].toString().equals("DOCTOR")) {
                 Doctor doctor = doctorService.getDoctor(userDetails.getProjectUser().getId()).orElse(null);
