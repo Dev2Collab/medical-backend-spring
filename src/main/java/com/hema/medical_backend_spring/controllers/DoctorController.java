@@ -2,6 +2,7 @@ package com.hema.medical_backend_spring.controllers;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,7 +30,10 @@ public class DoctorController {
     public String getDoctors(@RequestParam(required = false) String specialty,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "4") int size, Model model) {
-        List<Doctor> doctors = doctorService.getDoctorsBySpecialty(specialty, page, size).getContent();
+                Page<Doctor> doctorsPage = doctorService.getDoctorsBySpecialty(specialty, page, size);
+        List<Doctor> doctors = doctorsPage.getContent();
+         model.addAttribute("page",doctorsPage.getNumber());
+        model.addAttribute("number",doctorsPage.getTotalPages());
         model.addAttribute("doctors", doctors);
         return "doctors";
     }

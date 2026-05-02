@@ -45,12 +45,12 @@ public class GlobalExceptionHandler {
         return "error";
     }
     
-    @ExceptionHandler(Exception.class)
-    public String handleGeneral(Exception ex, Model model) {
-        model.addAttribute("error", ex.getMessage());
-        model.addAttribute("status", 500);
-        return "error";
-    }
+    // @ExceptionHandler(Exception.class)
+    // public String handleGeneral(Exception ex, Model model) {
+    //     model.addAttribute("error", ex.getMessage());
+    //     model.addAttribute("status", 500);
+    //     return "error";
+    // }
     
  
     

@@ -114,7 +114,8 @@
                                         %>
                                         <%= safeText %>...
                                     </p>
-                                    <a href="#" class="btn-gold flex-between">
+                                    <a href="/appointments/book-appointment?doctorId=<%=doctor.getId()%>&specialization=<%= doctor.getSpecialty()%>"class="btn-gold flex-between">
+                                    
                                         <p class="text-primary">     احجز مع الطبيب  </p>
                                         <img width="18" src="/svgs/arrow-left-short-dark.svg" alt="icon" />
                                     </a>
@@ -128,6 +129,8 @@
                     <p class="text-secondary" style="text-align: center;">لا يوجد اطباء متاحين في هذا المجال الان .</p>
                     <% } %>
                 </section>
+            <%@ include file="shared/pagination.jsp" %>
+
                 <section>
                     <div class="green-card row align-items-center justify-content-around " style="margin-top: 64px; padding: 32px;">
                         <div  class="col-9 " >

@@ -118,7 +118,7 @@
                                     <%}%>
                                 </div>
                                 <div class="flex">
-                                    <a class="btn-primary me-2" href="#">احجز الآن</a>
+                                    <a class="btn-primary me-2" href="/appointments/book-appointment?serviceId=<%= service.getId() %>&specialization=<%= service.getSpecialization()%>">احجز الآن</a>
                                 </div>
                             </div>
                         </div>
