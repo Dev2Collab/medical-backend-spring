@@ -30,10 +30,10 @@ public class DoctorController {
     public String getDoctors(@RequestParam(required = false) String specialty,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "4") int size, Model model) {
-                Page<Doctor> doctorsPage = doctorService.getDoctorsBySpecialty(specialty, page, size);
+        Page<Doctor> doctorsPage = doctorService.getDoctorsBySpecialty(specialty, page, size);
         List<Doctor> doctors = doctorsPage.getContent();
-         model.addAttribute("page",doctorsPage.getNumber());
-        model.addAttribute("number",doctorsPage.getTotalPages());
+        model.addAttribute("page", doctorsPage.getNumber());
+        model.addAttribute("number", doctorsPage.getTotalPages());
         model.addAttribute("doctors", doctors);
         return "doctors";
     }
@@ -41,8 +41,11 @@ public class DoctorController {
     @GetMapping("/search")
     public String searchDoctors(@RequestParam(required = false) String s, @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "4") int size, Model model) {
-        List<Doctor> doctors = doctorService.searchDoctors(s, page, size).getContent();
+        Page<Doctor> doctorsPage = doctorService.searchDoctors(s, page, size);
+        List<Doctor> doctors = doctorsPage.getContent();
         model.addAttribute("doctors", doctors);
+        model.addAttribute("page", doctorsPage.getNumber());
+        model.addAttribute("number", doctorsPage.getTotalPages());
         return "doctors";
     }
 
