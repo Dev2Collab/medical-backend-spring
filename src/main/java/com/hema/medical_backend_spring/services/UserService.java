@@ -1,5 +1,6 @@
 package com.hema.medical_backend_spring.services;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.regex.Pattern;
@@ -8,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.hema.medical_backend_spring.config.CustomUserDetails;
 import com.hema.medical_backend_spring.dto.UpdatePasswordDto;
 import com.hema.medical_backend_spring.dto.UpdatePatientEmergencyDto;
 import com.hema.medical_backend_spring.dto.UpdateUserPersonalDetailsDto;
@@ -22,7 +24,11 @@ import com.hema.medical_backend_spring.repository.DoctorRepository;
 import com.hema.medical_backend_spring.repository.MedicalRecordRepository;
 import com.hema.medical_backend_spring.repository.PatientRepository;
 import com.hema.medical_backend_spring.repository.UserRepo;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
+
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
@@ -35,6 +41,9 @@ public class UserService {
     private final PatientRepository patientRepository;
     private final DoctorRepository doctorRepository;
     private final MedicalRecordRepository medicalRecordRepository;
+    private final EmailService emailService;
+    private final JwtService jwtService;
+    private final UserDetailsService userDetailsService;
 
     public void registerPatient(ProjectUser user) {
 
@@ -114,8 +123,50 @@ public class UserService {
         }
     }
 
+    public void sendActivationPin(String email) {
+        ProjectUser user = userRepo.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        String pin = generatePin();
+        user.setActivationPin(pin);
+        user.setPinExpiresAt(LocalDateTime.now().plusMinutes(15));
+        userRepo.save(user);
+
+        emailService.sendActivationPin(email, pin);
+    }
+
+    public boolean activateAccount(String email, String pin ,HttpServletResponse response) {
+        ProjectUser user = userRepo.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        if (user.getActivationPin() == null ||
+                !user.getActivationPin().equals(pin) ||
+                LocalDateTime.now().isAfter(user.getPinExpiresAt())) {
+            return false;
+        }
+
+        user.setActive(true);
+        user.setActivationPin(null);
+        user.setPinExpiresAt(null);
+        userRepo.save(user);
+
+        CustomUserDetails userDetails = (CustomUserDetails) userDetailsService.loadUserByUsername(user.getEmail());
+         // جدد الـ token
+    String newToken = jwtService.generateToken(userDetails);
+    Cookie cookie = new Cookie("jwt", newToken);
+    cookie.setHttpOnly(true);
+    cookie.setPath("/");
+    response.addCookie(cookie);
+
+        return true;
+    }
+
     public boolean isValidEmail(String email) {
         return EMAIL_PATTERN.matcher(email).matches();
+    }
+
+    private String generatePin() {
+        return String.valueOf((int) (Math.random() * 900000) + 100000); // 6 أرقام
     }
 
     private static final Pattern EMAIL_PATTERN = Pattern

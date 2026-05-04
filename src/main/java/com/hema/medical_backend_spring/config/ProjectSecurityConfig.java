@@ -45,12 +45,13 @@ public class ProjectSecurityConfig {
                                                                 "/js/**",
                                                                 "/images/**", "/fonts/**", "/", "/contact", "/about",
                                                                 "/svgs/**", "/style.css", "/responsive.css",
-                                                                "/WEB-INF/views/**", "/home","/error")
+                                                                "/WEB-INF/views/**", "/home", "/error",
+                                                                "/activate", "/activate/send", "/activate/verify")
                                                 .permitAll()
                                                 .requestMatchers("/admin/**", "/doctor-signup").hasAuthority("ADMIN")
-                                                .requestMatchers(HttpMethod.POST,"/services/**").hasAuthority("ADMIN")
-                                                .requestMatchers(HttpMethod.POST,"/doctors/**").hasAuthority("DOCTOR")
-                                                .requestMatchers(HttpMethod.POST,"/patient/**").hasAuthority("PATIENT")
+                                                .requestMatchers(HttpMethod.POST, "/services/**").hasAuthority("ADMIN")
+                                                .requestMatchers(HttpMethod.POST, "/doctors/**").hasAuthority("DOCTOR")
+                                                .requestMatchers(HttpMethod.POST, "/patient/**").hasAuthority("PATIENT")
                                                 .anyRequest().authenticated())
                                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                                 .logout(logout -> logout
@@ -61,7 +62,6 @@ public class ProjectSecurityConfig {
                 return http.build();
         }
 
-        
         // @Bean
         // UserDetailsService userDetailsService(){
         // UserDetails

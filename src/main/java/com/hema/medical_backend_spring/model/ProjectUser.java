@@ -49,12 +49,13 @@ public class ProjectUser {
 
     private boolean isActive = false;
 
+    private String activationPin;
+    private LocalDateTime pinExpiresAt;
+
     private LocalDate dateOfBirth;
-    private String address="غير محدد";
-    private String phoneNumber="غير محدد";
-    private String gender="غير محدد";
-
-
+    private String address = "غير محدد";
+    private String phoneNumber = "غير محدد";
+    private String gender = "غير محدد";
 
     @CreatedDate
     @Column(updatable = false)

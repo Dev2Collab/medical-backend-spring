@@ -27,7 +27,6 @@ import lombok.RequiredArgsConstructor;
 @Component
 @RequiredArgsConstructor
 public class JwtAuthFilter extends OncePerRequestFilter {
-
     private final JwtService jwtService;
 
     @Override
@@ -40,50 +39,61 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
         if (token == null) {
             HttpSession session = request.getSession(false);
-            if (session != null) {
+            if (session != null)
                 session.invalidate();
-            }
             SecurityContextHolder.clearContext();
             filterChain.doFilter(request, response);
             return;
         }
 
-
         try {
             String email = jwtService.extractEmail(token);
+            String role = jwtService.extractRole(token);
+            Long userId = jwtService.extractUserId(token);
+            boolean isActive = jwtService.extractIsActive(token);
+
+            if (!jwtService.isTokenExpired(token)) {
+
+                // isActive check برا الـ authentication check
+                if (!isActive) {
+                    String requestURI = request.getRequestURI();
+                    String method = request.getMethod();
+
+                    if (method.equals("POST") &&
+                            !requestURI.startsWith("/activate") &&
+                            !requestURI.startsWith("/login") &&
+                            !requestURI.startsWith("/register")) {
+                        response.sendRedirect("/activate?email=" + email);
+                        return;
+                    }
+                }
+            }
 
             if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+                ProjectUser user = new ProjectUser();
+                user.setId(userId);
+                user.setEmail(email);
+                user.setRole(ProjectUser.Role.valueOf(role));
+                user.setActive(isActive);
 
-                String role = jwtService.extractRole(token);
-                Long userId = jwtService.extractUserId(token);
-                boolean isActive = jwtService.extractIsActive(token);
+                CustomUserDetails userDetails = new CustomUserDetails(
+                        email, "", user, isActive,
+                        List.of(new SimpleGrantedAuthority(role.toString())));
 
-                if (!jwtService.isTokenExpired(token)) {
+                UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
+                        userDetails, null, userDetails.getAuthorities());
+                authToken.setDetails(
+                        new WebAuthenticationDetailsSource().buildDetails(request));
 
-                    ProjectUser user = new ProjectUser();
-                    user.setId(userId);
-                    user.setEmail(email);
-                    user.setRole(ProjectUser.Role.valueOf(role));
-                    user.setActive(isActive);
+                SecurityContext context = SecurityContextHolder.createEmptyContext();
+                context.setAuthentication(authToken);
+                SecurityContextHolder.setContext(context);
 
-                    CustomUserDetails userDetails = new CustomUserDetails(
-                            email, "", user, isActive,
-                            List.of(new SimpleGrantedAuthority(role.toString())));
+                HttpSession session = request.getSession(true);
+                session.setAttribute(
+                        HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY,
+                        context);
 
-                    UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                            userDetails, null, userDetails.getAuthorities());
-
-                    authToken.setDetails(
-                            new WebAuthenticationDetailsSource().buildDetails(request));
-
-                    SecurityContext context = SecurityContextHolder.createEmptyContext();
-                    context.setAuthentication(authToken);
-                    SecurityContextHolder.setContext(context);
-
-                    HttpSession session = request.getSession(true);
-                    session.setAttribute(
-                            HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, context);
-                }
             }
         } catch (Exception e) {
             System.out.println(e);
@@ -97,7 +107,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         Cookie[] cookies = request.getCookies();
         if (cookies == null)
             return null;
-
         for (Cookie cookie : cookies) {
             if (cookie.getName().equals("jwt")) {
                 return cookie.getValue();

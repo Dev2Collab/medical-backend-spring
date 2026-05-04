@@ -126,8 +126,6 @@
                         <div class="login-link">
                             لديك حساب بالفعل ؟
                             <a href="/login"> سجل دخولك الان</a>
-                            او 
-                            <a href="/doctor-signup"> انشاء حساب كطبيب  </a>
                         </div>
                     </div>
                 </div>
