@@ -49,6 +49,8 @@ public class AuthController {
         cookie.setMaxAge(86400);
         response.addCookie(cookie);
 
+        // TODO return to the page thr user was in
+
         String role = userDetails.getProjectUser().getRole().toString();
         switch (role) {
             case "PATIENT":

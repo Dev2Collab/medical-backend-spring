@@ -79,5 +79,6 @@ public class ServicesController {
         redirectAttributes.addFlashAttribute("message", "تم حذف الخدمه بنجاح .");
         return "redirect:/success";
     }
+    // TODO make the sections
 
 }

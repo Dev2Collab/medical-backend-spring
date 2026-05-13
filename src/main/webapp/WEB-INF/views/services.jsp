@@ -235,7 +235,7 @@
                         </p>
 
                         <div class="row flex justify-content-around mt-md-5" style="gap:16px;">
-                            <a href="/book-appointment" class="btn btn-gold btn-lg text-gold col-5" style="border-radius: 12px; line-height: normal;"> احجز موعدك الآن</a>
+                            <a href="/appointments/book-appointment" class="btn btn-gold btn-lg text-gold col-5" style="border-radius: 12px; line-height: normal;"> احجز موعدك الآن</a>
                             <a href="/contact" class="btn btn-secondary btn-lg text-white col-5" style="background-color: inherit;">
                                 تحدث مع خدمة العملاء</a>
                             </div>

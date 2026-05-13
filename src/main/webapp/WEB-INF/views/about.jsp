@@ -16,6 +16,7 @@
             <%@ include file="shared/header.jsp" %>
         </div>
 
+<%-- //TODO complete the missing sections --%>
         <section class="section-one">
             <div class="glass-bg"></div>
             <div class="container">

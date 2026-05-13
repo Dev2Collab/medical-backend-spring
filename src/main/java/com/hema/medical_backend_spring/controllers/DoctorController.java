@@ -67,4 +67,6 @@ public class DoctorController {
         return "redirect:/success";
     }
 
+    // TODO request to be a doctor and the admin will accept or refuse the request
+
 }

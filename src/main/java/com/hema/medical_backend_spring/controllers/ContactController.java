@@ -10,5 +10,8 @@ public class ContactController {
     public String getContactPage() {
         return new String("contact");
     }
+    // TODO make the contact us send work
+    // TODO do a working publishing
+
     
 }

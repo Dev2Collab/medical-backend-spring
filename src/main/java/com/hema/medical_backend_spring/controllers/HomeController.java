@@ -24,6 +24,8 @@ public class HomeController {
     private final AdminService adminService;
     private final AppointmentService appointmentService;
 
+    // TODO make notification work
+
     @GetMapping(path = { "/home", "/" })
     public String getHomePage(Authentication authentication, Model model) {
 
