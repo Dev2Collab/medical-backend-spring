@@ -156,7 +156,7 @@
                                 <p class="lead text-secondary">
                                     نغطي كافة احتياجاتك الصحية تحت سقف واحد
                                 </p>
-                                <a href="#" class="btn-link">
+                                <a href="/services" class="btn-link">
                                     عرض جميع الخدمات
                                     <img src="/svgs/arrow-left-short.svg" alt="icon" />
                                 </a>
@@ -179,7 +179,8 @@
                                             علاجية مخصصة لحالتك من قبل
                                             نخبة من الاستشاريين في كا...
                                         </p>
-                                        <a href="#" class="btn-link">التفاصيل
+                                        <%-- //TODO PUT THE URLS --%>
+                                        <a href="/services/search" class="btn-link">التفاصيل
                                             <img src="/svgs/arrow-left-long.svg" alt="icon" />
                                         </a>
                                     </div>

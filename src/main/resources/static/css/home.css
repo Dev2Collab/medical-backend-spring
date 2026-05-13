@@ -27,7 +27,7 @@
 }
 
 .avatar-group img:not(:first-child) {
-  margin-right: -15px;
+  margin-right: -15px !important;
 }
 .rating span {
   display: flex;

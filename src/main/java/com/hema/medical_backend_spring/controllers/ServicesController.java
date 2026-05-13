@@ -37,6 +37,8 @@ public class ServicesController {
         return new String("services");
     }
 
+    // TODO ADD THE SEARCH METHOD
+
     @GetMapping("/add-service")
     public String getAddServicePage(Authentication authentication, Model model) {
         if (authentication != null && authentication.isAuthenticated()
