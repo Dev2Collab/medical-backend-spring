@@ -1,9 +1,13 @@
 package com.hema.medical_backend_spring.config;
 
 import java.io.IOException;
+import java.util.Enumeration;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
+import org.springframework.security.web.savedrequest.RequestCache;
+import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.stereotype.Component;
 
 import com.hema.medical_backend_spring.services.JwtService;
@@ -32,6 +36,14 @@ public class CustomAuthSuccessHandler implements AuthenticationSuccessHandler {
         cookie.setPath("/");
         cookie.setMaxAge(86400);
         response.addCookie(cookie);
-        response.sendRedirect("/home");
+
+        String targetUrl = request.getParameter("redirect");
+        if (targetUrl != null && !targetUrl.isBlank()
+                && !targetUrl.equals("/login")
+                && !targetUrl.equals("/perform_login")) {
+            response.sendRedirect(targetUrl);
+        } else {
+            response.sendRedirect("/home");
+        }
     }
 }

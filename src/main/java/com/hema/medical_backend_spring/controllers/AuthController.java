@@ -15,6 +15,7 @@ import com.hema.medical_backend_spring.services.JwtService;
 import com.hema.medical_backend_spring.services.UserService;
 
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 
@@ -27,7 +28,7 @@ public class AuthController {
     private final JwtService jwtService;
 
     @GetMapping("/login")
-    public String login(Authentication authentication) {
+    public String login(Authentication authentication,HttpServletRequest request) {
         if (authentication != null && authentication.isAuthenticated()) {
             return "redirect:/home";
         }

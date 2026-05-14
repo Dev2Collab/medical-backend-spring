@@ -27,7 +27,7 @@
                 <div class="log-text">تسجيل الدخول</div>
                 <div class="hr"></div>
                 <%-- form details --%>
-                <form action="/perform_login" method="post">
+                <form action="/perform_login?redirect=${param.redirect}" method="post">
                     <div class="mb-3">
                         <label for="email" class="form-label">البريد الالكتروني </label>
 

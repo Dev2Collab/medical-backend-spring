@@ -8,12 +8,15 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.context.DelegatingSecurityContextRepository;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.security.web.context.RequestAttributeSecurityContextRepository;
 import org.springframework.security.web.context.SecurityContextRepository;
+import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 
 import com.hema.medical_backend_spring.filter.JwtAuthFilter;
 
@@ -30,18 +33,20 @@ public class ProjectSecurityConfig {
         @Bean
         SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
                 http
+
                                 .formLogin(form -> form
                                                 .loginPage("/login")
                                                 .loginProcessingUrl("/perform_login")
                                                 .successHandler(customAuthSuccessHandler)
                                                 .failureUrl("/login?error=true")
                                                 .permitAll())
+
                                 .sessionManagement(session -> session
                                                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
                                 .securityContext(context -> context
                                                 .securityContextRepository(securityContextRepository()))
                                 .authorizeHttpRequests(auth -> auth
-                                                .requestMatchers("/customLogin", "/signup", "/css/**",
+                                                .requestMatchers("/customLogin", "/signup", "/css/**", "/login",
                                                                 "/js/**",
                                                                 "/images/**", "/fonts/**", "/", "/contact", "/about",
                                                                 "/svgs/**", "/style.css", "/responsive.css",
@@ -53,6 +58,8 @@ public class ProjectSecurityConfig {
                                                 .requestMatchers(HttpMethod.POST, "/doctors/**").hasAuthority("DOCTOR")
                                                 .requestMatchers(HttpMethod.POST, "/patient/**").hasAuthority("PATIENT")
                                                 .anyRequest().authenticated())
+                                .exceptionHandling(ex -> ex
+                                                .authenticationEntryPoint(customEntryPoint()))
                                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                                 .logout(logout -> logout
                                                 .logoutUrl("/logout")
@@ -81,6 +88,20 @@ public class ProjectSecurityConfig {
         @Bean
         PasswordEncoder passwordEncoder() {
                 return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        }
+
+        @Bean
+         AuthenticationEntryPoint customEntryPoint() {
+                return (request, response, authException) -> {
+                        String uri = request.getRequestURI();
+
+                        if (uri.equals("/login") || uri.equals("/perform_login")) {
+                                response.sendRedirect("/login");
+                                return;
+                        }
+
+                        response.sendRedirect("/login?redirect=" + uri);
+                };
         }
 
 }
